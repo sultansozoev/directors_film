@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Player</title>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <link rel="stylesheet" href="css/plyr.css" />
+</head>
+<body>
+<div id="container" class="container">
+  <video id="player" controls crossorigin playsinline>
+    <source src="" type="video/mp4" size="720">
+
+    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
+           default>
+    <track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
+  </video>
+</div>
+
+<script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+<script type="module" src="js/plyr.js">
+
+</script>
+</body>
+</html>
