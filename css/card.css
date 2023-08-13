@@ -35,10 +35,6 @@ a {
   color: inherit;
 }
 
-a:hover {
-  color: #6abcea;
-}
-
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -53,7 +49,7 @@ a:hover {
   background: #ffffff;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 315px;
+  max-width: 250px;
   margin: 2em;
   border-radius: 10px;
   display: inline-block;
@@ -62,7 +58,7 @@ a:hover {
 .movie-header {
   padding: 0;
   margin: 0;
-  height: 367px;
+  height: 300px;
   width: 100%;
   display: block;
   border-top-left-radius: 10px;
