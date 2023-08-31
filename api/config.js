@@ -1,3 +1,3 @@
-const apiUrl = 'https://placide.serveo.net';
+const apiUrl = 'https://satio.serveo.net';
 
 export { apiUrl };
