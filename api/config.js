@@ -1,3 +1,3 @@
-const apiUrl = 'https://satio.serveo.net';
+const apiUrl = 'https://pudor.serveo.net';
 
 export { apiUrl };
