@@ -31,9 +31,10 @@ fetch(url, {
       wrapperDiv.appendChild(coverImage);
 
       const titleImage = document.createElement('img');
-      titleImage.src = film.logo_url;
-      titleImage.classList.add('title');
-
+      if (film.logo_url != null) {
+        titleImage.src = film.logo_url;
+        titleImage.classList.add('title');
+      }
       const characterImage = document.createElement('img');
       characterImage.src = film.characterImage;
       characterImage.classList.add('character');
