@@ -6,9 +6,13 @@
   box-sizing: border-box;
 }
 
+.notPresent {
+  filter: grayscale(100%);
+}
+
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

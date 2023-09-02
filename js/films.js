@@ -28,16 +28,26 @@ fetch(url, {
       const coverImage = document.createElement('img');
       coverImage.src = film.poster_url;
       coverImage.classList.add('cover-image');
+      if (film.isPresent === 0) {
+        console.log("not present: " + film.title)
+        coverImage.classList.add('notPresent');
+      }
       wrapperDiv.appendChild(coverImage);
 
       const titleImage = document.createElement('img');
       titleImage.src = film.logo_url;
       titleImage.classList.add('title');
-
+      if (film.isPresent === 0) {
+        console.log("not present: " + film.title)
+        titleImage.classList.add('notPresent');
+      }
       const characterImage = document.createElement('img');
       characterImage.src = film.characterImage;
       characterImage.classList.add('character');
-
+      if (film.isPresent === 0) {
+        console.log("not present: " + film.title)
+        characterImage.classList.add('notPresent');
+      }
       // Append the wrapper div to the card div
       cardDiv.appendChild(wrapperDiv);
       cardDiv.appendChild(titleImage);
