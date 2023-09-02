@@ -35,8 +35,10 @@ fetch(url, {
       wrapperDiv.appendChild(coverImage);
 
       const titleImage = document.createElement('img');
-      titleImage.src = film.logo_url;
-      titleImage.classList.add('title');
+      if (film.logo_url != null) {
+        titleImage.src = film.logo_url;
+        titleImage.classList.add('title');
+      }
       if (film.isPresent === 0) {
         console.log("not present: " + film.title)
         titleImage.classList.add('notPresent');
