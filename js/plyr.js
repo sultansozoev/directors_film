@@ -19,28 +19,29 @@ fetch(url)
   .then(response => response.url)  // Get the URL directly
   .then(videoUrl => {
     sourceElement.src = videoUrl;
-    url = `${apiUrl}/film?title=${encodeURIComponent(film)}`;
-    fetch(url)
-      .then(response => response.json())  // Get the URL directly
-      .then(data => {
-        const film = data.film[0];
-        year.appendChild(document.createTextNode(film.release_date));
-        if (film.budget != null) {
-          console.log(film.budget)
-          const budgetFormattato  = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-          budget.appendChild(document.createTextNode(budgetFormattato+"$"));
-        } else {
-          budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
-        }
-        title.appendChild(document.createTextNode(film.title));
-        if (film.isPresent === 1) {
-          isPresent.appendChild(document.createTextNode("Si"));
-        } else {
-          isPresent.appendChild(document.createTextNode("No"));
-        }
-        cardImage.setAttribute("style", `background-image: url("${film.poster_url}");`);
-        videoPlayer.setAttribute('data-poster', film.background)
-        body.setAttribute("style", `background-image: url("${film.background}"); backdrop-filter: blur(5px);`)
-      });
     videoPlayer.load();
+  });
+
+url = `${apiUrl}/film?title=${encodeURIComponent(film)}`;
+fetch(url)
+  .then(response => response.json())  // Get the URL directly
+  .then(data => {
+    const film = data.film[0];
+    year.appendChild(document.createTextNode(film.release_date));
+    if (film.budget != null) {
+      console.log(film.budget)
+      const budgetFormattato  = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      budget.appendChild(document.createTextNode(budgetFormattato+"$"));
+    } else {
+      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+    }
+    title.appendChild(document.createTextNode(film.title));
+    if (film.isPresent === 1) {
+      isPresent.appendChild(document.createTextNode("Si"));
+    } else {
+      isPresent.appendChild(document.createTextNode("No"));
+    }
+    cardImage.setAttribute("style", `background-image: url("${film.poster_url}");`);
+    videoPlayer.setAttribute('data-poster', film.background)
+    body.setAttribute("style", `background-image: url("${film.background}"); backdrop-filter: blur(5px);`)
   });
