@@ -1,3 +1,3 @@
-const apiUrl = 'https://wet-suns-juggle.loca.lt';
+const apiUrl =  'https://rapid-gnat-prime.ngrok-free.app';
 
 export { apiUrl };
