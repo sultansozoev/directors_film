@@ -1,3 +1,3 @@
-const apiUrl = 'https://rapid-gnat-prime.ngrok-free.app';
+const apiUrl = 'https://surio.loca.lt';
 
 export { apiUrl };
