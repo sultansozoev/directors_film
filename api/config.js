@@ -1,3 +1,3 @@
-const apiUrl = 'https://surio.loca.lt';
+const apiUrl = 'https://surio.ddns.net';
 
 export { apiUrl };
