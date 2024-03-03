@@ -11,7 +11,8 @@ const budget = document.getElementById('budget');
 const isPresent = document.getElementById('cb2');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
-
+const subtitle = document.getElementById('subtitle');
+const subtitleUrl = `${apiUrl}/subtitle?film=${encodeURIComponent(film)}`;
 const player = new Plyr('video', { captions: { active: true } });
 window.player = player;
 
@@ -46,6 +47,12 @@ fetch(url)
     sourceElement.src = videoUrl;
     videoPlayer.load();
   });
+
+fetch(subtitleUrl)
+    .then(response => response.url)
+    .then(videoUrl => {
+      subtitle.src = videoUrl;
+    });
 
 url = `${apiUrl}/film?title=${encodeURIComponent(film)}`;
 fetch(url)
