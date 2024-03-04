@@ -51,7 +51,7 @@ fetch(url)
 fetch(subtitleUrl)
     .then(response => response.url)
     .then(videoUrl => {
-      subtitle.src = videoUrl;
+      subtitle.src = videoUrl + ".vtt";
     });
 
 url = `${apiUrl}/film?title=${encodeURIComponent(film)}`;
