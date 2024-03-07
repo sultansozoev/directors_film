@@ -1,7 +1,7 @@
 import { apiUrl } from '/api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
 const film = queryParams.get('film');
-let url = `${apiUrl}/video?film=${encodeURIComponent(film)}`;
+let url = `${apiUrl}/video?film=${encodeURI(film)}`;
 const id = queryParams.get('filmId');
 const videoPlayer = document.getElementById('player');
 const body = document.getElementById('body');
@@ -12,7 +12,7 @@ const isPresent = document.getElementById('cb2');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
-const subtitleUrl = `${apiUrl}/subtitle?film=${encodeURIComponent(film)}`;
+const subtitleUrl = `${apiUrl}/subtitle?film=${encodeURI(film)}`;
 const player = new Plyr('video', { captions: { active: true } });
 window.player = player;
 
@@ -55,7 +55,7 @@ fetch(subtitleUrl)
       console.log(videoUrl);
     });
 
-url = `${apiUrl}/film?title=${encodeURIComponent(film)}`;
+url = `${apiUrl}/film?title=${encodeURI(film)}`;
 fetch(url)
   .then(response => response.json())
   .then(data => {
