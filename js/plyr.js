@@ -14,6 +14,7 @@ const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
 const subtitleUrl = `${apiUrl}/subtitle?film=${encodeURI(film)}`;
 const player = new Plyr('video', { captions: { active: true } });
+player.elements.container.tabIndex = 0;
 window.player = player;
 
 isPresent.addEventListener('change', function () {
