@@ -1,5 +1,5 @@
 .container {
-  max-width: 800px;
+  max-width: max-content;
   margin: 0 auto;
   background: transparent;
 }
