@@ -94,5 +94,8 @@ fetch(url)
       isPresent.setAttribute('checked', 'checked');
     cardImage.setAttribute("style", `background-image: url("${film.poster_url}");`);
     videoPlayer.setAttribute('data-poster', film.background);
+    setTimeout(() => {
+      player.poster = film.background;
+    }, 500)
     body.setAttribute("style", `background-image: url("${film.background}"); backdrop-filter: blur(5px);`);
   });
