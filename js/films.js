@@ -13,7 +13,7 @@ function fetchDirectorsAndPopulateContainer(url, container, nameId) {
       const films = data.films;
       films.forEach(film => {
         const card = document.createElement('a');
-        card.setAttribute('href', `player.html?film=${film.title}`);
+        card.setAttribute('href', `player.html?film=${film.title}&filmId=${film.id_film}`);
 
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
@@ -72,3 +72,5 @@ const actorId = queryParams.get('actorId');
 url = `${apiUrl}/getFilms?actorId=${actorId}`;
 nameId = `actorId`;
 fetchDirectorsAndPopulateContainer(url, container, nameId);
+
+export { fetchDirectorsAndPopulateContainer };

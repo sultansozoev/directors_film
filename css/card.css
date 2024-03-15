@@ -115,6 +115,8 @@ a {
   font-size: 24px;
   margin: 0;
   display: table-cell;
+  color: black;
+  text-decoration: none;
 }
 
 .imax-logo {

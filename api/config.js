@@ -1,3 +1,3 @@
-const apiUrl = 'https://humane-stallion-regularly.ngrok-free.app';
+const apiUrl = 'https://surio.ddns.net';
 
 export { apiUrl };

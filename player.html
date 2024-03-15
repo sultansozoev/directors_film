@@ -7,16 +7,29 @@
   <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <link rel="stylesheet" href="css/plyr.css" />
 </head>
-<body>
+<body id="body">
 <div id="container" class="container">
-  <video id="player" controls crossorigin playsinline>
-    <source src="" type="video/mp4" size="1080">
-    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
+  <video id="player" data-plyr-provider="vimeo" data-plyr-config='{ focused: true, global: true }' data-plyr-embed-id="76979871" style="--plyr-color-main: #1ac266;" crossorigin="anonymous">
+    <source src="" type="video/mp4" sizes="1080">
+    <track id="subtitle" kind="captions" label="Italiano" srclang="it" src=""
            default>
-    <track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
   </video>
 </div>
-
+<div class="Card">
+  <div id="card-image" class="Card-image"></div>
+  <div class="Card-body">
+    <h1 id="title" class="Card-title"></h1>
+    <p id="year" class="Card-description">Anno: </p>
+    <p id="budget" class="Card-description">Budget: </p>
+    <p id="isPresent" class="Card-description">Disponibile ora: </p>
+    <ul class="tg-list">
+      <li class="tg-list-item">
+        <input class="tgl tgl-ios" id="cb2" type="checkbox" />
+        <label class="tgl-btn" for="cb2"></label>
+      </li>
+    </ul>
+  </div>
+</div>
 <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
 <script type="module" src="js/plyr.js">
 

@@ -1,0 +1,30 @@
+/* CSS VARIABLES */
+:root {
+  --primary: #141414;
+  --light: #F3F3F3;
+}
+
+img {
+  max-width: 100%;
+  width: 200px;
+}
+html body {
+  padding-top: 65px;
+}
+
+header {
+  left:0;
+  right:0;
+  padding: 20px 20px 0 20px;
+  position: fixed;
+  top: 0;
+  display: grid;
+  z-index: 999;
+  grid-gap:5px;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-areas:
+   "nt mn mn sb . . . ";
+  background-color: var(--primary);
+  width: 100%;
+  margin-bottom: 0;
+}

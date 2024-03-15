@@ -8,11 +8,20 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="analytics" level="application" />
-    <orderEntry type="library" name="analytics" level="application" />
     <orderEntry type="library" name="video-js" level="application" />
-    <orderEntry type="library" name="video" level="application" />
+    <orderEntry type="library" name="analytics" level="application" />
+    <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="Swiper" level="application" />
+    <orderEntry type="library" name="ionicons" level="application" />
+    <orderEntry type="library" name="vibrant.js" level="application" />
     <orderEntry type="library" name="plyr" level="application" />
+    <orderEntry type="library" name="Swiper" level="application" />
+    <orderEntry type="library" name="video" level="application" />
     <orderEntry type="library" name="plyr.polyfilled" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="vibrant.js" level="application" />
+    <orderEntry type="library" name="ionicons" level="application" />
   </component>
 </module>

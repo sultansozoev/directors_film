@@ -13,13 +13,22 @@
   <link rel="apple-touch-icon" href="icon.png">
 
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/films.css">
+  <link rel="stylesheet" href="css/carousel_films.css">
 
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
-  <div id="body" class="container">
-  </div>
-  <script type="module" src="js/films.js"></script>
+<main>
+  <ul id="body" class='slider'>
+  </ul>
+  <nav class='nav'>
+    <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+    <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+  </nav>
+</main>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module" src="js/carousel_films.js"></script>
 </body>
 </html>
