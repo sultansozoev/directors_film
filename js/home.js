@@ -44,3 +44,15 @@ fetchMoviesByGenre(directorsUrlAzione, moviesContainerAzione);
 const moviesContainerCommedia = document.getElementById('commedia');
 const directorsUrlCommedia = `${apiUrl}/getMoviesByGenre?genre=Commedia`;
 fetchMoviesByGenre(directorsUrlCommedia, moviesContainerCommedia);
+
+const moviesContainerFantasy = document.getElementById('fantasy');
+const directorsUrlFantasy = `${apiUrl}/getMoviesByGenre?genre=Fantasy`;
+fetchMoviesByGenre(directorsUrlFantasy, moviesContainerFantasy);
+
+const moviesContainerAnimazione = document.getElementById('animazione');
+const directorsUrlAnimazione = `${apiUrl}/getMoviesByGenre?genre=Animazione`;
+fetchMoviesByGenre(directorsUrlAnimazione, moviesContainerAnimazione);
+
+const moviesContainerHorror = document.getElementById('horror');
+const directorsUrlHorror = `${apiUrl}/getMoviesByGenre?genre=Horror`;
+fetchMoviesByGenre(directorsUrlHorror, moviesContainerHorror);
