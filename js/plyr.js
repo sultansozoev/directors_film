@@ -55,18 +55,26 @@ fetch(url)
   .then(response => response.json())
   .then(data => {
     const film = data.film[0];
-    year.appendChild(document.createTextNode(film.release_date));
+    if (film.release_date != null) {
+      let releaseDate = film.release_date;
+      let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
+      year.appendChild(document.createTextNode(d));
+    } else {
+      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+    }
     if (film.budget != null) {
       const budgetFormattato  = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      budget.appendChild(document.createTextNode(budgetFormattato+"$"));
+      budget.appendChild(document.createTextNode("$" + budgetFormattato));
     } else {
       budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
     }
     title.appendChild(document.createTextNode(film.title));
-    cardImage.setAttribute("style", `background-image: url("${film.poster}");`);
-    videoPlayer.setAttribute('data-poster', film.background_image);
+    cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
+    videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);
     setTimeout(() => {
-      player.poster = film.background_image;
+      player.poster = "https://image.tmdb.org/t/p/original/" + film.background_image;
     }, 500)
-    body.setAttribute("style", `background-image: url("${film.background_image}"); backdrop-filter: blur(5px);`);
+    body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.background_image}"); backdrop-filter: blur(5px);`);
   });
+
+
