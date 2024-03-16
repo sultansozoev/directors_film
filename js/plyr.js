@@ -12,7 +12,7 @@ const isPresent = document.getElementById('cb2');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
-const subtitleUrl = `${apiUrl}/subtitle?film=${encodeURI(film)}`;
+const subtitleUrl = `${apiUrl}/subtitle?film=${film}`;
 const controls =
   [
     'play-large', // The large play button in the center

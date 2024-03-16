@@ -28,7 +28,7 @@ searchBar.addEventListener("input", (event) => {
         movieCard.classList.add('movie-card');
 
         const movieLink = document.createElement('a');
-        movieLink.setAttribute('href', `player.html?film=${movie.title}`);
+        movieLink.setAttribute('href', `player.html?film=${movie.movie_id}`);
 
         const movieHeader = document.createElement('div');
         movieHeader.classList.add('movie-header', 'movie-image');
