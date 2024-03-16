@@ -1,7 +1,7 @@
 import { apiUrl } from '/api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
 const film = queryParams.get('film');
-let url = `${apiUrl}/video?film=${encodeURI(film)}`;
+let url = `${apiUrl}/video?film=${film}`;
 const id = queryParams.get('filmId');
 const videoPlayer = document.getElementById('player');
 const body = document.getElementById('body');
@@ -77,7 +77,7 @@ fetch(subtitleUrl)
     console.log(videoUrl);
   });
 
-url = `${apiUrl}/film?title=${encodeURI(film)}`;
+url = `${apiUrl}/film?title=${film}`;
 fetch(url)
   .then(response => response.json())
   .then(data => {
