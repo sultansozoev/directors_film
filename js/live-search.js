@@ -19,10 +19,8 @@ searchBar.addEventListener("input", (event) => {
       console.log(data);
       const films = data.films;
 
-      // Clear existing content in container
       results_container.innerHTML = '';
 
-      // Loop through directors and create movie cards
       films.forEach(movie => {
         const movieCard = document.createElement('div');
         movieCard.classList.add('movie-card');
@@ -34,16 +32,7 @@ searchBar.addEventListener("input", (event) => {
         movieHeader.classList.add('movie-header', 'movie-image');
         movieHeader.style.backgroundImage = `url('https://image.tmdb.org/t/p/original/${movie.poster}')`;
 
-        const movieContent = document.createElement('div');
-        movieContent.classList.add('movie-content');
-
-        const movieContentHeader = document.createElement('div');
-        movieContentHeader.classList.add('movie-content-header');
-
-        movieContent.appendChild(movieContentHeader)
-
         movieLink.appendChild(movieHeader);
-        movieLink.appendChild(movieContent);
         movieCard.appendChild(movieLink);
 
         results_container.appendChild(movieCard);

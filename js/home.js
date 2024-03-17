@@ -9,8 +9,7 @@ function fetchMoviesByGenre(url, container) {
   })
     .then(response => response.json())
     .then(data => {
-      const movies = data.films;
-      movies.forEach(movie => {
+      data.forEach(movie => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
         cardDiv.classList.add('swiper-slide');
@@ -32,27 +31,88 @@ function fetchMoviesByGenre(url, container) {
       console.error('Error fetching films:', error);
     });
 }
+/*
+function category(url, container) {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(category => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('container');
+        cardDiv.classList.add('swiper');
+
+        const h1 = document.createElement('h1');
+        h1.classList.add('text-black');
+        h1.classList.add('px-4');
+        h1.innerText = category.category_name;
+        const slideDiv = document.createElement('div');
+        slideDiv.classList.add("slide-container");
+        const cardWrapper = document.createElement('div');
+        cardWrapper.classList.add("card-wrapper");
+        cardWrapper.classList.add("swiper-wrapper");
+
+        fetchMoviesByGenre(`${apiUrl}/getMoviesByCategory?category=${category.category_id}`, cardWrapper);
+
+        slideDiv.appendChild(cardWrapper);
+        cardDiv.appendChild(h1);
+        cardDiv.appendChild(slideDiv);
+        container.appendChild(cardDiv);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
+const categoriesUrl = `${apiUrl}/getCategories`;
+const categoriesDiv = document.getElementById('categories');
+category(categoriesUrl, categoriesDiv);
+*/
+const starWars = document.getElementById('starWars');
+const urlStarWars = `${apiUrl}/getMoviesByCategory?category=3`;
+fetchMoviesByGenre(urlStarWars, starWars);
+
+const pixar = document.getElementById('pixar');
+const urlPixar = `${apiUrl}/getMoviesByCategory?category=4`;
+fetchMoviesByGenre(urlPixar, pixar);
+
+const studioGhibli = document.getElementById('studioGhibli');
+const urlStudioGhibli = `${apiUrl}/getMoviesByCategory?category=2`;
+fetchMoviesByGenre(urlStudioGhibli, studioGhibli);
+
+const ultimiAggiunti = document.getElementById('ultimiAggiunti');
+const urlUltimiAggiunti = `${apiUrl}/getMoviesByCategory?category=1`;
+fetchMoviesByGenre(urlUltimiAggiunti, ultimiAggiunti);
+
+const imax = document.getElementById('imax');
+const urlImax = `${apiUrl}/getMoviesByCategory?category=5`;
+fetchMoviesByGenre(urlImax, imax);
 
 const moviesContainerAvventura = document.getElementById('avventura');
-const directorsUrlAvventura = `${apiUrl}/getMoviesByGenre?genre=Avventura`;
-fetchMoviesByGenre(directorsUrlAvventura, moviesContainerAvventura);
+const urlAvventura = `${apiUrl}/getMoviesByGenre?genre=12`;
+fetchMoviesByGenre(urlAvventura, moviesContainerAvventura);
 
 const moviesContainerAzione = document.getElementById('azione');
-const directorsUrlAzione = `${apiUrl}/getMoviesByGenre?genre=Azione`;
-fetchMoviesByGenre(directorsUrlAzione, moviesContainerAzione);
+const urlAzione = `${apiUrl}/getMoviesByGenre?genre=28`;
+fetchMoviesByGenre(urlAzione, moviesContainerAzione);
 
 const moviesContainerCommedia = document.getElementById('commedia');
-const directorsUrlCommedia = `${apiUrl}/getMoviesByGenre?genre=Commedia`;
-fetchMoviesByGenre(directorsUrlCommedia, moviesContainerCommedia);
+const urlCommedia = `${apiUrl}/getMoviesByGenre?genre=35`;
+fetchMoviesByGenre(urlCommedia, moviesContainerCommedia);
 
 const moviesContainerFantasy = document.getElementById('fantasy');
-const directorsUrlFantasy = `${apiUrl}/getMoviesByGenre?genre=Fantasy`;
-fetchMoviesByGenre(directorsUrlFantasy, moviesContainerFantasy);
+const urlFantasy = `${apiUrl}/getMoviesByGenre?genre=14`;
+fetchMoviesByGenre(urlFantasy, moviesContainerFantasy);
 
 const moviesContainerAnimazione = document.getElementById('animazione');
-const directorsUrlAnimazione = `${apiUrl}/getMoviesByGenre?genre=Animazione`;
-fetchMoviesByGenre(directorsUrlAnimazione, moviesContainerAnimazione);
+const urlAnimazione = `${apiUrl}/getMoviesByGenre?genre=16`;
+fetchMoviesByGenre(urlAnimazione, moviesContainerAnimazione);
 
 const moviesContainerHorror = document.getElementById('horror');
-const directorsUrlHorror = `${apiUrl}/getMoviesByGenre?genre=Horror`;
-fetchMoviesByGenre(directorsUrlHorror, moviesContainerHorror);
+const urlHorror = `${apiUrl}/getMoviesByGenre?genre=27`;
+fetchMoviesByGenre(urlHorror, moviesContainerHorror);
