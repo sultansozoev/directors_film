@@ -73,6 +73,10 @@ const categoriesUrl = `${apiUrl}/getCategories`;
 const categoriesDiv = document.getElementById('categories');
 category(categoriesUrl, categoriesDiv);
 */
+const oscar = document.getElementById('oscar');
+const urlOscar = `${apiUrl}/getMoviesByCategory?category=6`;
+fetchMoviesByGenre(urlOscar, oscar);
+
 const starWars = document.getElementById('starWars');
 const urlStarWars = `${apiUrl}/getMoviesByCategory?category=3`;
 fetchMoviesByGenre(urlStarWars, starWars);
