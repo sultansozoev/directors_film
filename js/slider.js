@@ -4,6 +4,7 @@ const swiper = new Swiper(".slide-container", {
   sliderPerGroup: 6,
   loop: true,
   centerSlide: "true",
+  touchEventsTarget: 'container',
   fade: "true",
   grabCursor: "true",
   pagination: {

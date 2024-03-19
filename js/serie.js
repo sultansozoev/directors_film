@@ -7,7 +7,6 @@ const title = document.getElementById('title');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
-const subtitleUrl = `${apiUrl}/subtitle?film=${serie}`;
 const controls =
   [
     'play-large', // The large play button in the center
@@ -31,10 +30,11 @@ const controls =
 let urlEpisode = `${apiUrl}/getEpisodes?id=${serie}`;
 
 fetch(urlEpisode)
-  .then(response => response.url)
+  .then(response => response.json())
   .then(episode => {
-    const episodeId = episode.episode_id;
-    const urlEpisodeVideo = `${apiUrl}/video?film=${episodeId}`;
+    const episodeId = episode[0].episode_id;
+    const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeId}`;
+
     fetch(urlEpisodeVideo)
       .then(response => response.url)
       .then(videoUrl => {
@@ -58,14 +58,21 @@ urlEpisode = `${apiUrl}/film?title=${serie}`;
 fetch(urlEpisode)
   .then(response => response.json())
   .then(data => {
-    const film = data.film[0];
-    title.appendChild(document.createTextNode(film.title));
-    cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
-    videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);
+    const serie_tv = data.results[0];
+    if (serie_tv.release_date != null) {
+      let releaseDate = serie_tv.release_date;
+      let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
+      year.appendChild(document.createTextNode(d));
+    } else {
+      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+    }
+    title.appendChild(document.createTextNode(serie_tv.title));
+    cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${serie_tv.poster}");`);
+    videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + serie_tv.background_image);
     setTimeout(() => {
-      player.poster = "https://image.tmdb.org/t/p/original/" + film.background_image;
+      player.poster = "https://image.tmdb.org/t/p/original/" + serie_tv.background_image;
     }, 500)
-    body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.background_image}"); backdrop-filter: blur(5px);`);
+    body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${serie_tv.background_image}"); backdrop-filter: blur(5px);`);
   });
 
 
