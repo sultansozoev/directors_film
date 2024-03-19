@@ -1,16 +1,13 @@
 import { apiUrl } from '/api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
-const film = queryParams.get('film');
-let url = `${apiUrl}/video?film=${film}`;
+const serie = queryParams.get('serie');
 const videoPlayer = document.getElementById('player');
 const body = document.getElementById('body');
 const title = document.getElementById('title');
-const year = document.getElementById('year');
-const budget = document.getElementById('budget');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
-const subtitleUrl = `${apiUrl}/subtitle?film=${film}`;
+const subtitleUrl = `${apiUrl}/subtitle?film=${serie}`;
 const controls =
   [
     'play-large', // The large play button in the center
@@ -31,43 +28,37 @@ const controls =
     'fullscreen' // Toggle fullscreen
   ];
 
+let urlEpisode = `${apiUrl}/getEpisodes?id=${serie}`;
+
+fetch(urlEpisode)
+  .then(response => response.url)
+  .then(episode => {
+    const episodeId = episode.episode_id;
+    const urlEpisodeVideo = `${apiUrl}/video?film=${episodeId}`;
+    fetch(urlEpisodeVideo)
+      .then(response => response.url)
+      .then(videoUrl => {
+        sourceElement.src = videoUrl;
+        videoPlayer.load();
+      });
+    const urlEpisodeSubtitle = `${apiUrl}/subtitle?film=${episodeId}`;
+    fetch(urlEpisodeSubtitle)
+      .then(response => response.url)
+      .then(videoUrl => {
+        subtitle.src = videoUrl;
+        console.log(videoUrl);
+      });
+  });
+
 const player = new Plyr('video', { captions: { active: true }, controls });
 player.elements.container.tabIndex = 0;
-player.config.urls.download = url;
+player.config.urls.download = urlEpisode;
 window.player = player;
-
-fetch(url)
-  .then(response => response.url)
-  .then(videoUrl => {
-    sourceElement.src = videoUrl;
-    videoPlayer.load();
-  });
-
-fetch(subtitleUrl)
-  .then(response => response.url)
-  .then(videoUrl => {
-    subtitle.src = videoUrl;
-    console.log(videoUrl);
-  });
-
-url = `${apiUrl}/film?id=${film}`;
-fetch(url)
+urlEpisode = `${apiUrl}/film?title=${serie}`;
+fetch(urlEpisode)
   .then(response => response.json())
   .then(data => {
     const film = data.film[0];
-    if (film.release_date != null) {
-      let releaseDate = film.release_date;
-      let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
-      year.appendChild(document.createTextNode(d));
-    } else {
-      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
-    }
-    if (film.budget != null) {
-      const budgetFormattato  = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      budget.appendChild(document.createTextNode("$" + budgetFormattato));
-    } else {
-      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
-    }
     title.appendChild(document.createTextNode(film.title));
     cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
     videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);

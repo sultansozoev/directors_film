@@ -17,7 +17,7 @@ function fetchMoviesByGenre(url, container) {
         const imageBox = document.createElement('div');
         imageBox.classList.add('image-box');
         const a = document.createElement('a');
-        a.setAttribute('href', `player.html?film=${serieTV.serie_tv_id}`);
+        a.setAttribute('href', `player_serie.html?serie=${serieTV.serie_tv_id}`);
         const image = document.createElement('img');
         image.src = "https://image.tmdb.org/t/p/original/" + serieTV.poster;
 
