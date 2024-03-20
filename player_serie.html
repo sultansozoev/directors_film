@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
   <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <link rel="stylesheet" href="css/plyr.css" />
+  <link rel="stylesheet" href="css/serietvplayer.css" />
 </head>
 <body id="body">
 <div id="container" class="container">
@@ -14,6 +15,17 @@
     <track id="subtitle" kind="captions" label="Italiano" srclang="it" src=""
            default>
   </video>
+</div>
+<div style="text-align: center;">
+  <div class="select-container">
+    <select name="Season" id="season">
+    </select>
+  </div>
+
+  <div class="select-container shadow">
+    <select name="Episode" id="episode">
+    </select>
+  </div>
 </div>
 <div class="Card">
   <div id="card-image" class="Card-image"></div>

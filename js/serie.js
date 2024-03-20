@@ -26,29 +26,77 @@ const controls =
     'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
     'fullscreen' // Toggle fullscreen
   ];
+const seasonSelector = document.getElementById('season');
+const episodeSelector = document.getElementById('episode');
+const urlSeason = `${apiUrl}/getSeasons?id=${serie}`;
 
-let urlEpisode = `${apiUrl}/getEpisodes?id=${serie}`;
-
-fetch(urlEpisode)
+fetch(urlSeason)
   .then(response => response.json())
-  .then(episode => {
-    const episodeId = episode[0].episode_id;
-    const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeId}`;
-
-    fetch(urlEpisodeVideo)
-      .then(response => response.url)
-      .then(videoUrl => {
-        sourceElement.src = videoUrl;
-        videoPlayer.load();
-      });
-    const urlEpisodeSubtitle = `${apiUrl}/subtitle?film=${episodeId}`;
-    fetch(urlEpisodeSubtitle)
-      .then(response => response.url)
-      .then(videoUrl => {
-        subtitle.src = videoUrl;
-        console.log(videoUrl);
+  .then(season => {
+    for (const seasonKey in season) {
+      const opt = document.createElement('option');
+      opt.value = season[seasonKey].season_id;
+      opt.innerHTML = season[seasonKey].season_name;
+      seasonSelector.appendChild(opt);
+    }
+    let urlEpisode = `${apiUrl}/getEpisodes?id=${seasonSelector.value}`;
+    fetch(urlEpisode)
+      .then(response => response.json())
+      .then(episode => {
+        for (const episodeKey in episode) {
+          const opt = document.createElement('option');
+          opt.value = episode[episodeKey].episode_id;
+          opt.innerHTML = episode[episodeKey].title;
+          episodeSelector.appendChild(opt);
+        }
+        const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeSelector.value}`;
+        fetch(urlEpisodeVideo)
+          .then(response => response.url)
+          .then(videoUrl => {
+            sourceElement.src = videoUrl;
+            videoPlayer.load();
+          });
+        const urlEpisodeSubtitle = `${apiUrl}/subtitle?film=${episodeSelector.value}`;
+        fetch(urlEpisodeSubtitle)
+          .then(response => response.url)
+          .then(videoUrl => {
+            subtitle.src = videoUrl;
+            console.log(videoUrl);
+          });
       });
   });
+
+seasonSelector.addEventListener('change', function() {
+  let urlEpisode = `${apiUrl}/getEpisodes?id=${this.value}`;
+  fetch(urlEpisode)
+    .then(response => response.json())
+    .then(episode => {
+      episodeSelector.innerHTML = '';
+      for (const episodeKey in episode) {
+        const opt = document.createElement('option');
+        opt.value = episode[episodeKey].episode_id;
+        opt.innerHTML = episode[episodeKey].title;
+        episodeSelector.appendChild(opt);
+      }
+    });
+});
+episodeSelector.addEventListener('change', function() {
+  console.log('You selected: ', this.value);
+  const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${this.value}`;
+  fetch(urlEpisodeVideo)
+    .then(response => response.url)
+    .then(videoUrl => {
+      sourceElement.src = videoUrl;
+      videoPlayer.load();
+    });
+  const urlEpisodeSubtitle = `${apiUrl}/subtitle?film=${episodeSelector.value}`;
+  fetch(urlEpisodeSubtitle)
+    .then(response => response.url)
+    .then(videoUrl => {
+      subtitle.src = videoUrl;
+      console.log(videoUrl);
+    });
+});
 
 const player = new Plyr('video', { captions: { active: true }, controls });
 player.elements.container.tabIndex = 0;
