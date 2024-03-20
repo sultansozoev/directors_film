@@ -4,6 +4,7 @@ const serie = queryParams.get('serie');
 const videoPlayer = document.getElementById('player');
 const body = document.getElementById('body');
 const title = document.getElementById('title');
+const year = document.getElementById('year');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
@@ -56,7 +57,7 @@ fetch(urlSeason)
             sourceElement.src = videoUrl;
             videoPlayer.load();
           });
-        const urlEpisodeSubtitle = `${apiUrl}/subtitle?film=${episodeSelector.value}`;
+        const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
         fetch(urlEpisodeSubtitle)
           .then(response => response.url)
           .then(videoUrl => {
@@ -89,7 +90,7 @@ episodeSelector.addEventListener('change', function() {
       sourceElement.src = videoUrl;
       videoPlayer.load();
     });
-  const urlEpisodeSubtitle = `${apiUrl}/subtitle?film=${episodeSelector.value}`;
+  const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${this.value}`;
   fetch(urlEpisodeSubtitle)
     .then(response => response.url)
     .then(videoUrl => {
@@ -100,10 +101,9 @@ episodeSelector.addEventListener('change', function() {
 
 const player = new Plyr('video', { captions: { active: true }, controls });
 player.elements.container.tabIndex = 0;
-player.config.urls.download = urlEpisode;
 window.player = player;
-urlEpisode = `${apiUrl}/film?title=${serie}`;
-fetch(urlEpisode)
+const urlSerie = `${apiUrl}/serie_tv?id=${serie}`;
+fetch(urlSerie)
   .then(response => response.json())
   .then(data => {
     const serie_tv = data.results[0];
@@ -111,8 +111,6 @@ fetch(urlEpisode)
       let releaseDate = serie_tv.release_date;
       let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
       year.appendChild(document.createTextNode(d));
-    } else {
-      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
     }
     title.appendChild(document.createTextNode(serie_tv.title));
     cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${serie_tv.poster}");`);
