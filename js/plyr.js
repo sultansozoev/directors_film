@@ -11,6 +11,7 @@ const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
 const subtitleUrl = `${apiUrl}/subtitle?film=${film}`;
+const downloadUrl = `${apiUrl}/download?film=${film}`;
 const controls =
   [
     'play-large', // The large play button in the center
@@ -33,7 +34,7 @@ const controls =
 
 const player = new Plyr('video', { captions: { active: true }, controls });
 player.elements.container.tabIndex = 0;
-player.config.urls.download = url;
+player.config.urls.download = downloadUrl;
 window.player = player;
 
 fetch(url)

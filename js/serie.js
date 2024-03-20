@@ -8,6 +8,7 @@ const year = document.getElementById('year');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
+const downloadUrl = `${apiUrl}/download?film=${film}`;
 const controls =
   [
     'play-large', // The large play button in the center
@@ -99,6 +100,7 @@ episodeSelector.addEventListener('change', function() {
 const player = new Plyr('video', { captions: { active: true }, controls });
 player.elements.container.tabIndex = 0;
 window.player = player;
+player.config.urls.download = downloadUrl;
 const urlSerie = `${apiUrl}/serie_tv?id=${serie}`;
 fetch(urlSerie)
   .then(response => response.json())
