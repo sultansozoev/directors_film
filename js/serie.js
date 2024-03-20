@@ -31,55 +31,52 @@ const seasonSelector = document.getElementById('season');
 const episodeSelector = document.getElementById('episode');
 const urlSeason = `${apiUrl}/getSeasons?id=${serie}`;
 
-fetch(urlSeason)
-  .then(response => response.json())
-  .then(season => {
-    for (const seasonKey in season) {
-      const opt = document.createElement('option');
-      opt.value = season[seasonKey].season_id;
-      opt.innerHTML = season[seasonKey].season_name;
-      seasonSelector.appendChild(opt);
-    }
-    let urlEpisode = `${apiUrl}/getEpisodes?id=${seasonSelector.value}`;
-    fetch(urlEpisode)
-      .then(response => response.json())
-      .then(episode => {
-        for (const episodeKey in episode) {
-          const opt = document.createElement('option');
-          opt.value = episode[episodeKey].episode_id;
-          opt.innerHTML = episode[episodeKey].title;
-          episodeSelector.appendChild(opt);
-        }
-        const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeSelector.value}`;
-        fetch(urlEpisodeVideo)
-          .then(response => response.url)
-          .then(videoUrl => {
-            sourceElement.src = videoUrl;
-            videoPlayer.load();
-          });
-        const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
-        fetch(urlEpisodeSubtitle)
-          .then(response => response.url)
-          .then(videoUrl => {
-            subtitle.src = videoUrl;
-            console.log(videoUrl);
-          });
-      });
-  });
-
-seasonSelector.addEventListener('change', function() {
-  let urlEpisode = `${apiUrl}/getEpisodes?id=${this.value}`;
+function fetchInit(urlSeason) {
+  fetch(urlSeason)
+    .then(response => response.json())
+    .then(season => {
+      for (const seasonKey in season) {
+        const opt = document.createElement('option');
+        opt.value = season[seasonKey].season_id;
+        opt.innerHTML = season[seasonKey].season_name;
+        seasonSelector.appendChild(opt);
+      }
+      let urlEpisode = `${apiUrl}/getEpisodes?id=${seasonSelector.value}`;
+      fetchEpisode(urlEpisode);
+    });
+}
+function fetchEpisode(urlEpisode) {
   fetch(urlEpisode)
     .then(response => response.json())
     .then(episode => {
-      episodeSelector.innerHTML = '';
       for (const episodeKey in episode) {
         const opt = document.createElement('option');
         opt.value = episode[episodeKey].episode_id;
-        opt.innerHTML = episode[episodeKey].title;
+        opt.innerHTML = episode[episodeKey].episode_number + " - " + episode[episodeKey].title;
         episodeSelector.appendChild(opt);
       }
+      const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeSelector.value}`;
+      fetch(urlEpisodeVideo)
+        .then(response => response.url)
+        .then(videoUrl => {
+          sourceElement.src = videoUrl;
+          videoPlayer.load();
+        });
+      const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
+      fetch(urlEpisodeSubtitle)
+        .then(response => response.url)
+        .then(videoUrl => {
+          subtitle.src = videoUrl;
+          console.log(videoUrl);
+        });
     });
+}
+fetchInit(urlSeason);
+
+seasonSelector.addEventListener('change', function() {
+  let urlEpisode = `${apiUrl}/getEpisodes?id=${this.value}`;
+  episodeSelector.innerHTML = '';
+  fetchEpisode(urlEpisode, this.value);
 });
 episodeSelector.addEventListener('change', function() {
   console.log('You selected: ', this.value);

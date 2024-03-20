@@ -1,7 +1,7 @@
 .select-container {
-  background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAYCAYAAACIhL/AAAAAAXNSR0IArs4c6QAAAWBJREFUSA3Nl00OgjAQRmnDeQhwBjcu3HIIXXgZ8SpuvAJh7yW8AAnO1zTElkHaWn6a1DJ22nk2fSGKpmluSZJcqO+x1aLv+7Rt2weNhz0RCiGeRVEcJT10aZpWNL72AggWzdRJQGVZ9pZSnmjivTUkGMACJrAoQDzkeY4TrKh3iDdqqF1pFoUwACIqy/JJ9Fc1s8EHaoPhu7QBiAm6mHca6u+klZ5rXdsoJ4xIB2ubTfdOGUvj6HqNThCMSFzLbKo1GMsdFguIxDXMJjjDWC9AJC9s9shYb0AsWMpsztggQCzSdsHuWO3OGcttzlrMJcYym+7dpLFc3UlJ7OQYZs8Za9dE7AyI5H/MdjEWNezmBYjFgWY7GWvDIfYGxCJfs12Nxd52CwLEJh5mOxtrwyF2tphbPGe2r7FcjeATVL/uxzs7xNjogNiQMzvU2EUAsalldrCxHGDU7+jf4Rk95qYfkiGLtr7wLgYAAAAASUVORK5CYII=') no-repeat calc(100% - 10px) center;
+  background: rgba(0, 0, 0, 0.75) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAYCAYAAACIhL/AAAAAAXNSR0IArs4c6QAAAWBJREFUSA3Nl00OgjAQRmnDeQhwBjcu3HIIXXgZ8SpuvAJh7yW8AAnO1zTElkHaWn6a1DJ22nk2fSGKpmluSZJcqO+x1aLv+7Rt2weNhz0RCiGeRVEcJT10aZpWNL72AggWzdRJQGVZ9pZSnmjivTUkGMACJrAoQDzkeY4TrKh3iDdqqF1pFoUwACIqy/JJ9Fc1s8EHaoPhu7QBiAm6mHca6u+klZ5rXdsoJ4xIB2ubTfdOGUvj6HqNThCMSFzLbKo1GMsdFguIxDXMJjjDWC9AJC9s9shYb0AsWMpsztggQCzSdsHuWO3OGcttzlrMJcYym+7dpLFc3UlJ7OQYZs8Za9dE7AyI5H/MdjEWNezmBYjFgWY7GWvDIfYGxCJfs12Nxd52CwLEJh5mOxtrwyF2tphbPGe2r7FcjeATVL/uxzs7xNjogNiQMzvU2EUAsalldrCxHGDU7+jf4Rk95qYfkiGLtr7wLgYAAAAASUVORK5CYII=') no-repeat calc(100% - 10px) center;
   background-size: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(255, 255, 255, 0);
   border-radius: 5px;
   cursor: pointer;
   display: inline-block;
@@ -17,17 +17,19 @@
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-
-.select-container.shadow {
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+option {
+  background-color: rgba(0, 0, 0, 0.68);
 }
-.select-container.depth {
-  background-color: #F8F8F8;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1), inset 0 2px 5px rgba(255,255,255,1), inset 0 -2px 5px rgba(0,0,0,0.05);
+option:hover {
+  box-shadow: 0 0 10px 100px #fff inset;
+}
+.decorated:active, .decorated:hover {
+  outline: none
 }
 select {
-  color: #000000;
+  color: #ffff;
   font-size: 16px;
+  background-color: black;
 }
 .select-container {
   margin: 0 10px;
