@@ -50,6 +50,9 @@ fetch(subtitleUrl)
     subtitle.src = videoUrl;
     console.log(videoUrl);
   });
+window.setInterval(function(){
+  console.log(videoPlayer.currentTime);
+}, 5000);
 
 url = `${apiUrl}/film?id=${film}`;
 fetch(url)

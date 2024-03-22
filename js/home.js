@@ -120,3 +120,7 @@ fetchMoviesByGenre(urlAnimazione, moviesContainerAnimazione);
 const moviesContainerHorror = document.getElementById('horror');
 const urlHorror = `${apiUrl}/getMoviesByGenre?genre=27`;
 fetchMoviesByGenre(urlHorror, moviesContainerHorror);
+
+const moviesContainerRomantico = document.getElementById('romantico');
+const urlRomantico = `${apiUrl}/getMoviesByGenre?genre=10749`;
+fetchMoviesByGenre(urlRomantico, moviesContainerRomantico);
