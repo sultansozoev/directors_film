@@ -8,7 +8,7 @@ const year = document.getElementById('year');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
-const downloadUrl = `${apiUrl}/downloadSerie?film=${serie}`;
+
 const controls =
   [
     'play-large', // The large play button in the center
@@ -28,6 +28,7 @@ const controls =
     'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
     'fullscreen' // Toggle fullscreen
   ];
+
 const seasonSelector = document.getElementById('season');
 const episodeSelector = document.getElementById('episode');
 const urlSeason = `${apiUrl}/getSeasons?id=${serie}`;
@@ -61,6 +62,10 @@ function fetchEpisode(urlEpisode) {
         .then(response => response.url)
         .then(videoUrl => {
           sourceElement.src = videoUrl;
+          const player = new Plyr('video', { captions: { active: true }, controls });
+          player.elements.container.tabIndex = 0;
+          window.player = player;
+          player.config.urls.download = `${apiUrl}/downloadSerie?film=${episodeSelector.value}`;
           videoPlayer.load();
         });
       const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
@@ -86,6 +91,10 @@ episodeSelector.addEventListener('change', function() {
     .then(response => response.url)
     .then(videoUrl => {
       sourceElement.src = videoUrl;
+      const player = new Plyr('video', { captions: { active: true }, controls });
+      player.elements.container.tabIndex = 0;
+      window.player = player;
+      player.config.urls.download = `${apiUrl}/downloadSerie?film=${this.value}`;
       videoPlayer.load();
     });
   const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${this.value}`;
@@ -97,10 +106,6 @@ episodeSelector.addEventListener('change', function() {
     });
 });
 
-const player = new Plyr('video', { captions: { active: true }, controls });
-player.elements.container.tabIndex = 0;
-window.player = player;
-player.config.urls.download = downloadUrl;
 const urlSerie = `${apiUrl}/serie_tv?id=${serie}`;
 fetch(urlSerie)
   .then(response => response.json())
