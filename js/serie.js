@@ -8,7 +8,7 @@ const year = document.getElementById('year');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
-const downloadUrl = `${apiUrl}/download?film=${serie}`;
+const downloadUrl = `${apiUrl}/downloadSerie?film=${serie}`;
 const controls =
   [
     'play-large', // The large play button in the center
