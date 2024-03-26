@@ -2,7 +2,7 @@ import { apiUrl } from '/api/config.js';
 
 const form = document.querySelector('form');
 const username = document.getElementById('floatingInput');
-const password = document.querySelector('#floatingPassword');
+const password = document.getElementById('floatingPassword');
 const url = `${apiUrl}/login`;
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -21,11 +21,15 @@ function login(username, password) {
       'Content-Type': 'application/json'
     },
     method: 'POST',
+    withCredentials: true,
     body: JSON.stringify({username: username, password: password})
   }).then(response => response.json())
     .then(data => {
-      if (data === "ok") {
+      if ('username' in data) {
+        document.cookie="session=" + data.username;
         window.location.href = "index.html";
+      } else {
+        console.log("error")
       }
     })
     .catch(error => {
