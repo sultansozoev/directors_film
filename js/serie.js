@@ -63,7 +63,6 @@ function fetchEpisode(urlEpisode) {
         .then(videoUrl => {
           sourceElement.src = videoUrl;
           const player = new Plyr('video', { captions: { active: true }, controls });
-          player.elements.container.tabIndex = 0;
           window.player = player;
           player.config.urls.download = `${apiUrl}/downloadSerie?film=${episodeSelector.value}`;
           videoPlayer.load();
@@ -92,7 +91,6 @@ episodeSelector.addEventListener('change', function() {
     .then(videoUrl => {
       sourceElement.src = videoUrl;
       const player = new Plyr('video', { captions: { active: true }, controls });
-      player.elements.container.tabIndex = 0;
       window.player = player;
       player.config.urls.download = `${apiUrl}/downloadSerie?film=${this.value}`;
       videoPlayer.load();
