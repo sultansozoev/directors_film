@@ -27,15 +27,7 @@ function login(username, password) {
     .then(data => {
       if (data.message === 'Login successful!') {
         // Redirect to home page
-        window.location.href = "../index.html";
-
-        // Optionally, access session information from cookies for further use
-        // (consider security implications for sensitive data)
-        const cookies = document.cookie.split(';').map(cookie => cookie.trim());
-        const sessionCookie = cookies.find(cookie => cookie.startsWith('session='));
-        if (sessionCookie) {
-          console.log(sessionCookie)
-        }
+        console.log(document.cookie)
       } else {
         // Handle login error
       }
