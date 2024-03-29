@@ -4,7 +4,7 @@ const form = document.querySelector('form');
 const username = document.getElementById('floatingInput');
 const password = document.getElementById('floatingPassword');
 const url = `${apiUrl}/login`;
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const usernameValue = username.value.trim();
@@ -14,7 +14,15 @@ form.addEventListener('submit', (event) => {
     login(usernameValue, passwordValue);
   }
 });
-
+function setCookie(name,value,days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
 function login(username, password) {
   fetch(url, {
     headers: {
@@ -25,11 +33,9 @@ function login(username, password) {
     body: JSON.stringify({username: username, password: password})
   }).then(response => response.json())
     .then(data => {
-      if (data.message === 'Login successful!') {
-        // Redirect to home page
-        console.log(document.cookie)
-      } else {
-        // Handle login error
+      if (data.message === 'Successfully logged-in!') {
+        setCookie("jwt", data.token, 7);
+        window.location.href = "index.html";
       }
     })
     .catch(error => {

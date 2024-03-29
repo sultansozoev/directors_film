@@ -1,9 +1,10 @@
 import { apiUrl } from '/api/config.js';
 
-function fetchMoviesByGenre(url, container) {
+function fetchMoviesByGenre(url, container, token) {
   fetch(url, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
     },
     withCredentials: true,
     credentials: 'include',
@@ -75,54 +76,68 @@ const categoriesUrl = `${apiUrl}/getCategories`;
 const categoriesDiv = document.getElementById('categories');
 category(categoriesUrl, categoriesDiv);
 */
+let token= window.localStorage.getItem('jwt');
+if (window.localStorage.getItem('jwt')) {
+  const login = document.getElementById('login');
+  login.innerHTML = "Logout";
+  login.addEventListener('click', async (event) => {
+    removeItem("jwt");
+  });
+}
+function removeItem(sKey, sPath, sDomain) {
+  document.cookie = encodeURIComponent(sKey) +
+    "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" +
+    (sDomain ? "; domain=" + sDomain : "") +
+    (sPath ? "; path=" + sPath : "");
+}
 const oscar = document.getElementById('oscar');
 const urlOscar = `${apiUrl}/getMoviesByCategory?category=6`;
-fetchMoviesByGenre(urlOscar, oscar);
+fetchMoviesByGenre(urlOscar, oscar, token);
 
 const starWars = document.getElementById('starWars');
 const urlStarWars = `${apiUrl}/getMoviesByCategory?category=3`;
-fetchMoviesByGenre(urlStarWars, starWars);
+fetchMoviesByGenre(urlStarWars, starWars, token);
 
 const pixar = document.getElementById('pixar');
 const urlPixar = `${apiUrl}/getMoviesByCategory?category=4`;
-fetchMoviesByGenre(urlPixar, pixar);
+fetchMoviesByGenre(urlPixar, pixar, token);
 
 const studioGhibli = document.getElementById('studioGhibli');
 const urlStudioGhibli = `${apiUrl}/getMoviesByCategory?category=2`;
-fetchMoviesByGenre(urlStudioGhibli, studioGhibli);
+fetchMoviesByGenre(urlStudioGhibli, studioGhibli, token);
 
 const ultimiAggiunti = document.getElementById('ultimiAggiunti');
 const urlUltimiAggiunti = `${apiUrl}/getMoviesByCategory?category=1`;
-fetchMoviesByGenre(urlUltimiAggiunti, ultimiAggiunti);
+fetchMoviesByGenre(urlUltimiAggiunti, ultimiAggiunti, token);
 
 const imax = document.getElementById('imax');
 const urlImax = `${apiUrl}/getMoviesByCategory?category=5`;
-fetchMoviesByGenre(urlImax, imax);
+fetchMoviesByGenre(urlImax, imax, token);
 
 const moviesContainerAvventura = document.getElementById('avventura');
 const urlAvventura = `${apiUrl}/getMoviesByGenre?genre=12`;
-fetchMoviesByGenre(urlAvventura, moviesContainerAvventura);
+fetchMoviesByGenre(urlAvventura, moviesContainerAvventura, token);
 
 const moviesContainerAzione = document.getElementById('azione');
 const urlAzione = `${apiUrl}/getMoviesByGenre?genre=28`;
-fetchMoviesByGenre(urlAzione, moviesContainerAzione);
+fetchMoviesByGenre(urlAzione, moviesContainerAzione, token);
 
 const moviesContainerCommedia = document.getElementById('commedia');
 const urlCommedia = `${apiUrl}/getMoviesByGenre?genre=35`;
-fetchMoviesByGenre(urlCommedia, moviesContainerCommedia);
+fetchMoviesByGenre(urlCommedia, moviesContainerCommedia, token);
 
 const moviesContainerFantasy = document.getElementById('fantasy');
 const urlFantasy = `${apiUrl}/getMoviesByGenre?genre=14`;
-fetchMoviesByGenre(urlFantasy, moviesContainerFantasy);
+fetchMoviesByGenre(urlFantasy, moviesContainerFantasy, token);
 
 const moviesContainerAnimazione = document.getElementById('animazione');
 const urlAnimazione = `${apiUrl}/getMoviesByGenre?genre=16`;
-fetchMoviesByGenre(urlAnimazione, moviesContainerAnimazione);
+fetchMoviesByGenre(urlAnimazione, moviesContainerAnimazione, token);
 
 const moviesContainerHorror = document.getElementById('horror');
 const urlHorror = `${apiUrl}/getMoviesByGenre?genre=27`;
-fetchMoviesByGenre(urlHorror, moviesContainerHorror);
+fetchMoviesByGenre(urlHorror, moviesContainerHorror, token);
 
 const moviesContainerRomantico = document.getElementById('romantico');
 const urlRomantico = `${apiUrl}/getMoviesByGenre?genre=10749`;
-fetchMoviesByGenre(urlRomantico, moviesContainerRomantico);
+fetchMoviesByGenre(urlRomantico, moviesContainerRomantico, token);
