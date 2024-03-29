@@ -6,6 +6,7 @@ function fetchMoviesByGenre(url, container) {
       'Content-Type': 'application/json'
     },
     withCredentials: true,
+    credentials: 'include',
     method: 'GET'
   })
     .then(response => response.json())

@@ -21,15 +21,23 @@ function login(username, password) {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    withCredentials: true,
+    credentials: 'include',
     body: JSON.stringify({username: username, password: password})
   }).then(response => response.json())
     .then(data => {
-      if ('username' in data) {
-        document.cookie="session=" + data.username;
-        window.location.href = "index.html";
+      if (data.message === 'Login successful!') {
+        // Redirect to home page
+        window.location.href = "../index.html";
+
+        // Optionally, access session information from cookies for further use
+        // (consider security implications for sensitive data)
+        const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+        const sessionCookie = cookies.find(cookie => cookie.startsWith('session='));
+        if (sessionCookie) {
+          console.log(sessionCookie)
+        }
       } else {
-        console.log("error")
+        // Handle login error
       }
     })
     .catch(error => {
