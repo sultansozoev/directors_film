@@ -50,9 +50,6 @@ if (token) {
   window.player = player;
 
   fetch(url, {
-    headers: {
-      Authentication: `Bearer ${token}`,
-    }
   })
     .then(response => response.url)
     .then(videoUrl => {
