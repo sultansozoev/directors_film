@@ -1,7 +1,7 @@
 import { apiUrl } from '/api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
 const film = queryParams.get('film');
-let url = `${apiUrl}/video`;
+let url = `${apiUrl}/video?film=${film}`;
 const videoPlayer = document.getElementById('player');
 const body = document.getElementById('body');
 const title = document.getElementById('title');
@@ -44,16 +44,14 @@ function getCookie(name) {
 let token = getCookie("jwt");
 console.log("token " + token)
 if (token) {
-  const player = new Plyr('video', { captions: { active: true }, controls });
+  const player = new Plyr('video', {captions: {active: true}, controls});
   player.elements.container.tabIndex = 0;
   player.config.urls.download = downloadUrl;
   window.player = player;
 
   fetch(url, {
     headers: {
-      Authorization: `Bearer ${token}`,
-      method: 'POST',
-      body: JSON.stringify({film: film})
+      Authentication: `Bearer ${token}`,
     }
   })
     .then(response => response.url)
@@ -67,43 +65,44 @@ if (token) {
     .then(videoUrl => {
       subtitle.src = videoUrl;
     });
-  window.setInterval(function(){
+  window.setInterval(function () {
     console.log(videoPlayer.currentTime);
   }, 5000);
 
-  url = `${apiUrl}/film`;
+  url = `${apiUrl}/film?id=${film}`;
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      method: 'GET',
       Authorization: `Bearer ${token}`,
     },
   })
     .then(response => response.json())
     .then(data => {
       const film = data.film[0];
-      if (film.release_date != null) {
-        let releaseDate = film.release_date;
-        let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
-        year.appendChild(document.createTextNode(d));
+      if (film) {
+        if (film.release_date != null) {
+          let releaseDate = film.release_date;
+          let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
+          year.appendChild(document.createTextNode(d));
+        } else {
+          budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+        }
+        if (film.budget != null) {
+          const budgetFormattato = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          budget.appendChild(document.createTextNode("$" + budgetFormattato));
+        } else {
+          budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+        }
+        title.appendChild(document.createTextNode(film.title));
+        cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
+        videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);
+        setTimeout(() => {
+          player.poster = "https://image.tmdb.org/t/p/original/" + film.background_image;
+        }, 500)
+        body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.background_image}"); backdrop-filter: blur(5px);`);
       } else {
-        budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+        console.log("No Film")
       }
-      if (film.budget != null) {
-        const budgetFormattato  = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        budget.appendChild(document.createTextNode("$" + budgetFormattato));
-      } else {
-        budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
-      }
-      title.appendChild(document.createTextNode(film.title));
-      cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
-      videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);
-      setTimeout(() => {
-        player.poster = "https://image.tmdb.org/t/p/original/" + film.background_image;
-      }, 500)
-      body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.background_image}"); backdrop-filter: blur(5px);`);
     });
-
-
-
 }
+
