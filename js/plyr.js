@@ -43,7 +43,7 @@ function getCookie(name) {
 }
 let token = getCookie("jwt");
 console.log("token " + token)
-if (token) {
+
   const player = new Plyr('video', {captions: {active: true}, controls});
   player.elements.container.tabIndex = 0;
   player.config.urls.download = downloadUrl;
@@ -67,12 +67,7 @@ if (token) {
   }, 5000);
 
   url = `${apiUrl}/film?id=${film}`;
-  fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  fetch(url)
     .then(response => response.json())
     .then(data => {
       const film = data.film[0];
@@ -101,5 +96,5 @@ if (token) {
         console.log("No Film")
       }
     });
-}
+
 
