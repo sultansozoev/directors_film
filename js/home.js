@@ -1,13 +1,10 @@
 import { apiUrl } from '/api/config.js';
 
-function fetchMoviesByGenre(url, container, token) {
+function fetchMoviesByGenre(url, container) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
     },
-    withCredentials: true,
-    credentials: 'include',
     method: 'GET'
   })
     .then(response => response.json())
@@ -76,68 +73,55 @@ const categoriesUrl = `${apiUrl}/getCategories`;
 const categoriesDiv = document.getElementById('categories');
 category(categoriesUrl, categoriesDiv);
 */
-let token= window.localStorage.getItem('jwt');
-if (window.localStorage.getItem('jwt')) {
-  const login = document.getElementById('login');
-  login.innerHTML = "Logout";
-  login.addEventListener('click', async (event) => {
-    removeItem("jwt");
-  });
-}
-function removeItem(sKey, sPath, sDomain) {
-  document.cookie = encodeURIComponent(sKey) +
-    "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" +
-    (sDomain ? "; domain=" + sDomain : "") +
-    (sPath ? "; path=" + sPath : "");
-}
+
 const oscar = document.getElementById('oscar');
 const urlOscar = `${apiUrl}/getMoviesByCategory?category=6`;
-fetchMoviesByGenre(urlOscar, oscar, token);
+fetchMoviesByGenre(urlOscar, oscar);
 
 const starWars = document.getElementById('starWars');
 const urlStarWars = `${apiUrl}/getMoviesByCategory?category=3`;
-fetchMoviesByGenre(urlStarWars, starWars, token);
+fetchMoviesByGenre(urlStarWars, starWars);
 
 const pixar = document.getElementById('pixar');
 const urlPixar = `${apiUrl}/getMoviesByCategory?category=4`;
-fetchMoviesByGenre(urlPixar, pixar, token);
+fetchMoviesByGenre(urlPixar, pixar);
 
 const studioGhibli = document.getElementById('studioGhibli');
 const urlStudioGhibli = `${apiUrl}/getMoviesByCategory?category=2`;
-fetchMoviesByGenre(urlStudioGhibli, studioGhibli, token);
+fetchMoviesByGenre(urlStudioGhibli, studioGhibli);
 
 const ultimiAggiunti = document.getElementById('ultimiAggiunti');
 const urlUltimiAggiunti = `${apiUrl}/getMoviesByCategory?category=1`;
-fetchMoviesByGenre(urlUltimiAggiunti, ultimiAggiunti, token);
+fetchMoviesByGenre(urlUltimiAggiunti, ultimiAggiunti);
 
 const imax = document.getElementById('imax');
 const urlImax = `${apiUrl}/getMoviesByCategory?category=5`;
-fetchMoviesByGenre(urlImax, imax, token);
+fetchMoviesByGenre(urlImax, imax);
 
 const moviesContainerAvventura = document.getElementById('avventura');
 const urlAvventura = `${apiUrl}/getMoviesByGenre?genre=12`;
-fetchMoviesByGenre(urlAvventura, moviesContainerAvventura, token);
+fetchMoviesByGenre(urlAvventura, moviesContainerAvventura);
 
 const moviesContainerAzione = document.getElementById('azione');
 const urlAzione = `${apiUrl}/getMoviesByGenre?genre=28`;
-fetchMoviesByGenre(urlAzione, moviesContainerAzione, token);
+fetchMoviesByGenre(urlAzione, moviesContainerAzione);
 
 const moviesContainerCommedia = document.getElementById('commedia');
 const urlCommedia = `${apiUrl}/getMoviesByGenre?genre=35`;
-fetchMoviesByGenre(urlCommedia, moviesContainerCommedia, token);
+fetchMoviesByGenre(urlCommedia, moviesContainerCommedia);
 
 const moviesContainerFantasy = document.getElementById('fantasy');
 const urlFantasy = `${apiUrl}/getMoviesByGenre?genre=14`;
-fetchMoviesByGenre(urlFantasy, moviesContainerFantasy, token);
+fetchMoviesByGenre(urlFantasy, moviesContainerFantasy);
 
 const moviesContainerAnimazione = document.getElementById('animazione');
 const urlAnimazione = `${apiUrl}/getMoviesByGenre?genre=16`;
-fetchMoviesByGenre(urlAnimazione, moviesContainerAnimazione, token);
+fetchMoviesByGenre(urlAnimazione, moviesContainerAnimazione);
 
 const moviesContainerHorror = document.getElementById('horror');
 const urlHorror = `${apiUrl}/getMoviesByGenre?genre=27`;
-fetchMoviesByGenre(urlHorror, moviesContainerHorror, token);
+fetchMoviesByGenre(urlHorror, moviesContainerHorror);
 
 const moviesContainerRomantico = document.getElementById('romantico');
 const urlRomantico = `${apiUrl}/getMoviesByGenre?genre=10749`;
-fetchMoviesByGenre(urlRomantico, moviesContainerRomantico, token);
+fetchMoviesByGenre(urlRomantico, moviesContainerRomantico);

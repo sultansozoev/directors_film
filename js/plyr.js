@@ -1,7 +1,7 @@
 import { apiUrl } from '/api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
 const film = queryParams.get('film');
-let url = `${apiUrl}/video?film=${film}`;
+let url = `${apiUrl}/video`;
 const videoPlayer = document.getElementById('player');
 const body = document.getElementById('body');
 const title = document.getElementById('title');
@@ -31,54 +31,79 @@ const controls =
     'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
     'fullscreen' // Toggle fullscreen
   ];
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for(let i=0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0)===' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+let token = getCookie("jwt");
+console.log("token " + token)
+if (token) {
+  const player = new Plyr('video', { captions: { active: true }, controls });
+  player.elements.container.tabIndex = 0;
+  player.config.urls.download = downloadUrl;
+  window.player = player;
 
-const player = new Plyr('video', { captions: { active: true }, controls });
-player.elements.container.tabIndex = 0;
-player.config.urls.download = downloadUrl;
-window.player = player;
-
-fetch(url)
-  .then(response => response.url)
-  .then(videoUrl => {
-    sourceElement.src = videoUrl;
-    videoPlayer.load();
-  });
-
-fetch(subtitleUrl)
-  .then(response => response.url)
-  .then(videoUrl => {
-    subtitle.src = videoUrl;
-    console.log(videoUrl);
-  });
-window.setInterval(function(){
-  console.log(videoPlayer.currentTime);
-}, 5000);
-
-url = `${apiUrl}/film?id=${film}`;
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    const film = data.film[0];
-    if (film.release_date != null) {
-      let releaseDate = film.release_date;
-      let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
-      year.appendChild(document.createTextNode(d));
-    } else {
-      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      method: 'POST',
+      body: JSON.stringify({film: film})
     }
-    if (film.budget != null) {
-      const budgetFormattato  = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      budget.appendChild(document.createTextNode("$" + budgetFormattato));
-    } else {
-      budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
-    }
-    title.appendChild(document.createTextNode(film.title));
-    cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
-    videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);
-    setTimeout(() => {
-      player.poster = "https://image.tmdb.org/t/p/original/" + film.background_image;
-    }, 500)
-    body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.background_image}"); backdrop-filter: blur(5px);`);
-  });
+  })
+    .then(response => response.url)
+    .then(videoUrl => {
+      sourceElement.src = videoUrl;
+      videoPlayer.load();
+    });
+
+  fetch(subtitleUrl)
+    .then(response => response.url)
+    .then(videoUrl => {
+      subtitle.src = videoUrl;
+    });
+  window.setInterval(function(){
+    console.log(videoPlayer.currentTime);
+  }, 5000);
+
+  url = `${apiUrl}/film`;
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      method: 'GET',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      const film = data.film[0];
+      if (film.release_date != null) {
+        let releaseDate = film.release_date;
+        let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
+        year.appendChild(document.createTextNode(d));
+      } else {
+        budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+      }
+      if (film.budget != null) {
+        const budgetFormattato  = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        budget.appendChild(document.createTextNode("$" + budgetFormattato));
+      } else {
+        budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+      }
+      title.appendChild(document.createTextNode(film.title));
+      cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
+      videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);
+      setTimeout(() => {
+        player.poster = "https://image.tmdb.org/t/p/original/" + film.background_image;
+      }, 500)
+      body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.background_image}"); backdrop-filter: blur(5px);`);
+    });
 
 
+
+}

@@ -29,13 +29,15 @@ function login(username, password) {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    credentials: 'include',
     body: JSON.stringify({username: username, password: password})
   }).then(response => response.json())
     .then(data => {
       if (data.message === 'Successfully logged-in!') {
+        console.log(data)
         setCookie("jwt", data.token, 7);
         window.location.href = "index.html";
+      } else {
+        console.log(data)
       }
     })
     .catch(error => {
