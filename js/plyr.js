@@ -43,7 +43,7 @@ function getCookie(name) {
 }
 let token = getCookie("jwt");
 console.log("token " + token)
-
+if (token) {
   const player = new Plyr('video', {captions: {active: true}, controls});
   player.elements.container.tabIndex = 0;
   player.config.urls.download = downloadUrl;
@@ -96,5 +96,6 @@ console.log("token " + token)
         console.log("No Film")
       }
     });
-
-
+} else {
+  window.location.href = "login.html";
+}
