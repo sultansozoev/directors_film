@@ -33,7 +33,6 @@ const controls =
   ];
 
 let token = getCookie("jwt");
-console.log("token " + token)
 if (token) {
   const player = new Plyr('video', {captions: {active: true}, controls});
   player.elements.container.tabIndex = 0;

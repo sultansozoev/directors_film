@@ -21,14 +21,15 @@ searchBar.addEventListener("input", (event) => {
       results_container.innerHTML = '';
 
       films.forEach(movie => {
-        if ('poster_path' in movie) {
+        if ('poster_path' in movie && movie.poster_path != null) {
           const movieCard = document.createElement('div');
           movieCard.classList.add('movie-card');
 
           const movieLink = document.createElement('a');
-          movieLink.setAttribute('href', "javascript:void(0)");
-          movieLink.setAttribute('onclick', "addRequest()")
-
+          movieLink.setAttribute('href', `javascript:void(0)`);
+          movieLink.setAttribute('onclick', `addRequest('${movie.name}', '${movie.title}', '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`)
+          movieCard.setAttribute('data-bs-toggle', 'modal');
+          movieCard.setAttribute('data-bs-target', '#staticBackdrop');
           const movieHeader = document.createElement('div');
           movieHeader.classList.add('movie-header', 'movie-image');
           movieHeader.style.backgroundImage = `url('https://image.tmdb.org/t/p/original/${movie.poster_path}')`;
