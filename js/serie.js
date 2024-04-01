@@ -32,95 +32,152 @@ const controls =
 const seasonSelector = document.getElementById('season');
 const episodeSelector = document.getElementById('episode');
 const urlSeason = `${apiUrl}/getSeasons?id=${serie}`;
+let token = getCookie("jwt");
+if (token) {
+  function fetchInit(urlSeason, season_id, episode_id) {
+    fetch(urlSeason)
+      .then(response => response.json())
+      .then(season => {
+        for (const seasonKey in season) {
+          const opt = document.createElement('option');
+          opt.value = season[seasonKey].season_id;
+          opt.innerHTML = season[seasonKey].season_name;
+          seasonSelector.appendChild(opt);
+        }
+        if (season_id) {
+          seasonSelector.value = season_id;
 
-function fetchInit(urlSeason) {
-  fetch(urlSeason)
-    .then(response => response.json())
-    .then(season => {
-      for (const seasonKey in season) {
-        const opt = document.createElement('option');
-        opt.value = season[seasonKey].season_id;
-        opt.innerHTML = season[seasonKey].season_name;
-        seasonSelector.appendChild(opt);
+        }
+        let urlEpisode = `${apiUrl}/getEpisodes?id=${seasonSelector.value}`;
+        fetchEpisode(urlEpisode, episode_id);
+      });
+  }
+
+  function fetchEpisode(urlEpisode, episode_id) {
+    fetch(urlEpisode)
+      .then(response => response.json())
+      .then(episode => {
+        for (const episodeKey in episode) {
+          const opt = document.createElement('option');
+          opt.value = episode[episodeKey].episode_id;
+          opt.innerHTML = episode[episodeKey].episode_number + " - " + episode[episodeKey].title;
+          episodeSelector.appendChild(opt);
+        }
+        if (episode_id)
+          episodeSelector.value = episode_id;
+        console.log(episode_id)
+        const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeSelector.value}`;
+        fetch(urlEpisodeVideo)
+          .then(response => response.url)
+          .then(videoUrl => {
+            sourceElement.src = videoUrl;
+            const player = new Plyr('video', {captions: {active: true}, controls});
+            window.player = player;
+            player.config.urls.download = `${apiUrl}/downloadSerie?film=${episodeSelector.value}`;
+            videoPlayer.load();
+          });
+        const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
+        fetch(urlEpisodeSubtitle)
+          .then(response => response.url)
+          .then(videoUrl => {
+            subtitle.src = videoUrl;
+          });
+      });
+  }
+
+  const urlTime = `${apiUrl}/getPlayerTimeSerie`;
+  fetch(urlTime, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({user_id: getCookie("user"), serie_tv_id: serie})
+  }).then(response => response.json())
+    .then(data => {
+      if (data.length <= 0) {
+        fetchInit(urlSeason);
+      } else {
+        console.log("data not 0")
+        fetchInit(urlSeason, data[0].season_id, data[0].episode_id)
+        videoPlayer.currentTime = data[0].player_time;
       }
-      let urlEpisode = `${apiUrl}/getEpisodes?id=${seasonSelector.value}`;
-      fetchEpisode(urlEpisode);
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
     });
-}
-function fetchEpisode(urlEpisode) {
-  fetch(urlEpisode)
-    .then(response => response.json())
-    .then(episode => {
-      for (const episodeKey in episode) {
-        const opt = document.createElement('option');
-        opt.value = episode[episodeKey].episode_id;
-        opt.innerHTML = episode[episodeKey].episode_number + " - " + episode[episodeKey].title;
-        episodeSelector.appendChild(opt);
-      }
-      const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeSelector.value}`;
-      fetch(urlEpisodeVideo)
-        .then(response => response.url)
-        .then(videoUrl => {
-          sourceElement.src = videoUrl;
-          const player = new Plyr('video', { captions: { active: true }, controls });
-          window.player = player;
-          player.config.urls.download = `${apiUrl}/downloadSerie?film=${episodeSelector.value}`;
-          videoPlayer.load();
-        });
-      const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
-      fetch(urlEpisodeSubtitle)
-        .then(response => response.url)
-        .then(videoUrl => {
-          subtitle.src = videoUrl;
-          console.log(videoUrl);
-        });
-    });
-}
-fetchInit(urlSeason);
-
-seasonSelector.addEventListener('change', function() {
-  let urlEpisode = `${apiUrl}/getEpisodes?id=${this.value}`;
-  episodeSelector.innerHTML = '';
-  fetchEpisode(urlEpisode, this.value);
-});
-episodeSelector.addEventListener('change', function() {
-  console.log('You selected: ', this.value);
-  const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${this.value}`;
-  fetch(urlEpisodeVideo)
-    .then(response => response.url)
-    .then(videoUrl => {
-      sourceElement.src = videoUrl;
-      const player = new Plyr('video', { captions: { active: true }, controls });
-      window.player = player;
-      player.config.urls.download = `${apiUrl}/downloadSerie?film=${this.value}`;
-      videoPlayer.load();
-    });
-  const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${this.value}`;
-  fetch(urlEpisodeSubtitle)
-    .then(response => response.url)
-    .then(videoUrl => {
-      subtitle.src = videoUrl;
-      console.log(videoUrl);
-    });
-});
-
-const urlSerie = `${apiUrl}/serie_tv?id=${serie}`;
-fetch(urlSerie)
-  .then(response => response.json())
-  .then(data => {
-    const serie_tv = data.results[0];
-    if (serie_tv.release_date != null) {
-      let releaseDate = serie_tv.release_date;
-      let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
-      year.appendChild(document.createTextNode(d));
-    }
-    title.appendChild(document.createTextNode(serie_tv.title));
-    cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${serie_tv.poster}");`);
-    videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + serie_tv.background_image);
-    setTimeout(() => {
-      player.poster = "https://image.tmdb.org/t/p/original/" + serie_tv.background_image;
-    }, 500)
-    body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${serie_tv.background_image}"); backdrop-filter: blur(5px);`);
+  seasonSelector.addEventListener('change', function () {
+    let urlEpisode = `${apiUrl}/getEpisodes?id=${this.value}`;
+    episodeSelector.innerHTML = '';
+    fetchEpisode(urlEpisode);
+  });
+  episodeSelector.addEventListener('change', function () {
+    const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${this.value}`;
+    fetch(urlEpisodeVideo)
+      .then(response => response.url)
+      .then(videoUrl => {
+        sourceElement.src = videoUrl;
+        const player = new Plyr('video', {captions: {active: true}, controls});
+        window.player = player;
+        player.config.urls.download = `${apiUrl}/downloadSerie?film=${this.value}`;
+        videoPlayer.load();
+      });
+    const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${this.value}`;
+    fetch(urlEpisodeSubtitle)
+      .then(response => response.url)
+      .then(videoUrl => {
+        subtitle.src = videoUrl;
+      });
   });
 
+  const urlSerie = `${apiUrl}/serie_tv?id=${serie}`;
+  fetch(urlSerie)
+    .then(response => response.json())
+    .then(data => {
+      const serie_tv = data.results[0];
+      if (serie_tv.release_date != null) {
+        let releaseDate = serie_tv.release_date;
+        let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
+        year.appendChild(document.createTextNode(d));
+      }
+      title.appendChild(document.createTextNode(serie_tv.title));
+      cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${serie_tv.poster}");`);
+      videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + serie_tv.background_image);
+      setTimeout(() => {
+        player.poster = "https://image.tmdb.org/t/p/original/" + serie_tv.background_image;
+      }, 500)
+      body.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${serie_tv.background_image}"); backdrop-filter: blur(5px);`);
+    });
+  window.setInterval(function () {
+    setPlayerTimeSerie(getCookie("user"), serie, videoPlayer.currentTime, episodeSelector.value, seasonSelector.value)
+  }, 5000);
+} else {
+  window.location.href = "login.html";
+}
 
+function setPlayerTimeSerie(user_id, serie_tv_id, player_time, episode_id, season_id) {
+  const url = `${apiUrl}/setPlayerTimeSerie`;
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({user_id: user_id, serie_tv_id: serie_tv_id, player_time: player_time, episode_id: episode_id, season_id: season_id})
+  }).then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for(let i=0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0)===' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}

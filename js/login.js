@@ -35,6 +35,7 @@ function login(username, password) {
       if (data.message === 'Successfully logged-in!') {
         console.log(data)
         setCookie("jwt", data.token, 7);
+        setCookie("user", data.user_id, 7)
         window.location.href = "index.html";
       } else {
         console.log(data)

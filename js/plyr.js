@@ -31,16 +31,7 @@ const controls =
     'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
     'fullscreen' // Toggle fullscreen
   ];
-function getCookie(name) {
-  const nameEQ = name + "=";
-  const ca = document.cookie.split(';');
-  for(let i=0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0)===' ') c = c.substring(1,c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
-  }
-  return null;
-}
+
 let token = getCookie("jwt");
 console.log("token " + token)
 if (token) {
@@ -55,6 +46,7 @@ if (token) {
     .then(videoUrl => {
       sourceElement.src = videoUrl;
       videoPlayer.load();
+      getPlayerTime(getCookie("user"), film)
     });
 
   fetch(subtitleUrl)
@@ -62,12 +54,17 @@ if (token) {
     .then(videoUrl => {
       subtitle.src = videoUrl;
     });
+
   window.setInterval(function () {
-    console.log(videoPlayer.currentTime);
+    setPlayerTime(getCookie("user"), film, videoPlayer.currentTime)
   }, 5000);
 
   url = `${apiUrl}/film?id=${film}`;
-  fetch(url)
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
     .then(response => response.json())
     .then(data => {
       const film = data.film[0];
@@ -98,4 +95,48 @@ if (token) {
     });
 } else {
   window.location.href = "login.html";
+}
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for(let i=0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0)===' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
+function setPlayerTime(user_id, movie_id, player_time) {
+  const url = `${apiUrl}/setPlayerTime`;
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({user_id: user_id, movie_id: movie_id, player_time: player_time})
+  }).then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
+function getPlayerTime(user_id, movie_id) {
+  const url = `${apiUrl}/getPlayerTime`;
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({user_id: user_id, movie_id: movie_id})
+  }).then(response => response.json())
+    .then(data => {
+      videoPlayer.currentTime = data[0].player_time;
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
 }

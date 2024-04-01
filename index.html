@@ -26,7 +26,7 @@
       </div>
       <div class="justify-content-center">
         <form class="justify-content-center" role="search">
-          <input id="search-bar" class="form-control" type="search" placeholder="Inserisci un titolo..." aria-label="Search" data-search="">
+          <input id="search-bar" class="form-control" type="search" placeholder="Inserisci un titolo..." aria-label="Search" data-search="" autocomplete="off">
         </form>
       </div>
       <div class="justify-content-end">
@@ -162,36 +162,6 @@
 <script type="module" src="js/live-search.js"></script>
 <script type="module" src="js/home.js"></script>
 <script src="js/slider.js"></script>
-<script>
-  function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for(let i=0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0)===' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-  }
-  let token = getCookie("jwt");
-  const login = document.getElementById('login');
-  if (token) {
-    login.innerHTML = "Logout";
-  }
-  function logout() {
-    token = "";
-    delete_cookie("jwt", "/");
-    login.innerHTML = "Login";
-    login.href = "login.html";
-  }
-  function delete_cookie( name, path, domain ) {
-    if(getCookie(name)) {
-      document.cookie = name + "=" +
-        ((path) ? ";path="+path:"")+
-        ((domain)?";domain="+domain:"") +
-        ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
-    }
-  }
-</script>
+<script src="js/cookie.js"></script>
 </body>
 </html>

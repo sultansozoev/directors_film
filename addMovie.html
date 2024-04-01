@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Surio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
   <link rel="stylesheet" href="css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/slider.css">
   <link rel="stylesheet" href="css/header.css">
@@ -16,18 +15,18 @@
 <header>
   <div class="netflixLogo">
   </div>
-  <nav class="navbar fixed-top justify-content-center" data-bs-theme="dark">
+  <nav  class="navbar fixed-top justify-content-center" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="nav-link active" aria-current="page" href="index.html">
-        <div class="justify-content-start px-3">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-tv" viewBox="0 0 16 16">
-            <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5M13.991 3l.024.001a1.5 1.5 0 0 1 .538.143.76.76 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.5 1.5 0 0 1-.143.538.76.76 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.5 1.5 0 0 1-.538-.143.76.76 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.5 1.5 0 0 1 .143-.538.76.76 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2"/>
+      <div class="justify-content-start px-3">
+        <a class="nav-link active" aria-current="page" href="serie_tv.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
+            <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
           </svg>
-        </div>
-      </a>
+        </a>
+      </div>
       <div class="justify-content-center">
         <form class="justify-content-center" role="search">
-          <input id="search-bar" class="form-control" type="search" placeholder="Inserisci un titolo..." aria-label="Search" data-search="" autocomplete="off">
+          <input id="search-bar" class="form-control" type="search" placeholder="Inserisci un titolo..." aria-label="Search" data-search="">
         </form>
       </div>
       <div class="justify-content-end">
@@ -36,12 +35,12 @@
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Serie TV</h5>
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Film</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <a class="nav-link active" aria-current="page" href="index.html">Film</a>
-            <a id="login" onclick="logout()" class="nav-link active mt-2" aria-current="page" href="javascript:void(0)">Login</a>
+            <a class="active" aria-current="page" href="serie_tv.html">Serie TV</a>
+            <a onclick="logout()" href="javascript:void(0)" id="login" class="nav-link active mt-2" aria-current="page">Login</a>
           </div>
         </div>
       </div>
@@ -53,23 +52,41 @@
 <div id="results-container" class="box mt-5">
 </div>
 
-<div id="categories">
-</div>
-
-<div class="container swiper">
-  <h1 class="text-black px-4">Serie TV</h1>
-  <div class="slide-container">
-    <div id="tutteSerie" class="card-wrapper swiper-wrapper">
-    </div>
-  </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="js/swiper-bundle.min.js"></script>
 <script type="module" src="js/live-search.js"></script>
-<script type="module" src="js/serie_tv.js"></script>
+<script type="module" src="js/home.js"></script>
 <script src="js/slider.js"></script>
-<script src="js/cookie.js"></script>
-<script src="js/request.js"></script>
+<script>
+  function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0)===' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  }
+  let token = getCookie("jwt");
+  const login = document.getElementById('login');
+  if (token) {
+    login.innerHTML = "Logout";
+  }
+  function logout() {
+    token = "";
+    delete_cookie("jwt", "/");
+    login.innerHTML = "Login";
+    login.href = "login.html";
+  }
+  function delete_cookie( name, path, domain ) {
+    if(getCookie(name)) {
+      document.cookie = name + "=" +
+        ((path) ? ";path="+path:"")+
+        ((domain)?";domain="+domain:"") +
+        ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+    }
+  }
+</script>
 </body>
 </html>
