@@ -64,3 +64,28 @@ function addMovie(id, genre_ids, title, poster_path, release_date, popularity, b
       console.error('Error fetching films:', error);
     });
 }
+
+function addSerie(id, genre_ids, name, poster_path, first_air_date, popularity, backdrop_path) {
+  const url = `https://surio.ddns.net/insertSerieTV`;
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body:  JSON.stringify({
+      id: id, genres: genre_ids, name: name, poster: poster_path, first_air_date: first_air_date, popularity: popularity, backdrop_path: backdrop_path
+    })
+  })
+    .then(response => response.json())
+    .then(res => {
+      const modal = document.getElementById("modal");
+      if (res.message === "ok") {
+        modal.innerHTML = name;
+      } else {
+        modal.innerHTML = "La serie non è stata inserita correttamente oppure è già presente su Surio";
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching series:', error);
+    });
+}
