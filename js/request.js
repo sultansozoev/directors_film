@@ -1,15 +1,16 @@
-function addRequest(name, title, request_idm, type, user_id) {
+function addRequest(name, title, req_id, type, user_id) {
+  console.log(req_id)
   const url = `https://surio.ddns.net/addList`;
   fetch(url, {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    body: JSON.stringify({user_id, request_idm, type, title, name})
+    body: JSON.stringify({user_id, req_id: req_id, type, title, name})
   }).then(response => response.json())
     .then(data => {
       const modal = document.getElementById("modal");
-      if (title) modal.innerHTML = title;
+      if (title !== 'undefined') modal.innerHTML = title;
       else modal.innerHTML = name
       console.log(data);
     })

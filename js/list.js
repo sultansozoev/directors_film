@@ -13,11 +13,12 @@ function fetchList(url, container, user_id) {
       data.forEach(request => {
         const tr = document.createElement('tr');
         const title = document.createElement('td');
-        if (request.title === 'undefined')
-          title.innerText = request.name;
-        else title.innerText = request.title;
+        title.innerText = request.title;
         const tipo = document.createElement('td');
         tipo.innerText = request.type;
+        console.log(request.type)
+        const user = document.createElement('td');
+        user.innerText = request.user_id;
         const tdb = document.createElement('td');
         const button = document.createElement('button');
         button.classList.add('btn');
@@ -29,6 +30,7 @@ function fetchList(url, container, user_id) {
         tdb.appendChild(button);
         tr.appendChild(title);
         tr.appendChild(tipo);
+        tr.appendChild(user);
         tr.appendChild(tdb);
         container.appendChild(tr);
 
@@ -38,7 +40,25 @@ function fetchList(url, container, user_id) {
       console.error('Error fetching films:', error);
     });
 }
-
-const url = `${apiUrl}/getList`;
 const container = document.getElementById('container');
-fetchList(url, container, getCookie("user"));
+const user_id = getCookie("user")
+fetch(`${apiUrl}/isAdmin`, {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  method: 'POST',
+  body: JSON.stringify({user_id})
+})
+  .then(response => response.json())
+  .then(data => {
+    if (data.length > 0) {
+      const url = `${apiUrl}/getAllList`;
+      fetchList(url, container, user_id);
+    } else {
+      const url = `${apiUrl}/getList`;
+      fetchList(url, container, user_id);
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching films:', error);
+  });
