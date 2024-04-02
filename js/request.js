@@ -39,3 +39,28 @@ function elimina(list_id, user_id, request_id) {
       console.error('Error fetching films:', error);
     });
 }
+
+function addMovie(id, genre_ids, title, poster_path, release_date, popularity, backdrop_path) {
+  const url = `https://surio.ddns.net/insertFilm`;
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body:  JSON.stringify({
+      id: id, genres: genre_ids, title_movie: title, poster: poster_path, release_date: release_date, popularity: popularity, backdrop_path: backdrop_path
+    })
+  })
+    .then(response => response.json())
+    .then(res => {
+      const modal = document.getElementById("modal");
+      if (res.message === "ok") {
+        modal.innerHTML = title;
+      } else {
+        modal.innerHTML = "Il film non è stato inserito correttamente oppure è già presente su Surio";
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
