@@ -12,6 +12,7 @@ function fetchMoviesByGenre(url, container) {
       data.forEach(movie => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
+        cardDiv.classList.add('rounded-circle')
         cardDiv.classList.add('swiper-slide');
 
         const imageBox = document.createElement('div');
