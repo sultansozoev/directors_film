@@ -76,14 +76,9 @@ a {
   font-size: 18px;
 }
 
-.swiper-button-next {
+.swiper-button-next, .swiper-button-prev {
   color: #000000;
   font-weight: bolder;
-}
-
-.swiper-button-prev {
-  color: #000000;
-  font-weight: 800;
 }
 
 .swiper-pagination-bullet {
