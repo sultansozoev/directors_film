@@ -11,22 +11,18 @@
 </head>
 <body>
 <header>
-  <div class="netflixLogo">
-  </div>
   <nav  class="navbar fixed-top justify-content-center" data-bs-theme="dark">
     <div class="container-fluid">
       <div class="justify-content-start px-3">
         <a class="nav-link active" aria-current="page" href="index.html">
-          <div class="justify-content-start px-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-tv" viewBox="0 0 16 16">
-              <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5M13.991 3l.024.001a1.5 1.5 0 0 1 .538.143.76.76 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.5 1.5 0 0 1-.143.538.76.76 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.5 1.5 0 0 1-.538-.143.76.76 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.5 1.5 0 0 1 .143-.538.76.76 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2"/>
-            </svg>
-          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-tv" viewBox="0 0 16 16">
+            <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5M13.991 3l.024.001a1.5 1.5 0 0 1 .538.143.76.76 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.5 1.5 0 0 1-.143.538.76.76 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.5 1.5 0 0 1-.538-.143.76.76 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.5 1.5 0 0 1 .143-.538.76.76 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2"/>
+          </svg>
         </a>
       </div>
       <div class="justify-content-center">
         <form class="justify-content-center" role="search">
-          <input id="search-bar" class="form-control" type="search" placeholder="Chiedi un titolo..." aria-label="Search" data-search="" autocomplete="off">
+          <input id="search-bar" class="form-control" type="search" placeholder="Inserisci un titolo..." aria-label="Search" data-search="" autocomplete="off">
         </form>
       </div>
       <div class="justify-content-end">
@@ -35,20 +31,41 @@
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Film</h5>
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Surio</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <a class="nav-link active mt-2 mb-2" aria-current="page" href="index.html">Film</a>
-            <a class="active mt-2" aria-current="page" href="serie_tv.html">Serie TV</a>
-            <a class="nav-link active mt-2" aria-current="page" href="list.html">Lista</a>
-            <a onclick="logout()" href="javascript:void(0)" id="login" class="nav-link active mt-2" aria-current="page">Login</a>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item nav-link">
+                <a class="active" aria-current="page" href="index.html">Film</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a class="active" aria-current="page" href="serie_tv.html">Serie TV</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a class="active" aria-current="page" href="requestMovie.html">Richiedi un film</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a class="active" aria-current="page" href="list.html">Lista</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a onclick="logout()" href="javascript:void(0)" id="login" class="active" aria-current="page">Login</a>
+              </li>
+              <li class="nav-item mt-3">
+                <h5 id="admin" class="offcanvas-title">Admin</h5>
+              </li>
+              <li class="nav-item mt-2 nav-link">
+                <a id="addFilm" class="active" aria-current="page" href="addMovie.html">Aggiungi un film</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="addSerie" class="active" aria-current="page" href="addSerie.html">Aggiungi una serie</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </nav>
-
 </header>
 
 <div id="results-container" class="box mt-5">
@@ -72,5 +89,6 @@
 <script src="js/request.js"></script>
 <script type="module" src="js/requestSearch.js"></script>
 <script src="js/cookie.js"></script>
+<script src="js/isAdmin.js"></script>
 </body>
 </html>

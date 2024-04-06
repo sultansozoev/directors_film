@@ -10,10 +10,14 @@ fetch(`https://surio.ddns.net/isAdmin`, {
   .then(data => {
     const addFilm = document.getElementById('addFilm');
     const addSerie = document.getElementById('addSerie');
-    console.log(data)
+    const adminText = document.getElementById("admin");
+    const username = document.getElementById("offcanvasDarkNavbarLabel");
     if (data <= 0) {
       addFilm.style.display = 'none';
       addSerie.style.display = 'none';
+      adminText.style.display = 'none';
+    } else {
+      username.innerHTML = data[0].username;
     }
   })
   .catch(error => {

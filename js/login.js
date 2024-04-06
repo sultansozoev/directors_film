@@ -38,10 +38,12 @@ function login(username, password) {
         setCookie("user", data.user_id, 7)
         window.location.href = "index.html";
       } else {
-        console.log(data)
+        const errorSpan = document.getElementById('error');
+        errorSpan.innerHTML = "Username o Password errati!";
       }
     })
     .catch(error => {
-      console.error('Error fetching films:', error);
+      const errorSpan = document.getElementById('error');
+      errorSpan.innerHTML = "Username o Password errati!";
     });
 }
