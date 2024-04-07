@@ -27,6 +27,8 @@
   width:20px;
   height:36px;
   opacity:0;
+  font-size: 40px;
+  font-weight: bolder;
   font-family:Helvetica, Arial, sans-serif;
   animation:move 2s linear infinite;
   -o-animation:move 2s linear infinite;
@@ -36,7 +38,7 @@
   -o-transform:rotate(180deg);
   -moz-transform:rotate(180deg);
   -webkit-transform:rotate(180deg);
-  color:#35C4F0;
+  color: rgba(0, 0, 0, 0.86);
 }
 
 #load div:nth-child(2) {
