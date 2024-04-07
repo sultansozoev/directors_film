@@ -28,3 +28,10 @@ function getCookie(name) {
   }
   return null;
 }
+
+setTimeout(function loadPage() {
+  const load = document.getElementById('load');
+  const allPage = document.getElementById('all-page');
+  load.style.display = 'none';
+  allPage.style.visibility = 'visible';
+}, 2000);

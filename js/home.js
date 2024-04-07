@@ -32,6 +32,7 @@ function fetchMoviesByGenre(url, container) {
       console.error('Error fetching films:', error);
     });
 }
+
 /*
 function category(url, container) {
   fetch(url, {
