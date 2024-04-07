@@ -4,7 +4,7 @@ fetch(`https://surio.ddns.net/isAdmin`, {
     'Content-Type': 'application/json',
   },
   method: 'POST',
-  body: JSON.stringify({user_id})
+  body: JSON.stringify({ user_id })
 })
   .then(response => response.json())
   .then(data => {
@@ -12,12 +12,11 @@ fetch(`https://surio.ddns.net/isAdmin`, {
     const addSerie = document.getElementById('addSerie');
     const adminText = document.getElementById("admin");
     const username = document.getElementById("offcanvasDarkNavbarLabel");
-    if (data <= 0) {
+    username.innerHTML = data[0].username;
+    if (data[0].admin !== 1) {
       addFilm.style.display = 'none';
       addSerie.style.display = 'none';
       adminText.style.display = 'none';
-    } else {
-      username.innerHTML = data[0].username;
     }
   })
   .catch(error => {

@@ -25,7 +25,6 @@ a {
 }
 .card {
   background: #fff;
-  border-radius: 50px;
 }
 .card .image-box {
   height: 100%;
@@ -52,7 +51,6 @@ a {
 .card .profile-details img {
   height: 40px;
   width: 40px;
-  border-radius: 50%;
 }
 .profile-details .name {
   font-size: 15px;
@@ -69,7 +67,6 @@ a {
   height: 40px;
   width: 40px;
   background: #fff;
-  border-radius: 50%;
 }
 .swiper-navBtn::before,
 .swiper-navBtn::after {
