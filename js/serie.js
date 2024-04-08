@@ -18,6 +18,7 @@ const controls =
     'fast-forward', // Fast forward by the seek time (default 10 seconds)
     'progress', // The progress bar and scrubber for playback and buffering
     'current-time', // The current time of playback
+    'next',
     'duration', // The full duration of the media
     'mute', // Toggle mute
     'volume', // Volume control
@@ -46,7 +47,6 @@ if (token) {
         }
         if (season_id) {
           seasonSelector.value = season_id;
-
         }
         let urlEpisode = `${apiUrl}/getEpisodes?id=${seasonSelector.value}`;
         fetchEpisode(urlEpisode, episode_id);
@@ -74,6 +74,7 @@ if (token) {
             const player = new Plyr('video', {captions: {active: true}, controls});
             window.player = player;
             player.config.urls.download = `${apiUrl}/downloadSerie?film=${episodeSelector.value}`;
+            player.elements.container.tabIndex = 0;
             videoPlayer.load();
           });
         const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
@@ -119,6 +120,7 @@ if (token) {
         const player = new Plyr('video', {captions: {active: true}, controls});
         window.player = player;
         player.config.urls.download = `${apiUrl}/downloadSerie?film=${this.value}`;
+        player.elements.container.tabIndex = 0;
         videoPlayer.load();
       });
     const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${this.value}`;
