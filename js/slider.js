@@ -3,16 +3,15 @@ for (let i = 1; i < 14; i++) {
     slidesPerView: 4,
     spaceBetween: 5,
     sliderPerGroup: 6,
-    dynamicBullets: true,
+    touchEventsTarget: 'container',
     loop: true,
     centerSlide: "true",
-    touchEventsTarget: 'container',
-    fade: "true",
+    effect: 'slide',
     grabCursor: "true",
     pagination: {
       el: ".swiper-pagination"+i,
       dynamicBullets: true,
-      loop: true
+      clickable: true
     },
     navigation: {
       nextEl: '.swiper-button-next'+i,

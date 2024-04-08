@@ -20,7 +20,7 @@ a {
   padding: 30px 0;
 }
 .slide-container {
-  margin: 0 30px;
+  margin: 0 30px 8px;
   overflow: hidden;
 }
 .card {
