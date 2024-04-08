@@ -51,11 +51,13 @@ fetch(`${apiUrl}/isAdmin`, {
   .then(response => response.json())
   .then(data => {
     if (data.length > 0) {
-      const url = `${apiUrl}/getAllList`;
-      fetchList(url, container, user_id);
-    } else {
-      const url = `${apiUrl}/getList`;
-      fetchList(url, container, user_id);
+      if (data[0].admin === 1) {
+        const url = `${apiUrl}/getAllList`;
+        fetchList(url, container, user_id);
+      } else {
+        const url = `${apiUrl}/getList`;
+        fetchList(url, container, user_id);
+      }
     }
   })
   .catch(error => {
