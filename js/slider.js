@@ -8,11 +8,7 @@ for (let i = 1; i < 14; i++) {
     centerSlide: "true",
     effect: 'slide',
     grabCursor: "true",
-    pagination: {
-      el: ".swiper-pagination"+i,
-      dynamicBullets: true,
-      clickable: true
-    },
+    freeMode: true,
     navigation: {
       nextEl: '.swiper-button-next'+i,
       prevEl: '.swiper-button-prev'+i,
