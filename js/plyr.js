@@ -33,11 +33,12 @@ const controls =
   ];
 
 let token = getCookie("jwt");
+const player = new Plyr('video', {captions: {active: true}, controls});
+player.elements.container.tabIndex = 0;
+window.player = player;
+
 if (token) {
-  const player = new Plyr('video', {captions: {active: true}, controls});
-  player.elements.container.tabIndex = 0;
   player.config.urls.download = downloadUrl;
-  window.player = player;
 
   fetch(url, {
   })
