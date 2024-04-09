@@ -8,25 +8,25 @@ const year = document.getElementById('year');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
+const btnNext = document.getElementById("next");
+const btnPrevious = document.getElementById("previous");
 
 const controls =
   [
-    'play-large', // The large play button in the center
-    'restart', // Restart playback
-    'rewind', // Rewind by the seek time (default 10 seconds)
-    'play', // Play/pause playback
-    'fast-forward', // Fast forward by the seek time (default 10 seconds)
-    'progress', // The progress bar and scrubber for playback and buffering
-    'current-time', // The current time of playback
-    'duration', // The full duration of the media
-    'mute', // Toggle mute
-    'volume', // Volume control
-    'captions', // Toggle captions
-    'settings', // Settings menu
-    'pip', // Picture-in-picture (currently Safari only)
-    'airplay', // Airplay (currently Safari only)
-    'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
-    'fullscreen' // Toggle fullscreen
+    'play-large',
+    'restart',
+    'rewind',
+    'play',
+    'fast-forward',
+    'progress',
+    'current-time',
+    'duration',
+    'mute',
+    'volume',
+    'captions',
+    'settings',
+    'download',
+    'fullscreen'
   ];
 
 const seasonSelector = document.getElementById('season');
@@ -36,6 +36,9 @@ let token = getCookie("jwt");
 const player = new Plyr('video', {captions: {active: true}, controls});
 window.player = player;
 if (token) {
+  btnNext.addEventListener("click", nextOption);
+  btnPrevious.addEventListener("click", previousOption);
+
   function fetchInit(urlSeason, season_id, episode_id) {
     fetch(urlSeason)
       .then(response => response.json())
@@ -66,7 +69,6 @@ if (token) {
         }
         if (episode_id)
           episodeSelector.value = episode_id;
-        console.log(episode_id)
         const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeSelector.value}`;
         fetch(urlEpisodeVideo)
           .then(response => response.url)
@@ -106,25 +108,10 @@ if (token) {
       console.error('Error fetching films:', error);
     });
   seasonSelector.addEventListener('change', function () {
-    let urlEpisode = `${apiUrl}/getEpisodes?id=${this.value}`;
-    episodeSelector.innerHTML = '';
-    fetchEpisode(urlEpisode);
+    seasonChange(this.value);
   });
   episodeSelector.addEventListener('change', function () {
-    const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${this.value}`;
-    fetch(urlEpisodeVideo)
-      .then(response => response.url)
-      .then(videoUrl => {
-        sourceElement.src = videoUrl;
-        player.config.urls.download = `${apiUrl}/downloadSerie?film=${this.value}`;
-        videoPlayer.load();
-      });
-    const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${this.value}`;
-    fetch(urlEpisodeSubtitle)
-      .then(response => response.url)
-      .then(videoUrl => {
-        subtitle.src = videoUrl;
-      });
+    episodeChange(this.value);
   });
 
   const urlSerie = `${apiUrl}/serie_tv?id=${serie}`;
@@ -148,6 +135,42 @@ if (token) {
   window.setInterval(function () {
     setPlayerTimeSerie(getCookie("user"), serie, videoPlayer.currentTime, episodeSelector.value, seasonSelector.value)
   }, 5000);
+
+  function nextOption() {
+    const currentIndex = episodeSelector.selectedIndex;
+    const currentIndexSeason = seasonSelector.selectedIndex;
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < episodeSelector.length) {
+      episodeSelector.selectedIndex = nextIndex;
+      episodeChange(episodeSelector.value);
+    } else {
+      let nextIndexSeason = currentIndexSeason + 1;
+      if (nextIndexSeason < seasonSelector.length) {
+        seasonSelector.selectedIndex = nextIndexSeason;
+        seasonChange(seasonSelector.value);
+      }
+    }
+  }
+  function previousOption() {
+    const currentIndex = episodeSelector.selectedIndex;
+    const previousIndex = currentIndex - 1;
+    const currentIndexSeason = seasonSelector.selectedIndex;
+    if (previousIndex >= 0) {
+      episodeSelector.selectedIndex = previousIndex;
+      episodeChange(episodeSelector.value);
+    } else {
+      let nextIndexSeason = currentIndexSeason - 1;
+      if (nextIndexSeason >= 0) {
+        seasonSelector.selectedIndex = nextIndexSeason;
+        seasonChange(seasonSelector.value);
+      }
+    }
+  }
+  function seasonChange(seasonId) {
+    let urlEpisode = `${apiUrl}/getEpisodes?id=${seasonId}`;
+    episodeSelector.innerHTML = '';
+    fetchEpisode(urlEpisode);
+  }
 } else {
   window.location.href = "login.html";
 }
@@ -169,13 +192,19 @@ function setPlayerTimeSerie(user_id, serie_tv_id, player_time, episode_id, seaso
     });
 }
 
-function getCookie(name) {
-  const nameEQ = name + "=";
-  const ca = document.cookie.split(';');
-  for(let i=0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0)===' ') c = c.substring(1,c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
-  }
-  return null;
+function episodeChange(episodeId) {
+  const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeId}`;
+  fetch(urlEpisodeVideo)
+    .then(response => response.url)
+    .then(videoUrl => {
+      sourceElement.src = videoUrl;
+      player.config.urls.download = `${apiUrl}/downloadSerie?film=${episodeId}`;
+      videoPlayer.load();
+    });
+  const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeId}`;
+  fetch(urlEpisodeSubtitle)
+    .then(response => response.url)
+    .then(videoUrl => {
+      subtitle.src = videoUrl;
+    });
 }

@@ -80,7 +80,7 @@ if (token) {
           const budgetFormattato = film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
           budget.appendChild(document.createTextNode("$" + budgetFormattato));
         } else {
-          budget.appendChild(document.createTextNode("non è ancora inserito questo dato nel database"));
+          budget.style.display = 'none';
         }
         title.appendChild(document.createTextNode(film.title));
         cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
@@ -95,16 +95,6 @@ if (token) {
     });
 } else {
   window.location.href = "login.html";
-}
-function getCookie(name) {
-  const nameEQ = name + "=";
-  const ca = document.cookie.split(';');
-  for(let i=0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0)===' ') c = c.substring(1,c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
-  }
-  return null;
 }
 
 function setPlayerTime(user_id, movie_id, player_time) {
