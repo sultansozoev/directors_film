@@ -32,6 +32,13 @@ function fetchMoviesByGenre(url, container) {
       console.error('Error fetching films:', error);
     });
 }
+
+window.addEventListener("scroll", function () {
+  let header = document.getElementById("banner");
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  header.style.opacity = 1 - scrollTop / 1000;
+});
+
 const videoPlayer = document.getElementById('banner-player');
 let url = `${apiUrl}/video?film=10000000`;
 

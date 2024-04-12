@@ -16,7 +16,7 @@
 .hand-held #banner.video .play-btn, .playing #banner.video .play-btn {display: none; }
 
 @media (min-width:1800px) {
-  #banner.video figure {height: 50vh;}
+  #banner.video figure {height: 65vh;}
 }
 
 @media (max-width:900px) {
