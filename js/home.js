@@ -81,7 +81,6 @@ const player = new Plyr('video', {
   clickToPlay: false,
   fullscreen: false
 });
-player.muted = true;
 player.volume = 0;
 player.play()
 window.player = player;
