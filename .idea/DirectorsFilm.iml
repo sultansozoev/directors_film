@@ -18,5 +18,8 @@
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="plyr" level="application" />
+    <orderEntry type="library" name="plyr.polyfilled" level="application" />
+    <orderEntry type="library" name="video" level="application" />
   </component>
 </module>

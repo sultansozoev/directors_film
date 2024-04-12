@@ -32,6 +32,8 @@ function getCookie(name) {
 setTimeout(function loadPage() {
   const load = document.getElementById('load');
   const allPage = document.getElementById('all-page');
+  const banner = document.getElementById('banner');
   load.style.display = 'none';
+  banner.style.visibility = 'visible';
   allPage.style.visibility = 'visible';
 }, 2000);

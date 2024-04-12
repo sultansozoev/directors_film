@@ -32,6 +32,8 @@ function fetchMoviesByGenre(url, container) {
       console.error('Error fetching films:', error);
     });
 }
+const videoPlayer = document.getElementById('banner-player');
+let url = `${apiUrl}/video?film=10000000`;
 
 /*
 function category(url, container) {
@@ -75,6 +77,31 @@ const categoriesUrl = `${apiUrl}/getCategories`;
 const categoriesDiv = document.getElementById('categories');
 category(categoriesUrl, categoriesDiv);
 */
+const player = new Plyr('video', {
+  clickToPlay: false,
+  fullscreen: false
+});
+player.muted = true;
+player.volume = 0;
+player.play()
+window.player = player;
+fetch(url, {
+})
+  .then(response => response.url)
+  .then(videoUrl => {
+    videoPlayer.src = videoUrl;
+  }).catch(e => {
+    console.log(e)
+  });
+videoPlayer.onclick = function () {
+  if (player.muted) {
+    player.muted = false;
+    player.volume = 50;
+  } else {
+    player.muted = true;
+    player.volume = 0;
+  }
+};
 
 const oscar = document.getElementById('oscar');
 const urlOscar = `${apiUrl}/getMoviesByCategory?category=6`;
