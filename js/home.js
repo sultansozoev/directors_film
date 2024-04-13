@@ -33,9 +33,29 @@ function fetchMoviesByGenre(url, container) {
     });
 }
 
+function onScroll() {
+  const element = document.getElementById('second');
+  const video = document.getElementById("banner");
+  if (element) {
+    const rect = element.getBoundingClientRect();
+    const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
+
+    if (elementIsVisible) {
+      player.volume = 0.3;
+    }
+  }
+  if (video) {
+    const rect = video.getBoundingClientRect();
+    const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
+
+    if (elementIsVisible) {
+      player.volume = 0.6;
+    }
+  }
+}
+
 window.addEventListener("scroll", function () {
   let header = document.getElementById("banner");
-  player.muted = true;
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   header.style.opacity = 1 - scrollTop / 1000;
 });
@@ -96,6 +116,7 @@ const player = new Plyr('video', {
 player.volume = 0;
 player.play()
 window.player = player;
+window.onscroll = onScroll;
 fetch(url, {
 })
   .then(response => response.url)
