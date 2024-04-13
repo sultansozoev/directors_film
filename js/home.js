@@ -35,6 +35,7 @@ function fetchMoviesByGenre(url, container) {
 
 window.addEventListener("scroll", function () {
   let header = document.getElementById("banner");
+  player.muted = true;
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   header.style.opacity = 1 - scrollTop / 1000;
 });
