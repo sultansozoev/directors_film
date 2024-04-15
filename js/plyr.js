@@ -35,7 +35,7 @@ const controls =
 let token = getCookie("jwt");
 const player = new Plyr('video', {captions: {active: true}, controls});
 player.elements.container.tabIndex = 0;
-player.volume = 100;
+player.volume = 1;
 window.player = player;
 
 if (token) {

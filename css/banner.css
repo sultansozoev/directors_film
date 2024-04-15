@@ -40,8 +40,8 @@
   display: none;
 }
 
-figure {
-  background-color: #fbfbfb;
+figure, section {
+  background-color: #ffffff;
   opacity: 1;
 }
 

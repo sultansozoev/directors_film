@@ -40,16 +40,16 @@ function onScroll() {
     const rect = element.getBoundingClientRect();
     const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
 
-    if (elementIsVisible) {
-      player.volume = 0.3;
+    if (elementIsVisible && !player.muted) {
+      player.volume = 0.1;
     }
   }
   if (video) {
     const rect = video.getBoundingClientRect();
     const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
 
-    if (elementIsVisible) {
-      player.volume = 0.6;
+    if (elementIsVisible && !player.muted) {
+      player.volume = 0.4;
     }
   }
 }
@@ -59,6 +59,7 @@ window.addEventListener("scroll", function () {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   header.style.opacity = 1 - scrollTop / 1000;
 });
+
 function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -128,7 +129,7 @@ fetch(url, {
 videoPlayer.onclick = function () {
   if (player.muted) {
     player.muted = false;
-    player.volume = 50;
+    player.volume = 0.4;
   } else {
     player.muted = true;
     player.volume = 0;

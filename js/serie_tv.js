@@ -39,17 +39,15 @@ function onScroll() {
   if (element) {
     const rect = element.getBoundingClientRect();
     const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
-
     if (elementIsVisible) {
-      player.volume = 0.3;
+      player.volume = 0.1;
     }
   }
   if (video) {
     const rect = video.getBoundingClientRect();
     const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
-
-    if (elementIsVisible) {
-      player.volume = 0.6;
+    if (elementIsVisible && !player.muted) {
+      player.volume = 0.4;
     }
   }
 }
@@ -114,7 +112,7 @@ const player = new Plyr('video', {
   fullscreen: false
 });
 player.volume = 0;
-player.play()
+player.play();
 window.player = player;
 window.onscroll = onScroll;
 fetch(url, {
@@ -128,7 +126,7 @@ fetch(url, {
 videoPlayer.onclick = function () {
   if (player.muted) {
     player.muted = false;
-    player.volume = 50;
+    player.volume = 0.4;
   } else {
     player.muted = true;
     player.volume = 0;
