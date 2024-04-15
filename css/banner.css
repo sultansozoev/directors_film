@@ -40,8 +40,9 @@
   display: none;
 }
 
-video {
+figure {
   background-color: #fbfbfb;
+  opacity: 1;
 }
 
 /* Play Button animation */
