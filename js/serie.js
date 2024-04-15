@@ -34,6 +34,7 @@ const episodeSelector = document.getElementById('episode');
 const urlSeason = `${apiUrl}/getSeasons?id=${serie}`;
 let token = getCookie("jwt");
 const player = new Plyr('video', {captions: {active: true}, controls});
+player.volume = 100;
 window.player = player;
 if (token) {
   btnNext.addEventListener("click", nextOption);
