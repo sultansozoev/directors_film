@@ -7,6 +7,7 @@ const body = document.getElementById('body');
 const title = document.getElementById('title');
 const year = document.getElementById('year');
 const budget = document.getElementById('budget');
+const title_overlay = document.getElementById('title-overlay');
 const cardImage = document.getElementById('card-image');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
@@ -34,6 +35,7 @@ const controls =
 
 let token = getCookie("jwt");
 const player = new Plyr('video', {captions: {active: true}, controls});
+
 player.elements.container.tabIndex = 0;
 player.volume = 1;
 window.player = player;
@@ -70,6 +72,9 @@ if (token) {
     .then(data => {
       const film = data.film[0];
       if (film) {
+        player.title = film.title;
+        title_overlay.innerHTML = film.title;
+        console.log(player.title)
         if (film.release_date != null) {
           let releaseDate = film.release_date;
           let d = releaseDate.toString().slice(0, 19).replace('T', ' ').split(' ')[0].split('-').reverse().join('/');
@@ -108,7 +113,6 @@ function setPlayerTime(user_id, movie_id, player_time) {
     body: JSON.stringify({user_id: user_id, movie_id: movie_id, player_time: player_time})
   }).then(response => response.json())
     .then(data => {
-      console.log(data);
     })
     .catch(error => {
       console.error('Error fetching films:', error);

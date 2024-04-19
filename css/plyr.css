@@ -57,6 +57,17 @@ h4 {
   color: #050505;
 }
 
+.text-overlay {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 20px;
+  z-index: 2147483647;
+  text-shadow: 1px 1px black;  /* Optional: Add shadow for better readability */
+}
+
 .Card {
   display: flex;
   justify-content: center;

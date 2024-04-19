@@ -39,7 +39,7 @@ function onScroll() {
   if (element) {
     const rect = element.getBoundingClientRect();
     const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
-    if (elementIsVisible) {
+    if (elementIsVisible && !player.muted) {
       player.volume = 0.1;
     }
   }
@@ -55,7 +55,7 @@ function onScroll() {
 window.addEventListener("scroll", function () {
   let header = document.getElementById("banner");
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  header.style.opacity = 1 - scrollTop / 1000;
+  header.style.opacity = `${1 - scrollTop / 1000}`;
 });
 function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)

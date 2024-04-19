@@ -57,7 +57,7 @@ function onScroll() {
 window.addEventListener("scroll", function () {
   let header = document.getElementById("banner");
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  header.style.opacity = 1 - scrollTop / 1000;
+  header.style.opacity = `${1 - scrollTop / 1000}`;
 });
 
 function randomIntFromInterval(min, max) { // min and max included
@@ -116,6 +116,7 @@ const player = new Plyr('video', {
 });
 player.volume = 0;
 player.play()
+player.loop = true
 window.player = player;
 window.onscroll = onScroll;
 fetch(url, {
