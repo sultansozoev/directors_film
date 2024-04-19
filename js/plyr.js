@@ -73,7 +73,7 @@ if (token) {
       const film = data.film[0];
       if (film) {
         player.title = film.title;
-        title_overlay.innerHTML = film.title;
+        //title_overlay.innerHTML = film.title;
         console.log(player.title)
         if (film.release_date != null) {
           let releaseDate = film.release_date;
