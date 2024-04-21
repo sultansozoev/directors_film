@@ -116,7 +116,8 @@ const player = new Plyr('video', {
 });
 player.volume = 0;
 player.play()
-player.loop = true
+player.muted = true;
+player.loop = true;
 window.player = player;
 window.onscroll = onScroll;
 fetch(url, {

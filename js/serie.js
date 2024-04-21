@@ -78,7 +78,10 @@ if (token) {
             player.config.urls.download = `${apiUrl}/downloadSerie?film=${episodeSelector.value}`;
             player.elements.container.tabIndex = 0;
             videoPlayer.load();
-          });
+          }).catch(e => {
+          sourceElement.src = null;
+            console.log(e)
+        });
         const urlEpisodeSubtitle = `${apiUrl}/subtitleSerieTV?film=${episodeSelector.value}`;
         fetch(urlEpisodeSubtitle)
           .then(response => response.url)
