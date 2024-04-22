@@ -96,30 +96,6 @@ videoPlayer.onclick = function () {
   }
 };
 
-const oscar = document.getElementById('oscar');
-const urlOscar = `${apiUrl}/getMoviesByCategory?category=6`;
-fetchMoviesByGenre(urlOscar, oscar);
-
-const starWars = document.getElementById('starWars');
-const urlStarWars = `${apiUrl}/getMoviesByCategory?category=3`;
-fetchMoviesByGenre(urlStarWars, starWars);
-
-const pixar = document.getElementById('pixar');
-const urlPixar = `${apiUrl}/getMoviesByCategory?category=4`;
-fetchMoviesByGenre(urlPixar, pixar);
-
-const studioGhibli = document.getElementById('studioGhibli');
-const urlStudioGhibli = `${apiUrl}/getMoviesByCategory?category=2`;
-fetchMoviesByGenre(urlStudioGhibli, studioGhibli);
-
-const ultimiAggiunti = document.getElementById('ultimiAggiunti');
-const urlUltimiAggiunti = `${apiUrl}/getMoviesByCategory?category=1`;
-fetchMoviesByGenre(urlUltimiAggiunti, ultimiAggiunti);
-
-const imax = document.getElementById('imax');
-const urlImax = `${apiUrl}/getMoviesByCategory?category=5`;
-fetchMoviesByGenre(urlImax, imax);
-
 function genre(url) {
   fetch(url, {
     headers: {
@@ -138,6 +114,26 @@ function genre(url) {
       console.error('Error fetching films:', error);
     });
 }
-
 const genreUrl = `${apiUrl}/getGenres`;
 genre(genreUrl);
+
+function category(url) {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(category => {
+        const moviesContainer = document.getElementById(category.category_id);
+        fetchMoviesByGenre(`${apiUrl}/getMoviesByCategory?category=${category.category_id}`, moviesContainer);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+const categoryUrl = `${apiUrl}/getCategories`;
+category(categoryUrl);
