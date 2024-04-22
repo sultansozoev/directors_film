@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/slider.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/card.css">
+  <link rel="stylesheet" href="css/tabs.css">
 </head>
 <body>
 <header>
@@ -76,7 +77,15 @@
     <video id="banner-player" autoplay="autoplay" loop="loop"></video>
   </figure>
 </section>
-
+<div class="container1">
+  <div class="tabs">
+    <input type="radio" id="radio-1" name="tabs" onclick="openPage('collezioni')" checked />
+    <label class="tab" for="radio-1">Collezioni</label>
+    <input type="radio" id="radio-2" name="tabs" onclick="openPage('generi')" />
+    <label class="tab" for="radio-2">Generi</label>
+    <span class="glider"></span>
+  </div>
+</div>
 <div id="load">
   <div>O</div>
   <div>I</div>
@@ -90,169 +99,315 @@
 
 <div id="categories">
 </div>
+<div id="collezioni">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Ultimi aggiunti</h1>
+    <div class="slide-container slide-container1">
+      <div id="ultimiAggiunti" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next1"></div>
+      <div class="swiper-button-prev swiper-button-prev1"></div>
+    </div>
+    <div class="swiper-pagination1"></div>
+  </div>
 
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Ultimi aggiunti</h1>
-  <div class="slide-container slide-container1">
-    <div id="ultimiAggiunti" class="card-wrapper swiper-wrapper">
+  <div id="second" class="container swiper px-3">
+    <h1 class="text-black px-4">Vincitori Oscar 2024</h1>
+    <div class="slide-container slide-container2">
+      <div id="oscar" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next2"></div>
+      <div class="swiper-button-prev swiper-button-prev2"></div>
+    </div>
+    <div class="swiper-pagination2"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next1"></div>
-    <div class="swiper-button-prev swiper-button-prev1"></div>
-  </div>
-  <div class="swiper-pagination1"></div>
-</div>
 
-<div id="second" class="container swiper px-3">
-  <h1 class="text-black px-4">Vincitori Oscar 2024</h1>
-  <div class="slide-container slide-container2">
-    <div id="oscar" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">IMAX</h1>
+    <div class="slide-container slide-container3">
+      <div id="imax" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next3"></div>
+      <div class="swiper-button-prev swiper-button-prev3"></div>
+    </div>
+    <div class="swiper-pagination3"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next2"></div>
-    <div class="swiper-button-prev swiper-button-prev2"></div>
-  </div>
-  <div class="swiper-pagination2"></div>
-</div>
 
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">IMAX</h1>
-  <div class="slide-container slide-container3">
-    <div id="imax" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Studio Ghibli</h1>
+    <div class="slide-container slide-container4">
+      <div id="studioGhibli" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next4"></div>
+      <div class="swiper-button-prev swiper-button-prev4"></div>
+    </div>
+    <div class="swiper-pagination4"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next3"></div>
-    <div class="swiper-button-prev swiper-button-prev3"></div>
-  </div>
-  <div class="swiper-pagination3"></div>
-</div>
 
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Studio Ghibli</h1>
-  <div class="slide-container slide-container4">
-    <div id="studioGhibli" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Star Wars Saga</h1>
+    <div class="slide-container slide-container5">
+      <div id="starWars" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next5"></div>
+      <div class="swiper-button-prev swiper-button-prev5"></div>
+    </div>
+    <div class="swiper-pagination5"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next4"></div>
-    <div class="swiper-button-prev swiper-button-prev4"></div>
-  </div>
-  <div class="swiper-pagination4"></div>
-</div>
 
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Star Wars Saga</h1>
-  <div class="slide-container slide-container5">
-    <div id="starWars" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">PIXAR</h1>
+    <div class="slide-container slide-container6">
+      <div id="pixar" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next6"></div>
+      <div class="swiper-button-prev swiper-button-prev6"></div>
+    </div>
+    <div class="swiper-pagination6"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next5"></div>
-    <div class="swiper-button-prev swiper-button-prev5"></div>
-  </div>
-  <div class="swiper-pagination5"></div>
 </div>
+<div id="generi" style="display: none">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Azione</h1>
+    <div class="slide-container slide-container7">
+      <div id="28" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next7"></div>
+      <div class="swiper-button-prev swiper-button-prev7"></div>
+    </div>
+    <div class="swiper-pagination7"></div>
+  </div>
 
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">PIXAR</h1>
-  <div class="slide-container slide-container6">
-    <div id="pixar" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Commedia</h1>
+    <div class="slide-container slide-container8">
+      <div id="35" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
-  </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next6"></div>
-    <div class="swiper-button-prev swiper-button-prev6"></div>
-  </div>
-  <div class="swiper-pagination6"></div>
-</div>
-
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Azione</h1>
-  <div class="slide-container slide-container7">
-    <div id="azione" class="card-wrapper swiper-wrapper">
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next8"></div>
+      <div class="swiper-button-prev swiper-button-prev8"></div>
     </div>
+    <div class="swiper-pagination8"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next7"></div>
-    <div class="swiper-button-prev swiper-button-prev7"></div>
-  </div>
-  <div class="swiper-pagination7"></div>
-</div>
-
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Commedia</h1>
-  <div class="slide-container slide-container8">
-    <div id="commedia" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Avventura</h1>
+    <div class="slide-container slide-container9">
+      <div id="12" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
-  </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next8"></div>
-    <div class="swiper-button-prev swiper-button-prev8"></div>
-  </div>
-  <div class="swiper-pagination8"></div>
-</div>
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Avventura</h1>
-  <div class="slide-container slide-container9">
-    <div id="avventura" class="card-wrapper swiper-wrapper">
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next9"></div>
+      <div class="swiper-button-prev swiper-button-prev9"></div>
     </div>
+    <div class="swiper-pagination9"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next9"></div>
-    <div class="swiper-button-prev swiper-button-prev9"></div>
-  </div>
-  <div class="swiper-pagination9"></div>
-</div>
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Fantasy</h1>
-  <div class="slide-container slide-container10">
-    <div id="fantasy" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Fantasy</h1>
+    <div class="slide-container slide-container10">
+      <div id="14" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
-  </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next10"></div>
-    <div class="swiper-button-prev swiper-button-prev10"></div>
-  </div>
-  <div class="swiper-pagination10"></div>
-</div>
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Animazione</h1>
-  <div class="slide-container slide-container11">
-    <div id="animazione" class="card-wrapper swiper-wrapper">
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next10"></div>
+      <div class="swiper-button-prev swiper-button-prev10"></div>
     </div>
+    <div class="swiper-pagination10"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next11"></div>
-    <div class="swiper-button-prev swiper-button-prev11"></div>
-  </div>
-  <div class="swiper-pagination11"></div>
-</div>
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Romantico</h1>
-  <div class="slide-container slide-container12">
-    <div id="romantico" class="card-wrapper swiper-wrapper">
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Animazione</h1>
+    <div class="slide-container slide-container11">
+      <div id="16" class="card-wrapper swiper-wrapper">
+      </div>
     </div>
-  </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next12"></div>
-    <div class="swiper-button-prev swiper-button-prev12"></div>
-  </div>
-  <div class="swiper-pagination12"></div>
-</div>
-<div class="container swiper px-3">
-  <h1 class="text-black px-4">Horror</h1>
-  <div class="slide-container slide-container13">
-    <div id="horror" class="card-wrapper swiper-wrapper">
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next11"></div>
+      <div class="swiper-button-prev swiper-button-prev11"></div>
     </div>
+    <div class="swiper-pagination11"></div>
   </div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next swiper-button-next13"></div>
-    <div class="swiper-button-prev swiper-button-prev13"></div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Romantico</h1>
+    <div class="slide-container slide-container12">
+      <div id="10749" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next12"></div>
+      <div class="swiper-button-prev swiper-button-prev12"></div>
+    </div>
+    <div class="swiper-pagination12"></div>
   </div>
-  <div class="swiper-pagination13"></div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Dramma</h1>
+    <div class="slide-container slide-container13">
+      <div id="18" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Storia</h1>
+    <div class="slide-container slide-container13">
+      <div id="36" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Western</h1>
+    <div class="slide-container slide-container13">
+      <div id="37" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Thriller</h1>
+    <div class="slide-container slide-container13">
+      <div id="53" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Crime</h1>
+    <div class="slide-container slide-container13">
+      <div id="80" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Documentario</h1>
+    <div class="slide-container slide-container13">
+      <div id="99" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Fantascienza</h1>
+    <div class="slide-container slide-container13">
+      <div id="878" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Mistero</h1>
+    <div class="slide-container slide-container13">
+      <div id="9648" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Musica</h1>
+    <div class="slide-container slide-container13">
+      <div id="10402" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Famiglia</h1>
+    <div class="slide-container slide-container13">
+      <div id="10751" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Guerra</h1>
+    <div class="slide-container slide-container13">
+      <div id="10752" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Televisione film</h1>
+    <div class="slide-container slide-container13">
+      <div id="10770" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
+  <div class="container swiper px-3">
+    <h1 class="text-black px-4">Horror</h1>
+    <div class="slide-container slide-container13">
+      <div id="27" class="card-wrapper swiper-wrapper">
+      </div>
+    </div>
+    <div class="swiper-pager">
+      <div class="swiper-button-next swiper-button-next13"></div>
+      <div class="swiper-button-prev swiper-button-prev13"></div>
+    </div>
+    <div class="swiper-pagination13"></div>
+  </div>
 </div>
 </div>
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
@@ -262,6 +417,7 @@
 <script type="module" src="js/live-search.js"></script>
 <script type="module" src="js/home.js"></script>
 <script src="js/slider.js"></script>
+<script src="js/tabs.js"></script>
 <script src="js/cookie.js"></script>
 <script src="js/isAdmin.js"></script>
 </body>

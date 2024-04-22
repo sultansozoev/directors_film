@@ -68,48 +68,6 @@ const rndInt = randomIntFromInterval(10000000, 10000003)
 const videoPlayer = document.getElementById('banner-player');
 let url = `${apiUrl}/video?film=10000000`;
 
-/*
-function category(url, container) {
-  fetch(url, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'GET'
-  })
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(category => {
-        const cardDiv = document.createElement('div');
-        cardDiv.classList.add('container');
-        cardDiv.classList.add('swiper');
-
-        const h1 = document.createElement('h1');
-        h1.classList.add('text-black');
-        h1.classList.add('px-4');
-        h1.innerText = category.category_name;
-        const slideDiv = document.createElement('div');
-        slideDiv.classList.add("slide-container");
-        const cardWrapper = document.createElement('div');
-        cardWrapper.classList.add("card-wrapper");
-        cardWrapper.classList.add("swiper-wrapper");
-
-        fetchMoviesByGenre(`${apiUrl}/getMoviesByCategory?category=${category.category_id}`, cardWrapper);
-
-        slideDiv.appendChild(cardWrapper);
-        cardDiv.appendChild(h1);
-        cardDiv.appendChild(slideDiv);
-        container.appendChild(cardDiv);
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching films:', error);
-    });
-}
-
-const categoriesUrl = `${apiUrl}/getCategories`;
-const categoriesDiv = document.getElementById('categories');
-category(categoriesUrl, categoriesDiv);
-*/
 const player = new Plyr('video', {
   clickToPlay: false,
   fullscreen: false
@@ -162,30 +120,24 @@ const imax = document.getElementById('imax');
 const urlImax = `${apiUrl}/getMoviesByCategory?category=5`;
 fetchMoviesByGenre(urlImax, imax);
 
-const moviesContainerAvventura = document.getElementById('avventura');
-const urlAvventura = `${apiUrl}/getMoviesByGenre?genre=12`;
-fetchMoviesByGenre(urlAvventura, moviesContainerAvventura);
+function genre(url) {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(genre => {
+        const moviesContainer = document.getElementById(genre.genre_id);
+        fetchMoviesByGenre(`${apiUrl}/getMoviesByGenre?genre=${genre.genre_id}`, moviesContainer);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
 
-const moviesContainerAzione = document.getElementById('azione');
-const urlAzione = `${apiUrl}/getMoviesByGenre?genre=28`;
-fetchMoviesByGenre(urlAzione, moviesContainerAzione);
-
-const moviesContainerCommedia = document.getElementById('commedia');
-const urlCommedia = `${apiUrl}/getMoviesByGenre?genre=35`;
-fetchMoviesByGenre(urlCommedia, moviesContainerCommedia);
-
-const moviesContainerFantasy = document.getElementById('fantasy');
-const urlFantasy = `${apiUrl}/getMoviesByGenre?genre=14`;
-fetchMoviesByGenre(urlFantasy, moviesContainerFantasy);
-
-const moviesContainerAnimazione = document.getElementById('animazione');
-const urlAnimazione = `${apiUrl}/getMoviesByGenre?genre=16`;
-fetchMoviesByGenre(urlAnimazione, moviesContainerAnimazione);
-
-const moviesContainerHorror = document.getElementById('horror');
-const urlHorror = `${apiUrl}/getMoviesByGenre?genre=27`;
-fetchMoviesByGenre(urlHorror, moviesContainerHorror);
-
-const moviesContainerRomantico = document.getElementById('romantico');
-const urlRomantico = `${apiUrl}/getMoviesByGenre?genre=10749`;
-fetchMoviesByGenre(urlRomantico, moviesContainerRomantico);
+const genreUrl = `${apiUrl}/getGenres`;
+genre(genreUrl);
