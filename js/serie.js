@@ -25,7 +25,7 @@ const controls =
     'volume',
     'captions',
     'settings',
-    'download',
+    //'download',
     'fullscreen'
   ];
 
