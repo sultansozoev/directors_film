@@ -16,5 +16,6 @@ searchBar.addEventListener("input", (event) => {
     banner.style.display = 'none';
   }
   const url = `${apiUrl}/searchSerie?title=` + searchValue;
-  searchTitle(url, results_container);
+  const urlPlayer = `player_serie.html?serie=`;
+  searchTitle(url, results_container, urlPlayer, 'serie_tv_id');
 });

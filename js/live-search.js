@@ -16,5 +16,6 @@ searchBar.addEventListener("input", (event) => {
     banner.style.display = 'none';
   }
   const url = `${apiUrl}/search?title=` + searchValue;
-  searchTitle(url, results_container);
+  const urlPlayer = `player.html?film=`;
+  searchTitle(url, results_container, urlPlayer,'movie_id');
 });

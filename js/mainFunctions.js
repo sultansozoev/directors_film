@@ -1,4 +1,4 @@
-export function searchTitle(url, results_container) {
+export function searchTitle(url, results_container, urlPlayer, id) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ export function searchTitle(url, results_container) {
         movieCard.classList.add('movie-card');
 
         const movieLink = document.createElement('a');
-        movieLink.setAttribute('href', `player.html?film=${movie.movie_id}`);
+        movieLink.setAttribute('href', `${urlPlayer}${movie[id]}`);
 
         const movieHeader = document.createElement('div');
         movieHeader.classList.add('movie-header', 'movie-image');
