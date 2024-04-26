@@ -1,15 +1,24 @@
 /* --- banner --- */
 
-#banner {position: relative; text-align: center; background-color: #4f719c; }
+#banner {position: relative; text-align: center; background-color: rgba(79, 113, 156, 0); }
 #banner article {position: absolute;  z-index: 20;  left: 0; right: 0; top: 50%;  -webkit-transform: translateY(-50%); transform: translateY(-50%); padding: 10px;}
 #banner h1 {text-shadow: 1.5px 2.6px 7px rgba(24, 23, 24, 0.35); color: white; font-size: 50px; margin: 10px;}
 
 #banner figure {position: relative; overflow: hidden; height: 600px; margin: 0;}
 
-#banner.video figure video {display: block; width:100%; position: absolute; top: -100%; left: 0; right: 0; bottom: -100%; margin: auto}
+#banner.video figure video {
+  display: block;
+  width:100%;
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  margin: auto;
+}
 
 .playing #banner {z-index: 1000;}
-.playing #banner.video article {position: relative; background-color: #4f719c; transform: unset; top: 0;}
+.playing #banner.video article {position: relative; background-color: rgba(255, 255, 255, 0); transform: unset; top: 0;}
 .hand-held #banner.video article {display: none;}
 .hand-held #banner.video figure, .playing #banner.video figure {height: auto;}
 .hand-held #banner.video figure video, .playing #banner.video figure video { position: relative; }
@@ -26,26 +35,15 @@
   #banner.video .play-btn {display: none}
 }
 
-/* --- play & close buttons --- */
-.play-btn, .close-btn {display: table; margin: 0 auto; padding: 10px; color: white; font: 500 20px/1 sans-serif; text-transform: uppercase; cursor: pointer;}
-.play-btn span {display: inline-block; vertical-align: middle; margin: 0 5px}
-.play-btn:hover {color: #00d2a2;}
-.play-btn:hover span {filter: hue-rotate(-40deg);}
-
-.close-btn {display: none; position: absolute; top: 0; right: 0; z-index: 1002; font-size: 18px; letter-spacing: 0; background-color: #5db0ff; padding: 10px 7px;}
-.close-btn:hover {background-color: #00d2a2; color: #fff}
-.playing .close-btn {display: block; }
-
 .plyr__controls, .plyr__captions, .plyr__control--overlaid {
   display: none;
 }
 
 figure, section {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
   opacity: 1;
 }
 
-/* Play Button animation */
 .animated { -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
 .animated.infinite { -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite;}
 .pulse { -webkit-animation-name: pulse; animation-name: pulse; } @-webkit-keyframes pulse{from{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}50%{-webkit-transform:scale3d(1.05,1.05,1.05);transform:scale3d(1.05,1.05,1.05)}to{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}} @keyframes pulse{from{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}50%{-webkit-transform:scale3d(1.05,1.05,1.05);transform:scale3d(1.05,1.05,1.05)}to{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}

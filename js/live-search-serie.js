@@ -15,6 +15,6 @@ searchBar.addEventListener("input", (event) => {
   } else {
     banner.style.display = 'none';
   }
-  const url = `${apiUrl}/search?title=` + searchValue;
+  const url = `${apiUrl}/searchSerie?title=` + searchValue;
   searchTitle(url, results_container);
 });

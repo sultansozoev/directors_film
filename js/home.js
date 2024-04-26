@@ -1,4 +1,5 @@
 import { apiUrl } from '/api/config.js';
+import { onScroll, scrollWindow } from './mainFunctions.js';
 
 function fetchMoviesByGenre(url, container) {
   fetch(url, {
@@ -33,32 +34,7 @@ function fetchMoviesByGenre(url, container) {
     });
 }
 
-function onScroll() {
-  const element = document.getElementById('second');
-  const video = document.getElementById("banner");
-  if (element) {
-    const rect = element.getBoundingClientRect();
-    const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
-
-    if (elementIsVisible && !player.muted) {
-      player.volume = 0.1;
-    }
-  }
-  if (video) {
-    const rect = video.getBoundingClientRect();
-    const elementIsVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
-
-    if (elementIsVisible && !player.muted) {
-      player.volume = 0.4;
-    }
-  }
-}
-
-window.addEventListener("scroll", function () {
-  let header = document.getElementById("banner");
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  header.style.opacity = `${1 - scrollTop / 1000}`;
-});
+scrollWindow();
 
 function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)
