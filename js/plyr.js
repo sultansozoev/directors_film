@@ -13,6 +13,7 @@ const sourceElement = videoPlayer.querySelectorAll('source')[0];
 const subtitle = document.getElementById('subtitle');
 const subtitleUrl = `${apiUrl}/subtitle?film=${film}`;
 const downloadUrl = `${apiUrl}/download?film=${film}`;
+const imageId = document.getElementById('image_id');
 const controls =
   [
     'play-large', // The large play button in the center
@@ -88,6 +89,7 @@ if (token) {
         } else {
           budget.style.display = 'none';
         }
+        imageId.setAttribute('href', `new-player.html?film=${film.movie_id}`);
         title.appendChild(document.createTextNode(film.title));
         cardImage.setAttribute("style", `background-image: url("https://image.tmdb.org/t/p/original/${film.poster}");`);
         videoPlayer.setAttribute('data-poster', "https://image.tmdb.org/t/p/original/" + film.background_image);
