@@ -14,8 +14,8 @@ const fullVolumeButton = volumeButton.querySelector('.full-volume');
 const mutedButton = volumeButton.querySelector('.muted');
 const maximizeButton = fullScreenButton.querySelector('.maximize');
 const minimizeButton = fullScreenButton.querySelector('.minimize');
-
-
+const captionButton = document.querySelector('.captions');
+const subtitle = document.getElementById('subtitle');
 const progressBar = document.querySelector('.video-container .progress-controls .progress-bar');
 const watchedBar = document.querySelector('.video-container .progress-controls .progress-bar .watched-bar');
 const timeLeft = document.querySelector('.video-container .progress-controls .time-remaining');
@@ -35,7 +35,7 @@ const displayControls = () => {
   controlsTimeout = setTimeout(() => {
     controlsContainer.style.opacity = '0';
     document.body.style.cursor = 'none';
-  }, 5000);
+  }, 2000);
 };
 
 const playPause = () => {
@@ -49,6 +49,20 @@ const playPause = () => {
     pauseButton.style.display = 'none';
   }
 };
+
+const captionOnOff = () => {
+  if (captionButton.style.opacity === 0.4) {
+    captionButton.style.opacity = 1;
+    subtitle.addEventListener("change", captionStatus, true);
+  } else {
+    captionButton.style.opacity = 0.4;
+    subtitle.addEventListener("change", captionStatus, false);
+  }
+};
+
+function captionStatus() {
+  console.log("Mode:-->" + subtitle.mode)
+}
 
 const toggleMute = () => {
   video.muted = !video.muted;
@@ -81,6 +95,7 @@ document.addEventListener('fullscreenchange', () => {
 
 document.addEventListener('keyup', (event) => {
   if (event.code === 'Space') {
+    console.log("space")
     playPause();
   }
 
@@ -103,7 +118,7 @@ video.addEventListener('timeupdate', () => {
   watchedBar.style.width = ((video.currentTime / video.duration) * 100) + '%';
   // TODO: calculate hours as well...
   const totalSecondsRemaining = video.duration - video.currentTime;
-  // THANK YOU: BEGANOVICH
+
   const time = new Date(null);
   time.setSeconds(totalSecondsRemaining);
   let hours = null;
@@ -122,6 +137,8 @@ progressBar.addEventListener('click', (event) => {
   const pos = (event.pageX  - (progressBar.offsetLeft + progressBar.offsetParent.offsetLeft)) / progressBar.offsetWidth;
   video.currentTime = pos * video.duration;
 });
+
+captionButton.addEventListener('click', captionOnOff);
 
 playPauseButton.addEventListener('click', playPause);
 

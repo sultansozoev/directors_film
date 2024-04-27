@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Netflix Video</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Netflix Video</title>
   <link rel="stylesheet" href="css/new-player.css">
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
 </head>
 
 <body>
 <div class="video-container">
-  <!-- <video src="bbb.mp4"></video> -->
   <video id="player" data-plyr-config='{ focused: true, global: true }'>
     <source src="" type="video/mp4" sizes="1080">
     <track id="subtitle" kind="captions" label="Italiano" srclang="it" src=""
