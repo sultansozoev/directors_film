@@ -21,13 +21,20 @@
 
 <body>
 <div class="video-container">
-  <video id="player" data-plyr-config='{ focused: true, global: true }'>
+  <video id="player" data-plyr-config='{ focused: true, global: true }' crossorigin="anonymous">
     <source src="" type="video/mp4" sizes="1080">
-    <track id="subtitle" kind="captions" label="Italiano" srclang="it" src=""
-           default>
+    <track id="subtitle" kind="captions" label="Italiano" srclang="it" src="" default>
   </video>
+  <button class="back">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+    </svg>
+  </button>
   <div class="controls-container">
     <div class="progress-controls">
+      <div class="watching">
+        00:00
+      </div>
       <div class="progress-bar">
         <div class="watched-bar"></div>
         <div class="playhead"></div>
@@ -36,6 +43,9 @@
         00:00
       </div>
     </div>
+    <!--
+    back button
+    -->
     <div class="controls">
       <button class="play-pause">
         <svg class="playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -72,13 +82,7 @@
       <p class="title">
         <span class="series" id="title">Blender Foundation</span> <span class="episode"></span>
       </p>
-      <button class="help">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10"></circle>
-          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-          <line x1="12" y1="17" x2="12.01" y2="17"></line>
-        </svg>
-      </button>
+      <!--
       <button class="next">
         <svg viewBox="0 0 24 24">
           <polygon points="5 4 15 12 5 20 5 4"></polygon>
@@ -92,6 +96,7 @@
           <polyline points="2 12 12 17 22 12"></polyline>
         </svg>
       </button>
+      -->
       <button class="captions">
         <svg viewBox="0 0 20 20">
           <path

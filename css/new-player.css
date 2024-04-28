@@ -41,9 +41,28 @@ body {
   color: white;
 }
 
+.back {
+  position: absolute;
+  top: 10px; /* Adjust top position as needed */
+  left: 10px; /* Adjust left position as needed */
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Set cursor to pointer on hover */
+}
+
+.back svg {
+  fill: #ffffff; /* White icon color */
+  width: 40px; /* Adjust icon size as needed */
+  height: 40px; /* Adjust icon size as needed */
+}
+
 .video-container .progress-controls .time-remaining {
   margin: 1vw;
   width: 4vw;
+}
+
+.watching {
+  margin-inline: 1vw;
 }
 
 .video-container .progress-controls .progress-bar {

@@ -19,7 +19,7 @@ function fetchMoviesByGenre(url, container) {
         const imageBox = document.createElement('div');
         imageBox.classList.add('image-box');
         const a = document.createElement('a');
-        a.setAttribute('href', `player.html?film=${movie.movie_id}`);
+        a.setAttribute('href', `new-player.html?film=${movie.movie_id}`);
         const image = document.createElement('img');
         image.src = "https://image.tmdb.org/t/p/original/" + movie.poster;
 
