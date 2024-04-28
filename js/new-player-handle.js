@@ -17,7 +17,8 @@ if (token) {
     .then(videoUrl => {
       sourceElement.src = videoUrl;
       videoPlayer.load();
-      getPlayerTime(getCookie("user"), film)
+      getPlayerTime(getCookie("user"), film);
+      playPause();
     });
 
   fetch(subtitleUrl)
