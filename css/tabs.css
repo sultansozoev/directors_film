@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 :root {
-  --primary-color: rgba(0, 0, 0, 0.75);
-  --secondary-color: #e6eef9;
+  --primary-color: rgb(255, 255, 255);
+  --secondary-color: #ff4646;
 }
 
 *,
@@ -11,9 +11,9 @@
 }
 
 .container1 {
-  position: relative;
+  position: static;
   left: 0;
-  top: 0;
+  top: 250px;
   right: 0;
   bottom: 0;
   display: flex;
@@ -25,7 +25,7 @@
   display: flex;
   position: relative;
   background-color: #fff;
-  box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+  box-shadow: 0 0 1px 0 rgba(0, 88, 255, 0.15), 0 6px 12px 0 rgba(236, 0, 0, 0.15);
   padding: 0.75rem;
   border-radius: 99px;
 }
