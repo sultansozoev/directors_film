@@ -8,6 +8,64 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
+.volume {
+  position: relative; /* Allows positioning the slider within the button */
+}
+
+.volume-slider {
+  opacity: 0; /* Initially hide the slider */
+  transition: opacity 0.2s ease-in-out; /* Smooth transition on hover */
+}
+
+.volume:hover .volume-slider-container,
+.volume:hover .volume-slider {
+  opacity: 1; /* Show the slider and container on hover */
+}
+
+.volume-slider-container {
+  transform:translate(-50px,-100px);
+  /* Adjust vertical positioning for different icon sizes */
+  height: 100%; /* Match the button height */
+  background-color: transparent; /* Transparent background for click-through */
+  transition: width 0.2s ease-in-out; /* Smooth transition on hover */
+}
+
+.volume:hover .volume-slider-container {
+  width: 100%; /* Show the slider on hover */
+}
+
+.volume-slider {
+  appearance: none;
+  width: 100%; /* Fill the container width */
+  height: 5px; /* Adjust height of the slider track */
+  background-color: #ddd; /* Background color for the track */
+  border-radius: 5px; /* Add rounded corners to the track */
+  cursor: pointer; /* Change cursor to indicate interaction */
+  opacity: 0; /* Hide the slider initially (layered on top of button icons) */
+  transition: opacity 0.2s ease-in-out; /* Smooth transition on hover */
+}
+.vertical {
+  width: 175px;
+  height: 16px;
+  transform: rotate(-90deg);
+  transform-origin: left;
+  position: absolute;
+  left: 50%;
+  bottom: -1em;
+}
+.volume:hover .volume-slider {
+  opacity: 1; /* Show the slider on hover */
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Removes default thumb appearance */
+  appearance: none;
+  width: 20px; /* Adjust width of the slider thumb */
+  height: 20px; /* Adjust height of the slider thumb */
+  background-color: #ff0000; /* Background color for the thumb */
+  border-radius: 50%; /* Creates a rounded thumb */
+}
+
 .video-container {
   width: 100%;
   height: 100%;

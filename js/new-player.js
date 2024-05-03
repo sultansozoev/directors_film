@@ -19,6 +19,8 @@ const captionButton = document.querySelector('.captions');
 const playhead = document.querySelector('.playhead');
 const subtitle = document.getElementById('subtitle');
 const pipButton = document.querySelector('.cast');
+const volumeSlider = document.querySelector('.volume-slider');
+const volumeContainer = document.getElementById('volumeButton');
 const tracks = video.textTracks;
 const progressBar = document.querySelector('.video-container .progress-controls .progress-bar');
 const watchedBar = document.querySelector('.video-container .progress-controls .progress-bar .watched-bar');
@@ -44,6 +46,7 @@ const displayControls = () => {
     controlsContainer.style.opacity = '0';
     backButton.style.opacity = '0';
     document.body.style.cursor = 'none';
+    volumeSlider.style.opacity = 0;
   }, 2000);
 };
 
@@ -251,6 +254,19 @@ playPauseButton.addEventListener('click', playPause);
 
 rewindButton.addEventListener('click', () => {
   video.currentTime -= 10;
+});
+
+volumeSlider.addEventListener('input', (event) => {
+  video.volume = event.target.value / 100;
+  event.preventDefault();
+});
+
+volumeButton.addEventListener('mouseover', (event) => {
+  volumeSlider.style.opacity = 1;
+});
+
+videoContainer.addEventListener('mouseup', (event) => {
+  volumeSlider.style.opacity = 0;
 });
 
 fastForwardButton.addEventListener('click', () => {
