@@ -33,7 +33,9 @@ if (load !== null) {
   setTimeout(function loadPage() {
     const allPage = document.getElementById('all-page');
     const banner = document.getElementById('banner');
+    const tabs = document.getElementById('container1');
     load.style.display = 'none';
+    tabs.style.visibility = 'visible';
     banner.style.visibility = 'visible';
     allPage.style.visibility = 'visible';
   }, 2000);
