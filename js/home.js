@@ -40,9 +40,9 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-const rndInt = randomIntFromInterval(10000000, 10000003)
+const rndInt = randomIntFromInterval(10000000, 10000001)
 const videoPlayer = document.getElementById('banner-player');
-let url = `${apiUrl}/video?film=10000000`;
+let url = `${apiUrl}/video?film=${rndInt}`;
 
 const player = new Plyr('video', {
   clickToPlay: false,
