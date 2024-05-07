@@ -1,4 +1,4 @@
-import { apiUrl } from '/api/config.js';
+import { apiUrl } from '../api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
 const serie = queryParams.get('serie');
 const videoPlayer = document.getElementById('player');

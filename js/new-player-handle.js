@@ -1,4 +1,4 @@
-import { apiUrl } from '/api/config.js';
+import { apiUrl } from '../api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
 const film = queryParams.get('film');
 let url = `${apiUrl}/works-in-chrome-and-safari?film=${film}`;

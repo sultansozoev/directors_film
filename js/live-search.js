@@ -1,4 +1,4 @@
-import { apiUrl } from '/api/config.js';
+import { apiUrl } from '../api/config.js';
 import { searchTitle } from './mainFunctions.js';
 
 const searchBar = document.querySelector("[data-search]");

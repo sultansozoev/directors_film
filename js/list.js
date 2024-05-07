@@ -1,4 +1,4 @@
-import { apiUrl } from '/api/config.js';
+import { apiUrl } from '../api/config.js';
 
 function fetchList(url, container, user_id) {
   fetch(url, {

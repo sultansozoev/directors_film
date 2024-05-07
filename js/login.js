@@ -1,4 +1,4 @@
-import { apiUrl } from '/api/config.js';
+import { apiUrl } from '../api/config.js';
 
 const form = document.querySelector('form');
 const username = document.getElementById('floatingInput');
