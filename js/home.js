@@ -1,4 +1,4 @@
-import { apiUrl } from '/api/config.js';
+import { apiUrl } from '../api/config.js';
 import { onScroll, scrollWindow } from './mainFunctions.js';
 
 function fetchMoviesByGenre(url, container) {

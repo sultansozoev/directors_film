@@ -15,7 +15,7 @@ if (token) {
   })
     .then(response => response.url)
     .then(videoUrl => {
-      sourceElement.src = videoUrl;
+      videoPlayer.src = videoUrl;
       videoPlayer.load();
       getPlayerTime(getCookie("user"), film);
       playPause();
