@@ -1,3 +1,8 @@
+let token = getCookie("jwt");
+if (!token) {
+  window.location.href = "login.html";
+}
+
 const searchBar = document.querySelector("[data-search]")
 const results_container = document.getElementById("results-container");
 results_container.innerText = "";
