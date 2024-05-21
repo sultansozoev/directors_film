@@ -9,7 +9,6 @@ const subtitle = document.getElementById('subtitle');
 const subtitleUrl = `${apiUrl}/subtitle?film=${film}`
 
 let token = getCookie("jwt");
-console.log(url)
 if (token) {
   fetch(url, {
   })
