@@ -1,7 +1,12 @@
 let token = getCookie("jwt");
 const login = document.getElementById('login');
+const request = document.getElementById('request');
+const list = document.getElementById('list');
 if (token) {
   login.innerHTML = "Logout";
+} else {
+  request.style.display = "none";
+  list.style.display = "none";
 }
 function logout() {
   token = "";
