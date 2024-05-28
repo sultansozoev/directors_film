@@ -1,7 +1,7 @@
 import { apiUrl } from '../api/config.js';
 import { onScroll, scrollWindow } from './mainFunctions.js';
 
-function fetchMoviesByGenre(url, container) {
+function fetchMoviesByGenre(url, container, deleteButton) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -26,6 +26,15 @@ function fetchMoviesByGenre(url, container) {
         a.appendChild(image);
         imageBox.appendChild(a);
         cardDiv.appendChild(imageBox);
+
+        if (deleteButton) {
+          const deleteBtn = document.createElement('button');
+          deleteBtn.classList.add('delete-button');
+          const svg = document.createElement('img');
+          svg.setAttribute("src", "../img/x-circle.svg");
+          deleteBtn.appendChild(svg);
+          cardDiv.appendChild(deleteBtn);
+        }
         container.appendChild(cardDiv);
       });
     })
@@ -83,7 +92,7 @@ function genre(url) {
     .then(data => {
       data.forEach(genre => {
         const moviesContainer = document.getElementById(genre.genre_id);
-        fetchMoviesByGenre(`${apiUrl}/getMoviesByGenre?genre=${genre.genre_id}`, moviesContainer);
+        fetchMoviesByGenre(`${apiUrl}/getMoviesByGenre?genre=${genre.genre_id}`, moviesContainer, false);
       });
     })
     .catch(error => {
@@ -104,7 +113,7 @@ function category(url) {
     .then(data => {
       data.forEach(category => {
         const moviesContainer = document.getElementById(category.category_id);
-        fetchMoviesByGenre(`${apiUrl}/getMoviesByCategory?category=${category.category_id}`, moviesContainer);
+        fetchMoviesByGenre(`${apiUrl}/getMoviesByCategory?category=${category.category_id}`, moviesContainer, false);
       });
     })
     .catch(error => {
@@ -113,3 +122,6 @@ function category(url) {
 }
 const categoryUrl = `${apiUrl}/getCategories`;
 category(categoryUrl);
+
+const continueContainer = document.getElementById("continue");
+fetchMoviesByGenre(`${apiUrl}/getMoviesHistory?user_id=${getCookie("user")}`, continueContainer, true);

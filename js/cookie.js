@@ -34,14 +34,22 @@ function getCookie(name) {
   return null;
 }
 const load = document.getElementById('load');
+
+function showPage() {
+  const allPage = document.getElementById('all-page');
+  const banner = document.getElementById('banner');
+  const tabs = document.getElementById('container1');
+  load.style.display = 'none';
+  tabs.style.visibility = 'visible';
+  banner.style.visibility = 'visible';
+  allPage.style.visibility = 'visible';
+}
+
 if (load !== null) {
-  setTimeout(function loadPage() {
-    const allPage = document.getElementById('all-page');
-    const banner = document.getElementById('banner');
-    const tabs = document.getElementById('container1');
-    load.style.display = 'none';
-    tabs.style.visibility = 'visible';
-    banner.style.visibility = 'visible';
-    allPage.style.visibility = 'visible';
-  }, 2000);
+  const timeoutId = setTimeout(showPage, 2000);
+
+  document.addEventListener('keydown', function() {
+    clearTimeout(timeoutId);
+    showPage();
+  });
 }

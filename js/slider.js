@@ -1,4 +1,4 @@
-for (let i = 1; i < 27; i++) {
+for (let i = 1; i < 28; i++) {
   new Swiper(".slide-container"+i, {
     slidesPerView: 4,
     spaceBetween: 5,
