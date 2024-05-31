@@ -34,8 +34,8 @@ function login(username, password) {
     .then(data => {
       if (data.message === 'Successfully logged-in!') {
         console.log(data)
-        setCookie("jwt", data.token, 7);
-        setCookie("user", data.user_id, 7)
+        setCookie("jwt", data.token, 30);
+        setCookie("user", data.user_id, 30)
         window.location.href = "index.html";
       } else {
         const errorSpan = document.getElementById('error');
