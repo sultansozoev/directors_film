@@ -105,7 +105,7 @@ fetch(url, {
 videoPlayer.onclick = function () {
   if (player.muted) {
     player.muted = false;
-    player.volume = 0.4;
+    player.volume = 0.3;
   } else {
     player.muted = true;
     player.volume = 0;
