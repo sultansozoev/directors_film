@@ -81,7 +81,7 @@ videoPlayer.onclick = function () {
   }
 };
 
-function genre(url) {
+function category(url, id_container, api, id) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json'
@@ -90,38 +90,28 @@ function genre(url) {
   })
     .then(response => response.json())
     .then(data => {
-      data.forEach(genre => {
-        const moviesContainer = document.getElementById(genre.genre_id);
-        fetchMoviesByGenre(`${apiUrl}/getMoviesByGenre?genre=${genre.genre_id}`, moviesContainer, false);
+      data.forEach(data => {
+        const title = data[id] + id_container;
+        const moviesContainer = document.getElementById(title);
+        fetchMoviesByGenre(`${apiUrl}${api}${data[id]}`, moviesContainer, false);
       });
     })
     .catch(error => {
       console.error('Error fetching films:', error);
     });
 }
-const genreUrl = `${apiUrl}/getGenres`;
-genre(genreUrl);
 
-function category(url) {
-  fetch(url, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'GET'
-  })
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(category => {
-        const moviesContainer = document.getElementById(category.category_id);
-        fetchMoviesByGenre(`${apiUrl}/getMoviesByCategory?category=${category.category_id}`, moviesContainer, false);
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching films:', error);
-    });
-}
 const categoryUrl = `${apiUrl}/getCategories`;
-category(categoryUrl);
+const categoryApi = "/getMoviesByCategory?category=";
+category(categoryUrl, "", categoryApi, "category_id");
+
+const sagaUrl = `${apiUrl}/getSagas`;
+const sagaApi = "/getMoviesBySaga?saga=";
+category(sagaUrl, "_saga", sagaApi, "saga_id");
+
+const genreUrl = `${apiUrl}/getGenres`;
+const genreApi = "/getMoviesByGenre?genre=";
+category(genreUrl, "", genreApi, "genre_id");
 
 const continueContainer = document.getElementById("continue");
 fetchMoviesByGenre(`${apiUrl}/getMoviesHistory?user_id=${getCookie("user")}`, continueContainer, true);
