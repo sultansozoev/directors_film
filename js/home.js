@@ -1,7 +1,7 @@
 import { apiUrl } from '../api/config.js';
 import { onScroll, scrollWindow } from './mainFunctions.js';
 
-function fetchMoviesByGenre(url, container, deleteButton) {
+function fetchMovies(url, container, deleteButton) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ videoPlayer.onclick = function () {
   }
 };
 
-function category(url, id_container, api, id) {
+function categoryGenreSaga(url, id_container, api, id) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ function category(url, id_container, api, id) {
       data.forEach(data => {
         const title = data[id] + id_container;
         const moviesContainer = document.getElementById(title);
-        fetchMoviesByGenre(`${apiUrl}${api}${data[id]}`, moviesContainer, false);
+        fetchMovies(`${apiUrl}${api}${data[id]}`, moviesContainer, false);
       });
     })
     .catch(error => {
@@ -103,15 +103,15 @@ function category(url, id_container, api, id) {
 
 const categoryUrl = `${apiUrl}/getCategories`;
 const categoryApi = "/getMoviesByCategory?category=";
-category(categoryUrl, "", categoryApi, "category_id");
+categoryGenreSaga(categoryUrl, "", categoryApi, "category_id");
 
 const sagaUrl = `${apiUrl}/getSagas`;
 const sagaApi = "/getMoviesBySaga?saga=";
-category(sagaUrl, "_saga", sagaApi, "saga_id");
+categoryGenreSaga(sagaUrl, "_saga", sagaApi, "saga_id");
 
 const genreUrl = `${apiUrl}/getGenres`;
 const genreApi = "/getMoviesByGenre?genre=";
-category(genreUrl, "", genreApi, "genre_id");
+categoryGenreSaga(genreUrl, "", genreApi, "genre_id");
 
 const continueContainer = document.getElementById("continue");
-fetchMoviesByGenre(`${apiUrl}/getMoviesHistory?user_id=${getCookie("user")}`, continueContainer, true);
+fetchMovies(`${apiUrl}/getMoviesHistory?user_id=${getCookie("user")}`, continueContainer, true);

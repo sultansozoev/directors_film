@@ -1,7 +1,7 @@
 import { apiUrl } from '../api/config.js';
 import { onScroll, scrollWindow } from './mainFunctions.js';
 
-function fetchMoviesByGenre(url, container) {
+function fetchMovies(url, container) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json'
@@ -111,6 +111,31 @@ videoPlayer.onclick = function () {
     player.volume = 0;
   }
 };
+
+function categoryGenre(url, id_container, api, id) {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(data => {
+        const title = data[id] + id_container;
+        const moviesContainer = document.getElementById(title);
+        fetchMovies(`${apiUrl}${api}${data[id]}`, moviesContainer, false);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
 const tutteSerie = document.getElementById('tutteSerie');
 const urlTutteSerie = `${apiUrl}/getSeriesTV`;
-fetchMoviesByGenre(urlTutteSerie, tutteSerie);
+fetchMovies(urlTutteSerie, tutteSerie);
+
+const genreUrl = `${apiUrl}/getGenresTV`;
+const genreApi = "/getTVByGenre?genre=";
+categoryGenre(genreUrl, "", genreApi, "genre_id");
