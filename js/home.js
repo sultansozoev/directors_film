@@ -51,7 +51,7 @@ function randomIntFromInterval(min, max) { // min and max included
 
 const rndInt = randomIntFromInterval(10000000, 10000009)
 const videoPlayer = document.getElementById('banner-player');
-let url = `${apiUrl}/video?film=${rndInt}`;
+let url = `${apiUrl}/works-in-chrome-and-safari?film=${rndInt}`;
 
 const player = new Plyr('video', {
   clickToPlay: false,
