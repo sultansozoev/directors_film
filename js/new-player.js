@@ -270,22 +270,6 @@ fastForwardButton.addEventListener('click', () => {
   video.currentTime += 10;
 });
 
-episodesButton.addEventListener('mouseover', () => {
-  episodesContainer.style.display = 'block';
-});
-
-episodesButton.addEventListener('mouseout', () => {
-  episodesContainer.style.display = 'none';
-});
-
-episodesContainer.addEventListener('mouseover', () => {
-  episodesContainer.style.display = 'block';
-});
-
-episodesContainer.addEventListener('mouseout', () => {
-  episodesContainer.style.display = 'none';
-});
-
 volumeButton.addEventListener('click', toggleMute);
 
 fullScreenButton.addEventListener('click', toggleFullScreen);
