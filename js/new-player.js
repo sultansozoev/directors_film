@@ -21,6 +21,8 @@ const subtitle = document.getElementById('subtitle');
 const pipButton = document.querySelector('.cast');
 const volumeSlider = document.querySelector('.volume-slider');
 const volumeContainer = document.getElementById('volumeButton');
+const episodesButton = document.querySelector('.episodes');
+const episodesContainer = document.getElementById('episodesContainer');
 const tracks = video.textTracks;
 const progressBar = document.querySelector('.video-container .progress-controls .progress-bar');
 const watchedBar = document.querySelector('.video-container .progress-controls .progress-bar .watched-bar');
@@ -210,34 +212,29 @@ document.addEventListener('mousemove', () => {
 
 video.addEventListener('timeupdate', () => {
   watchedBar.style.width = ((video.currentTime / video.duration) * 100) + '%';
-  const totalSecondsWatched = video.currentTime;
 
-  const time = new Date(null);
-  time.setSeconds(totalSecondsWatched);
-  let hoursW = null;
+  const totalSecondsWatched = Math.floor(video.currentTime);
 
-  if(totalSecondsWatched >= 3600) {
-    hoursW = (time.getHours().toString()).padStart('2', '0');
-  }
+  const time = new Date(totalSecondsWatched * 1000);
 
-  let minutesW = (time.getMinutes().toString()).padStart('2', '0');
-  let secondsW = (time.getSeconds().toString()).padStart('2', '0');
+  let hoursW = Math.floor(totalSecondsWatched / 3600);
+  let minutesW = time.getUTCMinutes().toString().padStart(2, '0');
+  let secondsW = time.getUTCSeconds().toString().padStart(2, '0');
 
-  watching.textContent = `${hoursW ? hoursW : '00'}:${minutesW}:${secondsW}`;
+  watching.textContent = `${hoursW.toString().padStart(2, '0')}:${minutesW}:${secondsW}`;
 
-  let seconds = Math.floor(video.duration - video.currentTime);
-  let minutes = Math.floor(seconds / 60);
-  let hours = Math.floor(minutes / 60);
-  minutes = minutes % 60;
-  seconds = seconds % 60;
-  if (minutes < 10) {
-    minutes = '0' + minutes;
-  }
-  if (seconds < 10) {
-    seconds = '0' + seconds;
-  }
-  timeLeft.innerHTML = hours + ':' + minutes + ':' + seconds;
+  let secondsLeft = Math.floor(video.duration - video.currentTime);
+  let hoursLeft = Math.floor(secondsLeft / 3600);
+  secondsLeft %= 3600;
+  let minutesLeft = Math.floor(secondsLeft / 60);
+  let secondsRemaining = secondsLeft % 60;
+
+  let minutesLeftPadded = minutesLeft.toString().padStart(2, '0');
+  let secondsRemainingPadded = secondsRemaining.toString().padStart(2, '0');
+
+  timeLeft.textContent = `${hoursLeft.toString().padStart(2, '0')}:${minutesLeftPadded}:${secondsRemainingPadded}`;
 });
+
 
 video.addEventListener('ended', () => {
   playPauseButton.click();
@@ -271,6 +268,22 @@ videoContainer.addEventListener('mouseup', (event) => {
 
 fastForwardButton.addEventListener('click', () => {
   video.currentTime += 10;
+});
+
+episodesButton.addEventListener('mouseover', () => {
+  episodesContainer.style.display = 'block';
+});
+
+episodesButton.addEventListener('mouseout', () => {
+  episodesContainer.style.display = 'none';
+});
+
+episodesContainer.addEventListener('mouseover', () => {
+  episodesContainer.style.display = 'block';
+});
+
+episodesContainer.addEventListener('mouseout', () => {
+  episodesContainer.style.display = 'none';
 });
 
 volumeButton.addEventListener('click', toggleMute);
