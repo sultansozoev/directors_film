@@ -70,7 +70,7 @@ if (token) {
         }
         if (episode_id)
           episodeSelector.value = episode_id;
-        const urlEpisodeVideo = `${apiUrl}/stream?title=${episodeSelector.value}`;
+        const urlEpisodeVideo = `${apiUrl}/stream?title=${episodeSelector.value}&tv=true`;
         fetch(urlEpisodeVideo)
           .then(response => response.url)
           .then(videoUrl => {
