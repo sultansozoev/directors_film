@@ -52,7 +52,6 @@ async function playRandomVideo() {
     const response = await fetch(`${apiUrl}/random-video`);
     const data = await response.json();
     if (data.file) {
-      console.log(data.file)
       videoPlayer.src = `${apiUrl}/trailer?fileName=${data.file}`;
       videoPlayer.play();
 

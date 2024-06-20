@@ -36,14 +36,22 @@ function fetchMovies(url, container) {
 
 scrollWindow();
 
-function randomIntFromInterval(min, max) { // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-const rndInt = randomIntFromInterval(10000000, 10000004)
 const videoPlayer = document.getElementById('banner-player');
-let url = `${apiUrl}/videoSerieTV?film=${rndInt}`;
 
+async function playRandomVideo() {
+  try {
+    const response = await fetch(`${apiUrl}/random-video?tv=true`);
+    const data = await response.json();
+    if (data.file) {
+      videoPlayer.src = `${apiUrl}/trailer?tv=${true}&fileName=${data.file}`;
+      videoPlayer.play();
+
+      videoPlayer.onended = playRandomVideo;
+    }
+  } catch (error) {
+    console.error('Error fetching random video:', error);
+  }
+}
 /*
 function category(url, container) {
   fetch(url, {
@@ -94,14 +102,7 @@ player.volume = 0;
 player.play();
 window.player = player;
 window.onscroll = onScroll;
-fetch(url, {
-})
-  .then(response => response.url)
-  .then(videoUrl => {
-    videoPlayer.src = videoUrl;
-  }).catch(e => {
-  console.log(e)
-});
+await playRandomVideo();
 videoPlayer.onclick = function () {
   if (player.muted) {
     player.muted = false;
