@@ -1,7 +1,7 @@
 import { apiUrl } from '../api/config.js';
 const queryParams = new URLSearchParams(window.location.search);
 const film = queryParams.get('film');
-let url = `${apiUrl}/works-in-chrome-and-safari?film=${film}`;
+let url = `${apiUrl}/stream?title=${film}`;
 const videoPlayer = document.getElementById('player');
 const title = document.getElementById('title');
 const sourceElement = videoPlayer.querySelectorAll('source')[0];
