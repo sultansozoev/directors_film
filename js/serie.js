@@ -197,7 +197,7 @@ function setPlayerTimeSerie(user_id, serie_tv_id, player_time, episode_id, seaso
 }
 
 function episodeChange(episodeId) {
-  const urlEpisodeVideo = `${apiUrl}/videoSerieTV?film=${episodeId}`;
+  const urlEpisodeVideo = `${apiUrl}/stream?title=${episodeId}&tv=true`;
   fetch(urlEpisodeVideo)
     .then(response => response.url)
     .then(videoUrl => {
