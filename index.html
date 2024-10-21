@@ -89,9 +89,7 @@
     <span class="glider"></span>
   </div>
 </div>
-<div class="donazioni">
 
-</div>
 
 <div id="load">
   <div>O</div>
@@ -350,6 +348,7 @@
     <div class="swiper-pagination33"></div>
   </div>
 </div>
+
 <div id="generi" style="display: none">
   <div class="container swiper px-3">
     <h1 class="text-black px-4">Azione</h1>
@@ -581,6 +580,25 @@
     <div class="swiper-pagination25"></div>
   </div>
 </div>
+</div>
+<div class="container swiper px-3">
+  <h1 class="text-black px-4">Fai una Donazione</h1>
+    <!-- Modulo di donazione PayPal -->
+    <form action="https://www.paypal.com/donate" method="post" target="_top">
+      <input type="hidden" name="business" value="sozhunu@gmail.com">
+      <input type="hidden" name="no_recurring" value="0">
+      <input type="hidden" name="item_name" value="Sostieni il nostro sito">
+      <input type="hidden" name="currency_code" value="EUR">
+      <button type="submit" class="btn-donazione">
+        <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" border="0" alt="PayPal Logo">
+      </button>
+    </form>
+
+    <!-- Barra di progresso per le donazioni -->
+    <div class="progresso-donazioni">
+      <div class="barra-progresso" id="barraProgresso"></div>
+    </div>
+    <p id="totaleDonazioni">Totale donazioni: 0€ di 100€</p>
 </div>
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
