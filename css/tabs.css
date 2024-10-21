@@ -8,7 +8,34 @@
 *:after,
 *:before {
   box-sizing: border-box;
+}/* Stile del pulsante di donazione PayPal */
+.btn-donazione {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
+
+.btn-donazione img {
+  width: 200px;
+}
+
+/* Stile per la barra di progresso */
+.progresso-donazioni {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.barra-progresso {
+  width: 0%;
+  height: 30px;
+  background-color: #4caf50;
+  border-radius: 5px;
+  transition: width 0.5s;
+}
+
 
 .container1 {
   position: static;
