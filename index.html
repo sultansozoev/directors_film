@@ -607,5 +607,13 @@
 <script src="js/tabs.js"></script>
 <script src="js/cookie.js"></script>
 <script src="js/isAdmin.js"></script>
+<script>
+  document.getElementById('search-bar').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  });
+</script>
+
 </body>
 </html>
