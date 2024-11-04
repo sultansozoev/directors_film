@@ -14,8 +14,16 @@ for (let i = 1; i < 45; i++) {
       prevEl: '.swiper-button-prev'+i,
     },
     breakpoints: {
-      640: {
+      0: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      350: {
         slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      450: {
+        slidesPerView: 3,
         spaceBetween: 20,
       },
       768: {
