@@ -236,10 +236,10 @@ video.addEventListener('timeupdate', () => {
 });
 
 
-video.addEventListener('ended', () => {
+/*video.addEventListener('ended', () => {
   playPauseButton.click();
 });
-
+*/
 progressBar.addEventListener('click', (event) => {
   const pos = (event.pageX  - (progressBar.offsetLeft + progressBar.offsetParent.offsetLeft)) / progressBar.offsetWidth;
   video.currentTime = pos * video.duration;
