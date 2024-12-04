@@ -54,8 +54,6 @@ async function playRandomVideo() {
     if (data.file) {
       videoPlayer.src = `${apiUrl}/trailer?fileName=${data.file}`;
       videoPlayer.play();
-
-      videoPlayer.onended = playRandomVideo;
     }
   } catch (error) {
     console.error('Error fetching random video:', error);
