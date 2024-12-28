@@ -1,3 +1,4 @@
+
 let token = getCookie("jwt");
 if (!token) {
   window.location.href = "login.html";
@@ -32,7 +33,7 @@ searchBar.addEventListener("input", (event) => {
 
           const movieLink = document.createElement('a');
           movieLink.setAttribute('href', `javascript:void(0)`);
-          movieLink.setAttribute('onclick', `addRequest('${movie.name}', '${movie.title}', '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`)
+          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(movie.name)}, ${JSON.stringify(movie.title)}, '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`)
           movieCard.setAttribute('data-bs-toggle', 'modal');
           movieCard.setAttribute('data-bs-target', '#staticBackdrop');
           const movieHeader = document.createElement('div');
