@@ -21,7 +21,6 @@ searchBar.addEventListener("input", (event) => {
   fetch('https://api.themoviedb.org/3/search/multi?query=' + searchValue + '&include_adult=false&language=it-IT&page=1', options)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       const films = data.results;
 
       results_container.innerHTML = '';
@@ -33,7 +32,9 @@ searchBar.addEventListener("input", (event) => {
 
           const movieLink = document.createElement('a');
           movieLink.setAttribute('href', `javascript:void(0)`);
-          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(movie.name)}, ${JSON.stringify(movie.title)}, '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`)
+          let title = movie.media_type === 'tv' ? movie.name : movie.title;
+
+          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(title)}, ${JSON.stringify(title)}, '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`)
           movieCard.setAttribute('data-bs-toggle', 'modal');
           movieCard.setAttribute('data-bs-target', '#staticBackdrop');
           const movieHeader = document.createElement('div');

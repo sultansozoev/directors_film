@@ -10,8 +10,7 @@ function addRequest(name, title, req_id, type, user_id) {
   }).then(response => response.json())
     .then(data => {
       const modal = document.getElementById("modal");
-      if (type === 'tv') modal.innerHTML = name;
-      else if (type === 'movie') modal.innerHTML = title;
+      modal.innerHTML = title;
     })
     .catch(error => {
       console.error('Error fetching films:', error);
