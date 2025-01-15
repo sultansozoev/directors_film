@@ -1,15 +1,15 @@
 
 function openPage(page) {
-  if (page === 'collezioni') {
-    const x = document.getElementById('generi');
+  if (page === 'generi') {
+    const x = document.getElementById('collezioni');
     const saga = document.getElementById('saga');
     document.getElementById("radio-1").checked = true;
     document.getElementById("radio-2").checked = false;
     document.getElementById("radio-3").checked = false;
     x.style.display = "none";
     saga.style.display = "none";
-  } else if (page === 'generi') {
-    const x = document.getElementById('collezioni');
+  } else if (page === 'collezioni') {
+    const x = document.getElementById('generi');
     const saga = document.getElementById('saga');
     document.getElementById("radio-1").checked = false;
     document.getElementById("radio-2").checked = true;

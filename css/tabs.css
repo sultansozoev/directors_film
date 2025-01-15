@@ -19,11 +19,38 @@
 .btn-donazione img {
   width: 200px;
 }
+/* Evitare la rottura di parola */
+.nav-link {
+  white-space: nowrap; /* Impedisce che il testo vada a capo */
+  display: flex;
+  align-items: center; /* Allinea verticalmente l'icona e il testo */
+}
+
+.nav-link svg {
+  margin-right: 8px; /* Spazio tra l'icona e il testo */
+}
+
+.d-flex {
+  flex-wrap: nowrap; /* Impedisce che gli elementi vadano a capo */
+}
+
+/* Adatta la navbar per evitare problemi di layout */
+.navbar {
+  padding: 10px 15px; /* Regola il padding */
+}
+
+.container-fluid {
+  max-width: 100%; /* Garantisce che lo spazio del contenitore sia sufficiente */
+}
+
+.navbar .container-fluid {
+  flex-wrap: nowrap;
+}
 
 /* Stile per la barra di progresso */
 .progresso-donazioni {
   width: 100%;
-  background-color: #f3f3f3;
+  background-color: #000000;
   border-radius: 5px;
   margin-top: 20px;
 }
@@ -40,9 +67,9 @@
 .container1 {
   position: static;
   left: 0;
-  top: 250px;
   right: 0;
   bottom: 0;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,8 +78,8 @@
 .tabs {
   display: flex;
   position: relative;
-  background-color: #fff;
-  box-shadow: 0 0 1px 0 rgba(0, 88, 255, 0.15), 0 6px 12px 0 rgba(236, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.58);
+  box-shadow: 0 0 1px 0 rgba(255, 0, 0, 0.15), 0 6px 12px 0 rgba(236, 0, 0, 0.15);
   padding: 0.75rem;
   border-radius: 99px;
 }
@@ -94,7 +121,7 @@ input[type=radio]:checked + label {
 }
 input[type=radio]:checked + label > .notification {
   background-color: var(--primary-color);
-  color: #fff;
+  color: #ffffff;
 }
 
 input[id=radio-1]:checked ~ .glider {

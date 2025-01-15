@@ -2,6 +2,7 @@ let token = getCookie("jwt");
 const login = document.getElementById('login');
 const request = document.getElementById('request');
 const list = document.getElementById('list');
+const ditendenza = document.getElementById('ditendenza');
 if (token) {
   login.innerHTML = "Logout";
 } else {
@@ -43,6 +44,7 @@ function showPage() {
   tabs.style.visibility = 'visible';
   banner.style.visibility = 'visible';
   allPage.style.visibility = 'visible';
+  ditendenza.style.visibility = 'visible';
 }
 
 if (load !== null) {

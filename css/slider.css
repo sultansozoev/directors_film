@@ -63,7 +63,7 @@ a {
 }
 
 .swiper-navBtn {
-  color: #000;
+  color: #ffffff;
   height: 40px;
   width: 40px;
   background: #fff;
@@ -74,12 +74,12 @@ a {
 }
 
 .swiper-button-next, .swiper-button-prev {
-  color: #000000;
+  color: #ffffff;
   font-weight: bolder;
 }
 
 .swiper-pagination-bullet {
-  background-color: #000;
+  background-color: #ffffff;
 }
 
 @media screen and (max-width: 768px) {

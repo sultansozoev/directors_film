@@ -38,7 +38,7 @@
   -o-transform:rotate(180deg);
   -moz-transform:rotate(180deg);
   -webkit-transform:rotate(180deg);
-  color: rgba(0, 0, 0, 0.86);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 #load div:nth-child(2) {
