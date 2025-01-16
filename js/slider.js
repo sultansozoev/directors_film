@@ -1,7 +1,7 @@
 for (let i = 1; i < 45; i++) {
   new Swiper(".slide-container"+i, {
     slidesPerView: 4,
-    spaceBetween: 5,
+    spaceBetween: 2,
     sliderPerGroup: 6,
     touchEventsTarget: 'container',
     loop: true,
@@ -18,21 +18,25 @@ for (let i = 1; i < 45; i++) {
         slidesPerView: 1,
         spaceBetween: 20,
       },
-      350: {
+      300: {
         slidesPerView: 2,
         spaceBetween: 20,
       },
-      450: {
+      400: {
         slidesPerView: 3,
         spaceBetween: 20,
       },
-      768: {
+      450: {
         slidesPerView: 4,
-        spaceBetween: 40,
+        spaceBetween: 10,
       },
       1024: {
         slidesPerView: 5,
-        spaceBetween: 50,
+        spaceBetween: 30,
+      },
+      1224: {
+        slidesPerView: 6,
+        spaceBetween: 20,
       },
     },
   });

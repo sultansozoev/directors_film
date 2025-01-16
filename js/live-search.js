@@ -7,7 +7,6 @@ const container1 = document.getElementById("container1");
 const all = document.getElementById("all");
 const ditendenza = document.getElementById("ditendenza");
 const end = document.getElementById("end");
-
 results_container.innerText = "";
 
 searchBar.addEventListener("input", (event) => {

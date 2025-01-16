@@ -44,11 +44,11 @@ a {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  justify-content: center;
 }
 
 .movie-card {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.63);
+  transition: transform 300ms, box-shadow 300ms;
   width: 100%;
   max-width: 250px;
   height: 100%;
@@ -71,7 +71,7 @@ a {
 }
 .movie-card:hover {
   transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.56);
 }
 
 @media screen and (max-width: 500px) {

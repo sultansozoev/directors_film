@@ -17,18 +17,26 @@ a {
 .container {
   max-width: fit-content;
   width: 100%;
-  padding: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  padding: 20px;
+  gap: 20px;
 }
 .slide-container {
   margin: 0 30px 8px;
   overflow: hidden;
 }
 .card {
-  background: #fff;
+  background-color: rgb(0, 0, 0);
+  margin: 5px 10px;
+  padding: 5px;
 }
 .card .image-box {
+  box-shadow: 0 0 15px 0 rgb(0, 0, 0);
+  transition: transform 300ms, box-shadow 300ms;
   height: 100%;
-  border-radius: 40px;
+  border-radius: 50px;
   overflow: hidden;
 }
 .card .image-box img {
@@ -40,26 +48,6 @@ a {
 
 .image-box:hover img {
   transform: scale(1.1);
-}
-
-.card .profile-details {
-  display: flex;
-  align-items: center;
-  column-gap: 12px;
-  padding: 15px;
-}
-.card .profile-details img {
-  height: 40px;
-  width: 40px;
-}
-.profile-details .name {
-  font-size: 15px;
-  font-weight: 500;
-}
-.profile-details .job {
-  font-size: 12px;
-  font-weight: 500;
-  color: #4d4d4d;
 }
 
 .swiper-navBtn {
@@ -86,4 +74,9 @@ a {
   .swiper-navBtn {
     display: none;
   }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
