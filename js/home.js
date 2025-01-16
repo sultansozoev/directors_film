@@ -92,7 +92,7 @@ async function playRandomVideo(fileName) {
 videoPlayer.onclick = function () {
   if (player.muted) {
     player.muted = false;
-    player.volume = 0.3;
+    player.volume = 1;
   } else {
     player.muted = true;
     player.volume = 0;

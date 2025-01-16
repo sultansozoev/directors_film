@@ -37,17 +37,14 @@ function fetchMovies(url, container) {
 scrollWindow();
 
 const videoPlayer = document.getElementById('banner-player');
+const titleTrailer = document.getElementById('titleTrailer');
+const playMovie = document.getElementById('playMovie');
 
-async function playRandomVideo() {
+async function playRandomVideo(fileName) {
   try {
-    const response = await fetch(`${apiUrl}/random-video?tv=true`);
-    const data = await response.json();
-    if (data.file) {
-      videoPlayer.src = `${apiUrl}/trailer?tv=${true}&fileName=${data.file}`;
+      videoPlayer.src = `${apiUrl}/trailer?tv=${true}&fileName=${fileName}`;
       videoPlayer.play();
-
-      videoPlayer.onended = playRandomVideo;
-    }
+      //videoPlayer.onended = playRandomVideo;
   } catch (error) {
     console.error('Error fetching random video:', error);
   }
@@ -94,19 +91,40 @@ const categoriesUrl = `${apiUrl}/getCategories`;
 const categoriesDiv = document.getElementById('categories');
 category(categoriesUrl, categoriesDiv);
 */
+const urlTrailerSelector = `${apiUrl}/trailerSelector?tv=${true}`;
+
 const player = new Plyr('video', {
   clickToPlay: false,
   fullscreen: false
 });
 player.volume = 0;
 player.play();
+player.muted = true;
+player.loop = true;
 window.player = player;
 window.onscroll = onScroll;
-await playRandomVideo();
+
+fetch(urlTrailerSelector, {
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  method: 'GET'
+})
+  .then(response => response.json())
+  .then(async data => {
+    titleTrailer.innerHTML = data.trailer.title;
+    playMovie.href = `player_serie.html?serie=${data.trailer.serie_tv_id}`;
+    videoPlayer.setAttribute('poster', "https://image.tmdb.org/t/p/original" + data.trailer.background_image);
+    await playRandomVideo(data.trailer.serie_tv_id);
+  })
+  .catch(error => {
+    console.error('Error fetching films:', error);
+  });
+
 videoPlayer.onclick = function () {
   if (player.muted) {
     player.muted = false;
-    player.volume = 0.3;
+    player.volume = 1;
   } else {
     player.muted = true;
     player.volume = 0;
