@@ -234,7 +234,7 @@ form#search-bar {
 /* --- Styling for Trending Section --- */
 .trending-section {
   position: relative;
-  top: -120px; /* Sovrapposizione parziale al banner */
+  top: -60px; /* Sovrapposizione parziale al banner */
   z-index: 5;
   background: rgba(0, 0, 0, 0.8);
   padding: 20px;

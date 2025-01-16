@@ -73,7 +73,6 @@ fetch(urlTrailerSelector, {
   .then(async data => {
     titleTrailer.innerHTML = data.trailer.title;
     playMovie.href = "new-player.html?film=" + data.trailer.movie_id;
-    console.log(data.trailer.background_image)
     videoPlayer.setAttribute('poster', "https://image.tmdb.org/t/p/original" + data.trailer.background_image);
     await playRandomVideo(data.trailer.movie_id);
   })
