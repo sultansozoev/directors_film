@@ -1,4 +1,4 @@
-function addRequest(name, title, req_id, type, user_id) {
+function addRequest(title, poster, req_id, type, user_id) {
   console.log(req_id)
   const url = `https://surio.ddns.net/addList`;
   fetch(url, {
@@ -6,7 +6,7 @@ function addRequest(name, title, req_id, type, user_id) {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    body: JSON.stringify({user_id, req_id: req_id, type, title, name})
+    body: JSON.stringify({user_id, poster, req_id: req_id, type, title})
   }).then(response => response.json())
     .then(data => {
       const modal = document.getElementById("modal");
@@ -32,7 +32,7 @@ function elimina(list_id, user_id, request_id) {
   })
     .then(response => response.json())
     .then(res => {
-      window.location.reload();
+      console.log("deleted list", res);
     })
     .catch(error => {
       console.error('Error fetching films:', error);

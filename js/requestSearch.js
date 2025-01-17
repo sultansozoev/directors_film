@@ -1,4 +1,3 @@
-
 let token = getCookie("jwt");
 if (!token) {
   window.location.href = "login.html";
@@ -27,23 +26,75 @@ searchBar.addEventListener("input", (event) => {
 
       films.forEach(movie => {
         if ('poster_path' in movie && movie.poster_path != null) {
-          const movieCard = document.createElement('div');
-          movieCard.classList.add('movie-card');
-
+          let t = movie.media_type === 'tv' ? movie.name : movie.title;
           const movieLink = document.createElement('a');
           movieLink.setAttribute('href', `javascript:void(0)`);
-          let title = movie.media_type === 'tv' ? movie.name : movie.title;
+          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(t)}, '${movie.poster_path}', '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`);
 
-          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(title)}, ${JSON.stringify(title)}, '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`)
-          movieCard.setAttribute('data-bs-toggle', 'modal');
-          movieCard.setAttribute('data-bs-target', '#staticBackdrop');
+          const cardDiv = document.createElement('div');
+          cardDiv.classList.add('movie-card');
+          cardDiv.classList.add('card');
+          cardDiv.setAttribute('data-bs-toggle', 'modal');
+          cardDiv.setAttribute('data-bs-target', '#staticBackdrop');
+
           const movieHeader = document.createElement('div');
-          movieHeader.classList.add('movie-header', 'movie-image');
-          movieHeader.style.backgroundImage = `url('https://image.tmdb.org/t/p/original/${movie.poster_path}')`;
+          movieHeader.classList.add('movie-header');
+          movieHeader.style.background = `url("https://image.tmdb.org/t/p/original/${movie.poster_path}") no-repeat center center`;
+          movieHeader.style.backgroundSize = 'cover';
+          const movieContent = document.createElement('div');
+          movieContent.classList.add('movie-content');
+          const movieContentHeader = document.createElement('div');
+          movieContentHeader.classList.add('movie-content-header');
+          const title = document.createElement('h3');
+          title.innerHTML = t;
+          movieContentHeader.appendChild(title);
+
+          const movieInfo = document.createElement('div');
+          movieInfo.classList.add('movie-info');
+
+          const infoSection = document.createElement('div');
+          infoSection.classList.add('info-section');
+          const labelDate = document.createElement('label');
+          labelDate.innerHTML = "Data di uscita";
+          const spanDate = document.createElement('span');
+          let date = new Date(movie.release_date);
+          if (movie.media_type === 'tv') date = new Date(movie.first_air_date);
+          const day = String(date.getDate()).padStart(2, '0');
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const year = date.getFullYear();
+          spanDate.innerHTML = `${day}/${month}/${year}`;
+          infoSection.appendChild(labelDate);
+          infoSection.appendChild(spanDate);
+
+          const infoSectionType = document.createElement('div');
+          infoSectionType.classList.add('info-section');
+          const labelType = document.createElement('label');
+          labelType.innerHTML = "Tipo";
+          const spanType = document.createElement('span');
+          spanType.innerHTML = movie.media_type === 'tv' ? "Serie TV" : "Film";
+          infoSectionType.appendChild(labelType);
+          infoSectionType.appendChild(spanType);
+
+          const infoSectionId = document.createElement('div');
+          infoSectionId.classList.add('info-section');
+          const labelId = document.createElement('label');
+          labelId.innerHTML = "ID";
+          const spanId = document.createElement('span');
+          spanId.innerHTML = movie.id;
+          infoSectionId.appendChild(labelId);
+          infoSectionId.appendChild(spanId);
+
+          movieInfo.appendChild(infoSection);
+          movieInfo.appendChild(infoSectionType);
+          movieInfo.appendChild(infoSectionId);
+
+          movieContent.appendChild(movieContentHeader);
+          movieContent.appendChild(movieInfo);
 
           movieLink.appendChild(movieHeader);
-          movieCard.appendChild(movieLink);
-          results_container.appendChild(movieCard);
+          movieLink.appendChild(movieContent);
+          cardDiv.appendChild(movieLink);
+          results_container.appendChild(cardDiv);
         }
       });
     })

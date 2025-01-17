@@ -23,5 +23,8 @@
     <orderEntry type="library" name="video" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="@vime/core" level="application" />
+    <orderEntry type="library" name="dataTables.bootstrap" level="application" />
+    <orderEntry type="library" name="jszip" level="application" />
+    <orderEntry type="library" name="dataTables.buttons" level="application" />
   </component>
 </module>
