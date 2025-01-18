@@ -47,7 +47,22 @@ searchBar.addEventListener("input", (event) => {
           movieContentHeader.classList.add('movie-content-header');
           const title = document.createElement('h3');
           title.innerHTML = t;
-          movieContentHeader.appendChild(title);
+
+          const voteSpan = document.createElement('span');
+          voteSpan.classList.add('movie-vote');
+          voteSpan.innerHTML = `⭐${movie.vote_average.toFixed(1)}`;
+          voteSpan.style.marginLeft = '10px';
+          if (movie.vote_average.toFixed(1) >= 6 && movie.vote_average.toFixed(1) <= 7.5)
+            voteSpan.style.color = '#ffda00';
+          else if (movie.vote_average.toFixed(1) > 7.5)
+            voteSpan.style.color = '#41ff00';
+          else voteSpan.style.color = '#ff0000';
+          const titleContainer = document.createElement('div');
+          titleContainer.style.display = 'flex';
+          titleContainer.style.alignItems = 'center';
+          titleContainer.appendChild(title);
+          titleContainer.appendChild(voteSpan);
+          movieContentHeader.appendChild(titleContainer);
 
           const movieInfo = document.createElement('div');
           movieInfo.classList.add('movie-info');
