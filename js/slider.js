@@ -1,7 +1,10 @@
-for (let i = 1; i < 45; i++) {
-  new Swiper(".slide-container"+i, {
+document.querySelectorAll(".slide-container").forEach((container, index) => {
+  const containerClass = container.classList[1];
+  const idNumber = containerClass.match(/\d+/)[0];
+
+  new Swiper(`.${containerClass}`, {
     slidesPerView: 4,
-    spaceBetween: 2,
+    spaceBetween: 10,
     sliderPerGroup: 6,
     touchEventsTarget: 'container',
     loop: true,
@@ -10,8 +13,8 @@ for (let i = 1; i < 45; i++) {
     grabCursor: "true",
     freeMode: true,
     navigation: {
-      nextEl: '.swiper-button-next'+i,
-      prevEl: '.swiper-button-prev'+i,
+      nextEl: `.swiper-button-next${idNumber}`,
+      prevEl: `.swiper-button-prev${idNumber}`,
     },
     breakpoints: {
       0: {
@@ -40,5 +43,4 @@ for (let i = 1; i < 45; i++) {
       },
     },
   });
-
-}
+});

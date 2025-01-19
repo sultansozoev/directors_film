@@ -29,7 +29,7 @@ searchBar.addEventListener("input", (event) => {
           let t = movie.media_type === 'tv' ? movie.name : movie.title;
           const movieLink = document.createElement('a');
           movieLink.setAttribute('href', `javascript:void(0)`);
-          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(t)}, '${movie.poster_path}', '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`);
+          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(t)}, '${movie.poster_path}', '${movie.vote_average}', '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`);
 
           const cardDiv = document.createElement('div');
           cardDiv.classList.add('movie-card');

@@ -36,20 +36,22 @@ function fetchList(url, container, user_id) {
 
         const voteSpan = document.createElement('span');
         voteSpan.classList.add('movie-vote');
-        voteSpan.innerHTML = `⭐${list.vote_average.toFixed(1)}`;
-        voteSpan.style.marginLeft = '10px';
-        if (list.vote_average.toFixed(1) >= 6 && list.vote_average.toFixed(1) <= 7.5)
-          voteSpan.style.color = '#ffda00';
-        else if (list.vote_average.toFixed(1) > 7.5)
-          voteSpan.style.color = '#41ff00';
-        else voteSpan.style.color = '#ff0000';
-        const titleContainer = document.createElement('div');
-        titleContainer.style.display = 'flex';
-        titleContainer.style.alignItems = 'center';
-        titleContainer.appendChild(title);
-        titleContainer.appendChild(voteSpan);
-        movieContentHeader.appendChild(titleContainer);
-
+        if (list.vote_average > 0) {
+          console.log(list.vote_average);
+          voteSpan.innerHTML = `⭐${list.vote_average.toFixed(1)}`;
+          voteSpan.style.marginLeft = '10px';
+          if (list.vote_average.toFixed(1) >= 6 && list.vote_average.toFixed(1) <= 7.5)
+            voteSpan.style.color = '#ffda00';
+          else if (list.vote_average.toFixed(1) > 7.5)
+            voteSpan.style.color = '#41ff00';
+          else voteSpan.style.color = '#ff0000';
+          const titleContainer = document.createElement('div');
+          titleContainer.style.display = 'flex';
+          titleContainer.style.alignItems = 'center';
+          titleContainer.appendChild(title);
+          titleContainer.appendChild(voteSpan);
+          movieContentHeader.appendChild(titleContainer);
+        }
         const movieInfo = document.createElement('div');
         movieInfo.classList.add('movie-info');
 
