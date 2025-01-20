@@ -44,6 +44,44 @@ function fetchMovies(url, container, deleteButton) {
     });
 }
 
+function fetchContinue(url, container) {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(movie => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card-continue');
+        cardDiv.style.background = `url("https://image.tmdb.org/t/p/original/${movie.background_image}") no-repeat center center`;
+        cardDiv.style.backgroundSize = 'cover';
+        cardDiv.classList.add('rounded');
+        cardDiv.classList.add('swiper-slide');
+
+        const cardLink = document.createElement('a');
+        cardLink.classList.add('card-link');
+        cardLink.setAttribute('href', `new-player.html?film=${movie.movie_id}`);
+        const deleteBtn = document.createElement('span');
+        deleteBtn.classList.add('delete-btn');
+
+        cardDiv.appendChild(cardLink);
+        cardDiv.appendChild(deleteBtn);
+
+        container.appendChild(cardDiv);
+      });
+      if (data.length < 7) {
+        const continueContainer = document.getElementById("continue");
+        continueContainer.style.display = 'none';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
 scrollWindow();
 
 const videoPlayer = document.getElementById('banner-player');
@@ -131,5 +169,5 @@ const genreUrl = `${apiUrl}/getGenres`;
 const genreApi = "/getMoviesByGenre?genre=";
 categoryGenreSaga(genreUrl, "", genreApi, "genre_id");
 
-const continueContainer = document.getElementById("continue");
-fetchMovies(`${apiUrl}/getMoviesHistory?user_id=${getCookie("user")}`, continueContainer, true);
+const continueContainer = document.getElementById("continua_guardare");
+fetchContinue(`${apiUrl}/getMoviesByContinueListMovie?user_id=${getCookie("user")}`, continueContainer);
