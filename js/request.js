@@ -1,5 +1,4 @@
 function addRequest(title, poster, vote_average, req_id, type, user_id) {
-  console.log(req_id)
   const url = `https://surio.ddns.net/addList`;
   fetch(url, {
     headers: {
@@ -10,7 +9,14 @@ function addRequest(title, poster, vote_average, req_id, type, user_id) {
   }).then(response => response.json())
     .then(data => {
       const modal = document.getElementById("modal");
-      modal.innerHTML = title;
+      if (data.code === "ER_DUP_ENTRY") {
+        modal.innerText = `${title} è già stato richiesto`;
+        modal.style.color = '#ff0000';
+      } else if (data === "Record exists") {
+        modal.innerHTML = `'${title}' è già presente nel sito`;
+      } else {
+        modal.innerHTML = `'${title}' è stato inserito nella lista delle richieste`;
+      }
     })
     .catch(error => {
       console.error('Error fetching films:', error);

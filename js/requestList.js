@@ -37,7 +37,6 @@ function fetchList(url, container, user_id) {
         const voteSpan = document.createElement('span');
         voteSpan.classList.add('movie-vote');
         if (list.vote_average > 0) {
-          console.log(list.vote_average);
           voteSpan.innerHTML = `⭐${list.vote_average.toFixed(1)}`;
           voteSpan.style.marginLeft = '10px';
           if (list.vote_average.toFixed(1) >= 6 && list.vote_average.toFixed(1) <= 7.5)
