@@ -45,44 +45,46 @@ document.querySelectorAll(".slide-container").forEach((container, index) => {
   });
 });
 
-new Swiper(`.slide-container45`, {
-    slidesPerView: 4,
-    spaceBetween: 10,
-    sliderPerGroup: 6,
-    touchEventsTarget: 'container',
-    loop: true,
-    centerSlide: "true",
-    effect: 'slide',
-    grabCursor: "true",
-    freeMode: true,
-    navigation: {
-      nextEl: `.swiper-button-next45`,
-      prevEl: `.swiper-button-prev45`,
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-        spaceBetween: 20,
+const swiperContainer = document.querySelector('.slide-container45');
+const nextButton = document.querySelector('.swiper-button-next45');
+const prevButton = document.querySelector('.swiper-button-prev45');
+
+const observer = new MutationObserver(() => {
+  const slides = swiperContainer.querySelectorAll('.swiper-slide');
+  if (slides.length > 1) {
+    new Swiper('.slide-container45', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      loop: true,
+      touchEventsTarget: 'container',
+      effect: 'slide',
+      grabCursor: true,
+      initialSlide: 0,
+      freeMode: true,
+      navigation: {
+        nextEl: '.swiper-button-next45',
+        prevEl: '.swiper-button-prev45',
       },
-      300: {
-        slidesPerView: 1,
-        spaceBetween: 20,
+      breakpoints: {
+        0: {
+          slidesPerView: 'auto',
+          spaceBetween: 20,
+        },
+        300: {
+          slidesPerView: 'auto',
+          spaceBetween: 20,
+        },
       },
-      400: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-      },
-      450: {
-        slidesPerView: 2,
-        spaceBetween: 10,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      1224: {
-        slidesPerView: 4,
-        spaceBetween: 20,
-      },
-    },
-  });
+    });
+
+    nextButton.style.display = 'block';
+    prevButton.style.display = 'block';
+  } else {
+    nextButton.style.display = 'none';
+    prevButton.style.display = 'none';
+  }
+
+  observer.disconnect();
+});
+
+observer.observe(swiperContainer, { childList: true, subtree: true });

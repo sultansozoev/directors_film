@@ -72,8 +72,8 @@ function fetchContinue(url, container) {
 
         container.appendChild(cardDiv);
       });
-      if (data.length < 7) {
-        const continueContainer = document.getElementById("continue");
+      const continueContainer = document.getElementById("continue");
+      if (data.length < 1) {
         continueContainer.style.display = 'none';
       }
     })

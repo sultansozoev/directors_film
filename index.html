@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="css/continue_watch.css">
 </head>
 <body class="bg-dark">
-<header class="position-static">
+<header id="header" class="position-static">
   <nav class="navbar fixed-top justify-content-center bg-dark" data-bs-theme="dark">
     <div class="container-fluid d-flex">
       <div class="d-flex justify-content-start align-items-center px-3">
@@ -92,7 +92,7 @@
     </div>
   </nav>
 </header>
-<section id="banner" class="video m-0" style="visibility: hidden">
+<section id="banner" class="video m-0" style="display: none">
   <figure class="section-overlay">
     <video id="banner-player" autoplay loop muted playsinline poster=""></video>
     <div id="banner-content">
@@ -102,13 +102,13 @@
              viewBox="0 0 100 100" xml:space="preserve">
           <path class="stroke-solid" fill="none" d="M49.9,2.5C23.6,2.8,2.1,24.4,2.5,50.4C2.9,76.5,24.7,98,50.3,97.5c26.4-0.6,47.4-21.8,47.2-47.7
             C97.3,23.7,75.7,2.3,49.9,2.5"/>
-                  <path class="icon" d="M38,69c-1,0.5-1.8,0-1.8-1.1V32.1c0-1.1,0.8-1.6,1.8-1.1l34,18c1,0.5,1,1.4,0,1.9L38,69z"/>
+          <path class="icon" d="M38,69c-1,0.5-1.8,0-1.8-1.1V32.1c0-1.1,0.8-1.6,1.8-1.1l34,18c1,0.5,1,1.4,0,1.9L38,69z"/>
         </svg>
       </a>
-      </div>
+    </div>
   </figure>
 </section>
-<div class="container swiper px-3 trending-section" id="ditendenza" style="visibility: hidden">
+<div class="container swiper px-3 trending-section" id="ditendenza"  style="display: none">
   <h1 class="text-white px-4">Esplora su Surio</h1>
   <div class="slide-container slide-container1">
     <div id="1" class="card-wrapper swiper-wrapper">
@@ -123,7 +123,7 @@
 <div id="results-container" class="box">
 </div>
 
-<div class="container swiper px-3" id="continue">
+<div class="container swiper px-3" id="continue" style="display: none">
   <h1 class="text-white px-4">Continua a guardare</h1>
   <div class="slide-container slide-container45">
     <div id="continua_guardare" class="card-wrapper swiper-wrapper">
@@ -136,7 +136,7 @@
   <div class="swiper-pagination45"></div>
 </div>
 
-<div class="container1 text-white" id="container1" style="visibility: hidden;">
+<div class="container1 text-white" id="container1" style="display: none;">
   <div class="tabs">
     <input type="radio" id="radio-1" name="tabs" onclick="openPage('generi')" checked />
     <label class="tab" for="radio-1">Generi</label>
@@ -156,7 +156,7 @@
   <div>U</div>
   <div>S</div>
 </div>
-<div id="all-page" style="visibility: hidden">
+<div id="all-page" style="display: none">
 
 <div id="categories">
 </div>

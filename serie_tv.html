@@ -12,9 +12,10 @@
   <link rel="stylesheet" href="css/card.css">
   <link rel="stylesheet" href="css/tabs.css">
   <link rel="stylesheet" href="css/banner.css">
+  <link rel="stylesheet" href="css/continue_watch.css">
 </head>
 <body class="bg-dark">
-<header class="position-static">
+<header id="header" class="position-static">
   <nav class="navbar fixed-top justify-content-center bg-dark" data-bs-theme="dark">
     <div class="container-fluid d-flex">
       <div class="d-flex justify-content-start align-items-center px-3">
@@ -105,7 +106,6 @@
     </div>
   </figure>
 </section>
-<div id="scroll" class="mb-auto"></div>
 <div id="results-container" class="box mt-5">
 </div>
 <div id="second" class="container swiper px-3 trending-section">
@@ -120,7 +120,18 @@
   </div>
   <div class="swiper-pagination1"></div>
 </div>
-<div id="container1">
+
+<div class="container swiper px-3" id="continue" style="display: inline-block !important;">
+  <h1 class="text-white px-4">Continua a guardare</h1>
+  <div class="slide-container slide-container45">
+    <div id="continua_guardare" class="card-wrapper swiper-wrapper">
+    </div>
+  </div>
+  <div class="swiper-pager">
+    <div class="swiper-button-next swiper-button-next45"></div>
+    <div class="swiper-button-prev swiper-button-prev45"></div>
+  </div>
+  <div class="swiper-pagination45"></div>
 </div>
 
 

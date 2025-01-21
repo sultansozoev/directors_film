@@ -40,11 +40,13 @@ function showPage() {
   const allPage = document.getElementById('all-page');
   const banner = document.getElementById('banner');
   const tabs = document.getElementById('container1');
+  const continueContainer = document.getElementById('continue');
   load.style.display = 'none';
-  tabs.style.visibility = 'visible';
-  banner.style.visibility = 'visible';
-  allPage.style.visibility = 'visible';
-  ditendenza.style.visibility = 'visible';
+  tabs.style.display = '';
+  banner.style.display = 'block';
+  continueContainer.style.display = 'inline-block';
+  allPage.style.display = 'block';
+  ditendenza.style.display = 'block';
 }
 
 if (load !== null) {

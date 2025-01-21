@@ -34,11 +34,50 @@ function fetchMovies(url, container) {
     });
 }
 
+function fetchContinue(url, container) {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(serieTV => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card-continue');
+        cardDiv.style.background = `url("https://image.tmdb.org/t/p/original/${serieTV.background_image}") no-repeat center center`;
+        cardDiv.style.backgroundSize = 'cover';
+        cardDiv.classList.add('rounded');
+        cardDiv.classList.add('swiper-slide');
+
+        const cardLink = document.createElement('a');
+        cardLink.classList.add('card-link');
+        cardLink.setAttribute('href', `player_serie.html?serie=${serieTV.serie_tv_id}`);
+        const deleteBtn = document.createElement('span');
+        deleteBtn.classList.add('delete-btn');
+
+        cardDiv.appendChild(cardLink);
+        cardDiv.appendChild(deleteBtn);
+
+        container.appendChild(cardDiv);
+      });
+      const continueContainer = document.getElementById("continue");
+      if (data.length < 1) {
+        continueContainer.style.display = 'none';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
 scrollWindow();
 
 const videoPlayer = document.getElementById('banner-player');
 const titleTrailer = document.getElementById('titleTrailer');
 const playMovie = document.getElementById('playMovie');
+const continueContainer = document.getElementById('continua_guardare');
 
 async function playRandomVideo(fileName) {
   try {
@@ -158,3 +197,6 @@ fetchMovies(urlTutteSerie, tutteSerie);
 const genreUrl = `${apiUrl}/getGenresTV`;
 const genreApi = "/getTVByGenre?genre=";
 categoryGenre(genreUrl, "", genreApi, "genre_id");
+
+const continueUrl = `${apiUrl}/getMoviesByContinueListSerie?user_id=${getCookie("user")}`;
+fetchContinue(continueUrl, continueContainer);
