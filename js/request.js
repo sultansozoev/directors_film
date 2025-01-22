@@ -45,6 +45,26 @@ function elimina(list_id, user_id, request_id) {
     });
 }
 
+function deleteContinue(movie_id, user_id, url) {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body:  JSON.stringify({
+      movie_id,
+      user_id
+    })
+  })
+    .then(response => response.json())
+    .then(res => {
+      console.log("deleted list", res);
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
 function addMovie(id, genre_ids, title, poster_path, release_date, popularity, backdrop_path) {
   const url = `https://surio.ddns.net/insertFilm`;
   fetch(url, {

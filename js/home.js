@@ -66,7 +66,12 @@ function fetchContinue(url, container) {
         cardLink.setAttribute('href', `new-player.html?film=${movie.movie_id}`);
         const deleteBtn = document.createElement('span');
         deleteBtn.classList.add('delete-btn');
-
+        deleteBtn.innerHTML = '&times;';
+        const url = `https://surio.ddns.net/deleteContinueList`;
+        deleteBtn.addEventListener('click',  () => {
+          cardDiv.remove();
+          deleteContinue(movie.movie_id, getCookie("user"), url)
+        });
         cardDiv.appendChild(cardLink);
         cardDiv.appendChild(deleteBtn);
 
@@ -74,7 +79,8 @@ function fetchContinue(url, container) {
       });
       const continueContainer = document.getElementById("continue");
       if (data.length < 1) {
-        continueContainer.style.display = 'none';
+        continueContainer.style.setProperty('display', 'none', 'important');
+        continueContainer.classList.add('hidden');
       }
     })
     .catch(error => {

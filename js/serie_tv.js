@@ -56,7 +56,12 @@ function fetchContinue(url, container) {
         cardLink.setAttribute('href', `player_serie.html?serie=${serieTV.serie_tv_id}`);
         const deleteBtn = document.createElement('span');
         deleteBtn.classList.add('delete-btn');
-
+        deleteBtn.innerHTML = '&times;';
+        const url = `https://surio.ddns.net/deleteContinueListSerie`;
+        deleteBtn.addEventListener('click',  () => {
+          cardDiv.remove();
+          deleteContinue(serieTV.serie_tv_id, getCookie("user"), url)
+        });
         cardDiv.appendChild(cardLink);
         cardDiv.appendChild(deleteBtn);
 
