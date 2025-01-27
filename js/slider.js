@@ -7,7 +7,7 @@ document.querySelectorAll(".slide-container").forEach((container, index) => {
     spaceBetween: 10,
     sliderPerGroup: 6,
     touchEventsTarget: 'container',
-    loop: true,
+    loop: false,
     centerSlide: "true",
     effect: 'slide',
     grabCursor: "true",
