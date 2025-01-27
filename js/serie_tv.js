@@ -19,7 +19,7 @@ function fetchMovies(url, container) {
         const imageBox = document.createElement('div');
         imageBox.classList.add('image-box');
         const a = document.createElement('a');
-        a.setAttribute('href', `player_serie.html?serie=${serieTV.serie_tv_id}`);
+        a.setAttribute('href', `new-player-serie.html?serie=${serieTV.serie_tv_id}`);
         const image = document.createElement('img');
         image.src = "https://image.tmdb.org/t/p/original/" + serieTV.poster;
 
@@ -53,7 +53,7 @@ function fetchContinue(url, container) {
 
         const cardLink = document.createElement('a');
         cardLink.classList.add('card-link');
-        cardLink.setAttribute('href', `player_serie.html?serie=${serieTV.serie_tv_id}`);
+        cardLink.setAttribute('href', `new-player-serie.html?serie=${serieTV.serie_tv_id}`);
         const deleteBtn = document.createElement('span');
         deleteBtn.classList.add('delete-btn');
         deleteBtn.innerHTML = '&times;';

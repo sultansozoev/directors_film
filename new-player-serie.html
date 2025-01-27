@@ -43,13 +43,14 @@
         00:00
       </div>
     </div>
-    <div class="episodes-container" id="episodesContainer">
-      <ul>
-        <li>Episode 1</li>
-        <li>Episode 2</li>
-        <li>Episode 3</li>
-      </ul>
+    <div id="episodesModal" class="modal bg-dark">
+      <div class="modal-content bg-dark">
+        <span id="closeModal" class="close">&times;</span>
+        <h4 style="color: white">Seasons & Episodes</h4>
+        <div id="episodesList" style="color: white"></div>
+      </div>
     </div>
+
     <div class="controls">
       <button class="play-pause">
         <svg class="playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -87,7 +88,7 @@
         <input type="range" min="0" max="100" value="100" class="volume-slider vertical">
       </div>
       <p class="title">
-        <span class="series" id="title"></span> <span class="episode"></span>
+        <span class="series" id="title"></span> <span id="episodeTitle" class="episode"></span>
       </p>
       <button class="previous">
         <svg viewBox="0 0 24 24">
@@ -136,16 +137,14 @@
   </div>
 </div>
 <div class="thumbnail-container">
-  <!-- Add episode thumbnails here -->
   <div class="thumbnail">
-    <img src="path_to_episode_thumbnail.jpg" alt="Episode Thumbnail">
+    <img src="https://www.themoviedb.org/t/p/w1280/8FeFKeveW5BQuoz9reFeh4kRfVR.jpg" alt="Episode Thumbnail">
     <p>Episode Title</p>
   </div>
 </div>
-<script src="js/new-player.js"></script>
+<script src="js/new-player-serie.js"></script>
+<script type="module" src="js/new-player-serie-handle.js"></script>
 <script src="js/cookie.js"></script>
-<script type="module" src="js/serie.js"></script>
-<script src="js/isAdmin.js"></script>
 </body>
 
 </html>
