@@ -22,7 +22,7 @@ searchBar.addEventListener("input", (event) => {
   }
   header.scrollIntoView({ behavior: "smooth" });
   const url = `${apiUrl}/searchSerie?title=` + searchValue;
-  const urlPlayer = `player_serie.html?serie=`;
+  const urlPlayer = `new-player-serie.html?serie=`;
   all.style.display = "none";
   second.style.display = "none";
   banner.style.display = "none";
