@@ -157,7 +157,7 @@ fetch(urlTrailerSelector, {
   .then(response => response.json())
   .then(async data => {
     titleTrailer.innerHTML = data.trailer.title;
-    playMovie.href = `player_serie.html?serie=${data.trailer.serie_tv_id}`;
+    playMovie.href = `new-player-serie.html?serie=${data.trailer.serie_tv_id}`;
     videoPlayer.setAttribute('poster', "https://image.tmdb.org/t/p/original" + data.trailer.background_image);
     await playRandomVideo(data.trailer.serie_tv_id);
   })
