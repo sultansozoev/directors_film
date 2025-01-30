@@ -20,7 +20,7 @@ function fetchList(url, container, user_id) {
         deleteButton.innerHTML = `&times`;
         deleteButton.addEventListener('click',  () => {
           cardDiv.remove();
-          elimina(list.list_id, list.user_id, list.request_id)
+          elimina(list.list_id, getCookie("user"), list.request_id)
         });
 
         const movieHeader = document.createElement('div');
