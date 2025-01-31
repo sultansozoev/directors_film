@@ -85,7 +85,7 @@ const populateSeasons = (seasons) => {
     const urlEpisode = "https://image.tmdb.org/t/p/original" + season.background_image;
     seasonElement.innerHTML = `
       <img src="${season.background_image ? urlEpisode : '../img/default_thumbnail.png'}" alt="">
-      <h6>${season.season_name} - Episodi: ${season.episode_count}</h6>
+      <h6>${season.season_number}. ${season.season_name} - Episodi: ${season.episode_count}</h6>
     `;
     seasonElement.addEventListener("click", () => loadEpisodes(season.season_id));
     episodesList.appendChild(seasonElement);
@@ -112,7 +112,6 @@ const getPlayerState = async () => {
     });
 
     const data = await response.json();
-    console.log(data);
 
     if (data.length > 0) {
       const savedEpisodeId = data[0].episode_id;
@@ -191,7 +190,7 @@ const loadFirstEpisode = () => {
 
 const populateEpisodes = (episodeList, seasonId) => {
   episodesList.innerHTML = "";
-  episodes = episodeList || []; // Assicurati che episodes sia un array
+  episodes = episodeList || [];
   currentSeason = seasonId;
 
   if (episodes.length === 0) {
@@ -201,9 +200,8 @@ const populateEpisodes = (episodeList, seasonId) => {
 
   if (currentEpisode) {
     currentEpisodeIndex = episodes.findIndex((ep) => ep.episode_id === currentEpisode);
-    console.log("current: " + currentEpisodeIndex)
   } else {
-    currentEpisodeIndex = 0; // Predefinito al primo episodio
+    currentEpisodeIndex = 0;
   }
 
   episodes.forEach((episode, index) => {
@@ -218,7 +216,7 @@ const populateEpisodes = (episodeList, seasonId) => {
     `;
 
     episodeElement.addEventListener("click", () => {
-      currentEpisodeIndex = index; // Aggiorna l'indice corrente
+      currentEpisodeIndex = index;
       updatePlayerWithEpisode(episode);
       episodesModal.style.display = "none";
     });
