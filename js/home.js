@@ -1,7 +1,7 @@
 import { apiUrl } from '../api/config.js';
 import { onScroll, scrollWindow } from './mainFunctions.js';
 
-function fetchMovies(url, container, deleteButton) {
+function fetchMovies(url, container) {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -28,14 +28,6 @@ function fetchMovies(url, container, deleteButton) {
         imageBox.appendChild(a);
         cardDiv.appendChild(imageBox);
 
-        if (deleteButton) {
-          const deleteBtn = document.createElement('button');
-          deleteBtn.classList.add('delete-button');
-          const svg = document.createElement('img');
-          svg.setAttribute("src", "../img/x-circle.svg");
-          deleteBtn.appendChild(svg);
-          cardDiv.appendChild(deleteBtn);
-        }
         container.appendChild(cardDiv);
       });
     })
@@ -155,7 +147,7 @@ function categoryGenreSaga(url, id_container, api, id) {
       data.forEach(data => {
         const title = data[id] + id_container;
         const moviesContainer = document.getElementById(title);
-        fetchMovies(`${apiUrl}${api}${data[id]}`, moviesContainer, false);
+        fetchMovies(`${apiUrl}${api}${data[id]}`, moviesContainer);
       });
     })
     .catch(error => {
@@ -174,6 +166,10 @@ categoryGenreSaga(sagaUrl, "_saga", sagaApi, "saga_id");
 const genreUrl = `${apiUrl}/getGenres`;
 const genreApi = "/getMoviesByGenre?genre=";
 categoryGenreSaga(genreUrl, "", genreApi, "genre_id");
+
+const trendingUrl = `${apiUrl}/getTrending`;
+const moviesContainer = document.getElementById("trending");
+fetchMovies(trendingUrl, moviesContainer);
 
 const continueContainer = document.getElementById("continua_guardare");
 fetchContinue(`${apiUrl}/getMoviesByContinueListMovie?user_id=${getCookie("user")}`, continueContainer);
