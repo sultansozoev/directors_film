@@ -8,6 +8,7 @@ const second = document.getElementById("second");
 const banner = document.getElementById("banner");
 const header = document.getElementById("header");
 const continueContainer = document.getElementById("continue");
+const addedRecently = document.getElementById("added_recently");
 results_container.innerText = "";
 
 searchBar.addEventListener("input", (event) => {
@@ -17,6 +18,7 @@ searchBar.addEventListener("input", (event) => {
     all.style.display = "block";
     second.style.display = "block";
     banner.style.display = "block";
+    addedRecently.style.display = "block";
     results_container.style.display = "none";
     return;
   }
@@ -27,6 +29,7 @@ searchBar.addEventListener("input", (event) => {
   second.style.display = "none";
   banner.style.display = "none";
   continueContainer.style.display = "none";
+  addedRecently.style.display = "none";
   results_container.style.display = "block";
   searchTitle(url, results_container, urlPlayer, 'serie_tv_id');
 });
