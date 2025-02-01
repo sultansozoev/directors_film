@@ -41,12 +41,14 @@ function showPage() {
   const banner = document.getElementById('banner');
   const tabs = document.getElementById('container1');
   const continueContainer = document.getElementById('continue');
+  const addedRecently = document.getElementById('added_recently');
   load.style.display = 'none';
   tabs.style.display = '';
   banner.style.display = 'block';
   continueContainer.style.display = 'inline-block';
   allPage.style.display = 'block';
   ditendenza.style.display = 'block';
+  addedRecently.style.display = 'block';
 }
 
 if (load !== null) {

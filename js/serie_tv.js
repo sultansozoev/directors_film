@@ -203,5 +203,9 @@ const genreUrl = `${apiUrl}/getGenresTV`;
 const genreApi = "/getTVByGenre?genre=";
 categoryGenre(genreUrl, "", genreApi, "genre_id");
 
+const lastAddedUrl = `${apiUrl}/getLastAddedSerie`;
+const lastAddedContainer = document.getElementById("added_r");
+fetchMovies(lastAddedUrl, lastAddedContainer);
+
 const continueUrl = `${apiUrl}/getMoviesByContinueListSerie?user_id=${getCookie("user")}`;
 fetchContinue(continueUrl, continueContainer);

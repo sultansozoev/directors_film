@@ -171,5 +171,9 @@ const trendingUrl = `${apiUrl}/getTrending`;
 const moviesContainer = document.getElementById("trending");
 fetchMovies(trendingUrl, moviesContainer);
 
+const lastAddedUrl = `${apiUrl}/getLastAdded`;
+const lastAddedContainer = document.getElementById("added_r");
+fetchMovies(lastAddedUrl, lastAddedContainer);
+
 const continueContainer = document.getElementById("continua_guardare");
 fetchContinue(`${apiUrl}/getMoviesByContinueListMovie?user_id=${getCookie("user")}`, continueContainer);
