@@ -9,6 +9,7 @@ const ditendenza = document.getElementById("ditendenza");
 const continueContainer = document.getElementById("continue");
 const header = document.getElementById("header");
 const banner = document.getElementById("banner");
+const addedRecently = document.getElementById("added_recently");
 results_container.innerText = "";
 
 searchBar.addEventListener("input", (event) => {
@@ -19,6 +20,7 @@ searchBar.addEventListener("input", (event) => {
     ditendenza.style.display = "block";
     container1.style.display = "";
     banner.style.display = "block";
+    addedRecently.style.display = "block";
     return;
   }
   header.scrollIntoView({ behavior: "smooth" });
@@ -29,5 +31,6 @@ searchBar.addEventListener("input", (event) => {
   container1.style.display = "none";
   continueContainer.style.display = "none";
   banner.style.display = "none";
+  addedRecently.style.display = "none";
   searchTitle(url, results_container, urlPlayer,'movie_id');
 });
