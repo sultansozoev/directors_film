@@ -3,15 +3,15 @@ document.querySelectorAll(".slide-container").forEach((container, index) => {
   const idNumber = containerClass.match(/\d+/)[0];
 
   new Swiper(`.${containerClass}`, {
-    slidesPerView: 4,
+    slidesPerView: 1,
     spaceBetween: 10,
-    sliderPerGroup: 6,
+    slidesPerGroup: 2,
     touchEventsTarget: 'container',
     loop: false,
-    centerSlide: "true",
+    centerSlide: true,
     effect: 'slide',
     grabCursor: "true",
-    freeMode: true,
+    freeMode: false,
     navigation: {
       nextEl: `.swiper-button-next${idNumber}`,
       prevEl: `.swiper-button-prev${idNumber}`,

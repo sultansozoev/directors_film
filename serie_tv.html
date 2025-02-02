@@ -58,6 +58,9 @@
                 <a id="list" class="active" aria-current="page" href="list.html">Lista</a>
               </li>
               <li class="nav-item nav-link">
+                <a id="blog" class="active" aria-current="page" href="news.html">Novità</a>
+              </li>
+              <li class="nav-item nav-link">
                 <a onclick="logout()" href="javascript:void(0)" id="login" class="active" aria-current="page">Login</a>
               </li>
               <li class="nav-item mt-3">
@@ -68,6 +71,9 @@
               </li>
               <li class="nav-item nav-link">
                 <a id="addSerie" class="active" aria-current="page" href="addSerie.html">Aggiungi una serie</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="addBlog" class="active" aria-current="page" href="createBlog.html">Inserisci un blog</a>
               </li>
               <li class="nav-item nav-link">
                 <div class="container swiper px-3">
@@ -245,7 +251,7 @@
 <script src="js/slider.js"></script>
 <script src="js/cookie.js"></script>
 <script src="js/request.js"></script>
-<script src="js/isAdmin.js"></script>
+<script type="module" src="js/isAdmin.js"></script>
 <script>
   document.getElementById('search-bar').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {

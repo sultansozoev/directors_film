@@ -74,6 +74,10 @@
   }
 }
 
+.swiper-slide {
+  min-width: 200px; /* O un valore adeguato */
+}
+
 a {
   text-decoration: none;
   color: inherit;
