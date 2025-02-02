@@ -51,7 +51,9 @@ function fetchBlog(url, container) {
           spaceBetween: 30,
           effect: 'fade',
           loop: true,
-          autoHeight: true,
+          mousewheel: {
+            invert: false,
+          },
           pagination: {
             el: '.blog-slider__pagination',
             clickable: true,
