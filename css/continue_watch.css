@@ -4,8 +4,11 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 320px !important;
-  height: 190px !important;
+
+  /* Dimensioni dinamiche */
+  width: clamp(220px, 30vw, 350px) !important;
+  height: clamp(120px, 20vw, 210px) !important;
+
   box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
   transition: box-shadow 0.25s;
   margin: 20px;
@@ -22,7 +25,7 @@
 
 .card-continue h3 {
   margin: 0 20px;
-  font-size: 2em;
+  font-size: clamp(1.5em, 2vw, 2.2em);
 }
 
 .card-continue:hover {
@@ -33,18 +36,41 @@
   border-radius: 10px;
 }
 
+/* Bottone di eliminazione */
 .card-continue .delete-btn {
   position: absolute;
-  top: 0;
-  right: 6px;
+  top: 5px;
+  right: 10px;
   border-radius: 50%;
   color: white;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.9em !important;
+  font-size: clamp(1.5em, 3vw, 2em) !important;
   z-index: 10;
 }
 
 .card-continue .delete-btn:hover {
   color: red;
+}
+
+/* Responsività */
+@media screen and (max-width: 1024px) {
+  .card-continue {
+    width: clamp(220px, 35vw, 350px) !important;
+    height: clamp(140px, 22vw, 220px) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-continue {
+    width: clamp(180px, 40vw, 300px) !important;
+    height: clamp(130px, 25vw, 200px) !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card-continue {
+    width: 100% !important; /* Occupa tutta la larghezza disponibile */
+    height: 120px !important;
+  }
 }

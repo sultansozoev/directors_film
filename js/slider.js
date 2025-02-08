@@ -2,45 +2,18 @@ document.querySelectorAll(".slide-container").forEach((container, index) => {
   const containerClass = container.classList[1];
   const idNumber = containerClass.match(/\d+/)[0];
 
-  new Swiper(`.${containerClass}`, {
-    slidesPerView: 1,
-    spaceBetween: 10,
+  const swiper = new Swiper(`.${containerClass}`, {
+    slidesPerView: 'auto',
+    spaceBetween: 0,
     slidesPerGroup: 2,
     touchEventsTarget: 'container',
     loop: false,
-    centerSlide: true,
     effect: 'slide',
-    grabCursor: "true",
+    grabCursor: true,
     freeMode: false,
     navigation: {
       nextEl: `.swiper-button-next${idNumber}`,
       prevEl: `.swiper-button-prev${idNumber}`,
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-      },
-      300: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      400: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-      450: {
-        slidesPerView: 4,
-        spaceBetween: 10,
-      },
-      1024: {
-        slidesPerView: 5,
-        spaceBetween: 30,
-      },
-      1224: {
-        slidesPerView: 7,
-        spaceBetween: 20,
-      },
     },
   });
 });

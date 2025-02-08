@@ -6,36 +6,93 @@
 
 img {
   max-width: 100%;
-  width: 200px;
+  width: clamp(150px, 10vw, 200px); /* Dimensioni dinamiche */
 }
+
 header {
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   padding: 20px 20px 0 20px;
   position: fixed;
   top: 0;
   display: grid;
   z-index: 999;
-  grid-gap:5px;
+  grid-gap: 5px;
+
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-areas:
-   "nt mn mn sb . . . ";
+  grid-template-areas: "nt mn mn sb";
+
   width: 100%;
   margin-bottom: 0;
+  background-color: var(--primary);
+}
+
+/* NAVBAR RESPONSIVA */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .navbar .justify-content-center {
-  flex: 1; /* Permette al centro di espandersi per occupare lo spazio disponibile */
+  flex: 1; /* Espande per occupare spazio disponibile */
   display: flex;
-  justify-content: center; /* Centra il contenuto orizzontalmente */
+  justify-content: center; /* Centra il contenuto */
 }
 
 .navbar .justify-content-start,
 .navbar .justify-content-end {
-  flex: 0; /* Non permettere che questi contenitori occupino spazio extra */
+  flex: 0; /* Non permettere che questi contenitori si allarghino troppo */
 }
 
+/* SEARCH BAR RESPONSIVA */
 form#search-bar {
-  max-width: 400px; /* Imposta una larghezza massima per la barra di ricerca */
-  width: 100%; /* Assicura che la barra di ricerca si ridimensioni correttamente */
+  max-width: 400px;
+  width: 100%;
+}
+
+/* MEDIA QUERIES PER RESPONSIVITÀ */
+@media screen and (max-width: 1024px) {
+  header {
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+
+  form#search-bar {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 15px;
+  }
+
+  img {
+    width: clamp(120px, 12vw, 160px); /* Riduzione delle immagini */
+  }
+
+  form#search-bar {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form#search-bar {
+    max-width: 200px;
+  }
 }
