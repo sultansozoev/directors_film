@@ -52,7 +52,7 @@ async function checkIfFavorite(serieTV, favoriteIcon) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        serie_tv_id: serieTV.serie_tv_id,
+        movie_id: serieTV.serie_tv_id,
         user_id: user_id
       })
     });
