@@ -10,7 +10,7 @@ document.querySelectorAll(".slide-container").forEach((container, index) => {
     loop: false,
     effect: 'slide',
     grabCursor: true,
-    freeMode: false,
+    freeMode: true,
     navigation: {
       nextEl: `.swiper-button-next${idNumber}`,
       prevEl: `.swiper-button-prev${idNumber}`,

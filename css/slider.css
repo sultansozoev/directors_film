@@ -89,6 +89,7 @@
 
 .image-box:hover img {
   transform: scale(1.1);
+  z-index: 0;
 }
 
 /* Pulsanti di navigazione */
@@ -141,4 +142,47 @@ a {
   flex-wrap: nowrap !important;
   align-items: center;
   gap: 10px;
+}
+.card {
+  position: relative;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.38);
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: white;
+  z-index: 100;
+}
+
+.favorite-icon:hover {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+}
+
+.favorite-selected {
+  color: red !important;
+}
+
+.image-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-box img {
+  transition: transform 0.5s ease-in-out;
+}
+
+.image-box:hover img {
+  transform: scale(1.1);
+}
+
+.card:hover .favorite-icon {
+  z-index: 101;
 }

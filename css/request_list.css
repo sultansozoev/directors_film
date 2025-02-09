@@ -11,6 +11,10 @@ a {
   color: inherit;
 }
 
+.aCard:hover {
+  color: aquamarine;
+}
+
 .card {
   display: flex;
   flex-direction: column;

@@ -45,6 +45,30 @@ function elimina(list_id, user_id, request_id) {
     });
 }
 
+function eliminaFavourite(movie_id, user_id, type) {
+  let url = `https://surio.ddns.net/eliminaFavourite`;
+  if (type === "tv") {
+    url = `https://surio.ddns.net/eliminaFavouriteTV`;
+  }
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body:  JSON.stringify({
+      movie_id,
+      user_id
+    })
+  })
+    .then(response => response.json())
+    .then(res => {
+      console.log("deleted list", res);
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
 function deleteContinue(movie_id, user_id, url) {
   fetch(url, {
     headers: {

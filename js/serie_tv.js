@@ -9,12 +9,17 @@ function fetchMovies(url, container) {
     method: 'GET'
   })
     .then(response => response.json())
-    .then(data => {
-      data.forEach(serieTV => {
+    .then(async data => {
+      for (const serieTV of data) {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
         cardDiv.classList.add('rounded-circle');
         cardDiv.classList.add('swiper-slide');
+
+        const favoriteIcon = document.createElement('span');
+        favoriteIcon.innerHTML = "&#10084;";
+        favoriteIcon.classList.add('favorite-icon');
+        await checkIfFavorite(serieTV, favoriteIcon);
 
         const imageBox = document.createElement('div');
         imageBox.classList.add('image-box');
@@ -25,13 +30,115 @@ function fetchMovies(url, container) {
 
         a.appendChild(image);
         imageBox.appendChild(a);
+
+        cardDiv.appendChild(favoriteIcon);
         cardDiv.appendChild(imageBox);
         container.appendChild(cardDiv);
-      });
+      }
     })
     .catch(error => {
       console.error('Error fetching films:', error);
     });
+}
+
+async function checkIfFavorite(serieTV, favoriteIcon) {
+  const getFavouriteUrl = `${apiUrl}/getFavouriteTV`;
+  const user_id = getCookie("user");
+
+  try {
+    const response = await fetch(getFavouriteUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        serie_tv_id: serieTV.serie_tv_id,
+        user_id: user_id
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.length > 0) {
+      favoriteIcon.classList.add('favorite-selected');
+      favoriteIcon.onclick = (event) => {
+        event.stopPropagation();
+        removeFavorite(serieTV, favoriteIcon);
+      };
+    } else {
+      favoriteIcon.classList.remove('favorite-selected');
+      favoriteIcon.onclick = (event) => {
+        event.stopPropagation();
+        addToFavorites(serieTV, favoriteIcon);
+      };
+    }
+  } catch (error) {
+    console.error("Error checking favorite status:", error);
+  }
+}
+
+async function addToFavorites(serieTV, icon) {
+  const favoritesEndpoint = `${apiUrl}/addFavouriteTV`;
+  const user_id = getCookie("user");
+
+  try {
+    const response = await fetch(favoritesEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        serie_tv_id: serieTV.serie_tv_id,
+        user_id: user_id
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      icon.classList.add("favorite-selected");
+      icon.onclick = (event) => {
+        event.stopPropagation();
+        removeFavorite(serieTV, icon);
+      };
+    } else {
+      console.error("Error adding to favorites!");
+    }
+  } catch (error) {
+    console.error("Error sending the request:", error);
+  }
+}
+
+async function removeFavorite(serieTV, icon) {
+  const getFavouriteUrl = `${apiUrl}/removeFavouriteTV`;
+  const user_id = getCookie("user");
+
+  try {
+    const response = await fetch(getFavouriteUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        serie_tv_id: serieTV.serie_tv_id,
+        user_id: user_id
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      icon.classList.remove("favorite-selected");
+      icon.onclick = (event) => {
+        event.stopPropagation();
+        addToFavorites(serieTV, icon);
+      };
+    } else {
+      console.error("Error removing favorite:", data.message);
+    }
+  } catch (error) {
+    console.error("Error sending the request:", error);
+  }
 }
 
 function fetchContinue(url, container) {
