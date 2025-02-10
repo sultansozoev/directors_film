@@ -43,7 +43,8 @@ function showPage() {
   const continueContainer = document.getElementById('continue');
   const addedRecently = document.getElementById('added_recently');
   load.style.display = 'none';
-  tabs.style.display = '';
+  if (tabs)
+    tabs.style.display = '';
   banner.style.display = 'block';
   continueContainer.style.display = 'inline-block';
   allPage.style.display = 'block';
