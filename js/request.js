@@ -69,7 +69,11 @@ function eliminaFavourite(movie_id, user_id, type) {
     });
 }
 
-function deleteContinue(movie_id, user_id, url) {
+function deleteContinue(movie_id, user_id, type) {
+  let url = `https://surio.ddns.net/deleteContinueList`;
+  if (type === "tv") {
+    url = `https://surio.ddns.net/deleteContinueListSerie`;
+  }
   fetch(url, {
     headers: {
       'Content-Type': 'application/json'

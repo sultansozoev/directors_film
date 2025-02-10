@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surio</title>
+  <link rel="stylesheet" href="css/loader.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/slider.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/card.css">
+  <link rel="stylesheet" href="css/tabs.css">
+  <link rel="stylesheet" href="css/banner.css">
+  <link rel="stylesheet" href="css/continue_watch.css">
+</head>
+<body class="bg-dark">
+<header id="header" class="position-static">
+  <nav class="navbar fixed-top justify-content-center bg-dark" data-bs-theme="dark">
+    <div class="container-fluid d-flex">
+      <div class="d-flex justify-content-start align-items-center px-3">
+        <a class="nav-link active text-white d-flex align-items-center me-4" aria-current="page" href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-film me-2" viewBox="0 0 16 16">
+            <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
+          </svg>
+          Surio
+        </a>
+        <a class="nav-link active text-white d-flex align-items-center me-4" aria-current="page" href="film.html">
+          Film
+        </a>
+        <a class="nav-link active text-white d-flex align-items-center me-4" href="serie_tv.html">
+          Serie TV
+        </a>
+        <a class="nav-link active text-white d-flex align-items-center me-4" href="list_favourite.html">
+          La tua lista
+        </a>
+      </div>
+      <div class="justify-content-center px-lg-5">
+        <form class="justify-content-center" role="search">
+          <input id="search-bar" class="form-control text-white" type="search" placeholder="Inserisci un titolo..." aria-label="Search" data-search="" autocomplete="off">
+        </form>
+      </div>
+      <div class="d-flex justify-content-end align-items-center">
+        <button class="navbar-toggler" style="background-color:#000000;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Surio</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item nav-link">
+                <a class="active" aria-current="page" href="index.html">Film</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a class="active" aria-current="page" href="serie_tv.html">Serie TV</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="request" class="active" aria-current="page" href="requestMovie.html">Richiedi un film</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="list" class="active" aria-current="page" href="list.html">Lista delle richieste</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="list_favourite" class="active" aria-current="page" href="list_favourite.html">La tua lista</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="blog" class="active" aria-current="page" href="news.html">Novità</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a onclick="logout()" href="javascript:void(0)" id="login" class="active" aria-current="page">Login</a>
+              </li>
+              <li class="nav-item mt-3">
+                <h5 id="admin" class="offcanvas-title">Admin</h5>
+              </li>
+              <li class="nav-item mt-2 nav-link">
+                <a id="addFilm" class="active" aria-current="page" href="addMovie.html">Aggiungi un film</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="addSerie" class="active" aria-current="page" href="addSerie.html">Aggiungi una serie</a>
+              </li>
+              <li class="nav-item nav-link">
+                <a id="addBlog" class="active" aria-current="page" href="createBlog.html">Inserisci un blog</a>
+              </li>
+              <li class="nav-item nav-link">
+                <div class="container swiper px-3">
+                  <p class="text-black px-4 text-white">Fai una Donazione</p>
+                  <form action="https://www.paypal.com/donate" method="post" target="_top">
+                    <input type="hidden" name="business" value="sozhunu@gmail.com">
+                    <input type="hidden" name="no_recurring" value="0">
+                    <input type="hidden" name="item_name" value="Sostieni il nostro sito">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <button type="submit" class="btn-donazione">
+                      <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" alt="PayPal Logo">
+                    </button>
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<section id="banner" class="video m-0">
+  <figure class="section-overlay">
+    <video id="banner-player" autoplay loop muted playsinline poster=""></video>
+    <div id="banner-content">
+      <h1 id="titleTrailer" class="text-white"></h1>
+      <a id="playMovie" class="text-white" href="">
+        <svg id="play" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" height="50px" width="50px"
+             viewBox="0 0 100 100" xml:space="preserve">
+          <path class="stroke-solid" fill="none" d="M49.9,2.5C23.6,2.8,2.1,24.4,2.5,50.4C2.9,76.5,24.7,98,50.3,97.5c26.4-0.6,47.4-21.8,47.2-47.7
+            C97.3,23.7,75.7,2.3,49.9,2.5"/>
+          <path class="icon" d="M38,69c-1,0.5-1.8,0-1.8-1.1V32.1c0-1.1,0.8-1.6,1.8-1.1l34,18c1,0.5,1,1.4,0,1.9L38,69z"/>
+        </svg>
+      </a>
+    </div>
+  </figure>
+</section>
+<div class="container swiper px-3 trending-section" id="ditendenza"  style="background-color: rgba(0,0,0,0.7)">
+  <h1 class="text-white px-4">Esplora su Surio</h1>
+  <div class="slide-container slide-container1">
+    <div id="trending" class="card-wrapper swiper-wrapper">
+    </div>
+  </div>
+  <div class="swiper-pager">
+    <div class="swiper-button-next swiper-button-next1"></div>
+    <div class="swiper-button-prev swiper-button-prev1"></div>
+  </div>
+  <div class="swiper-pagination1" id="end"></div>
+</div>
+<div id="results-container" class="box">
+</div>
+
+<div class="container swiper px-3" id="continue">
+  <h1 class="text-white px-4">Continua a guardare</h1>
+  <div class="slide-container slide-container45">
+    <div id="continua_guardare" class="card-wrapper swiper-wrapper">
+    </div>
+  </div>
+  <div class="swiper-pager">
+    <div class="swiper-button-next swiper-button-next45"></div>
+    <div class="swiper-button-prev swiper-button-prev45"></div>
+  </div>
+  <div class="swiper-pagination45"></div>
+</div>
+<div class="container swiper px-3 trending-section mt-5" id="added_recently"  style="background-color: rgba(255,255,255,0)">
+  <h1 class="text-white px-4">Aggiunti di recente</h1>
+  <div class="slide-container slide-container46">
+    <div id="added_r" class="card-wrapper swiper-wrapper">
+    </div>
+  </div>
+  <div class="swiper-pager">
+    <div class="swiper-button-next swiper-button-next46"></div>
+    <div class="swiper-button-prev swiper-button-prev46"></div>
+  </div>
+  <div class="swiper-pagination46"></div>
+</div>
+
+<div class="container1 text-white" id="container1">
+  <div class="tabs">
+    <input type="radio" id="radio-1" name="tabs" onclick="openPage('generi')" checked />
+    <label class="tab" for="radio-1">Generi</label>
+    <input type="radio" id="radio-2" name="tabs" onclick="openPage('collezioni')" />
+    <label class="tab" for="radio-2">Collezioni</label>
+    <input type="radio" id="radio-3" name="tabs" onclick="openPage('saga')" />
+    <label class="tab" for="radio-3">Saga</label>
+    <span class="glider"></span>
+  </div>
+</div>
+
+<div id="all-page">
+
+  <div id="categories">
+  </div>
+  <div id="all">
+    <div id="collezioni" style="display: none">
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Studio Ghibli</h1>
+        <div class="slide-container slide-container4">
+          <div id="2" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next4"></div>
+          <div class="swiper-button-prev swiper-button-prev4"></div>
+        </div>
+        <div class="swiper-pagination4"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">PIXAR</h1>
+        <div class="slide-container slide-container6">
+          <div id="4" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next6"></div>
+          <div class="swiper-button-prev swiper-button-prev6"></div>
+        </div>
+        <div class="swiper-pagination6"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">A24</h1>
+        <div class="slide-container slide-container26">
+          <div id="7" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next26"></div>
+          <div class="swiper-button-prev swiper-button-prev26"></div>
+        </div>
+        <div class="swiper-pagination26"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Versioni IMAX</h1>
+        <div class="slide-container slide-container3">
+          <div id="5" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next3"></div>
+          <div class="swiper-button-prev swiper-button-prev3"></div>
+        </div>
+        <div class="swiper-pagination3"></div>
+      </div>
+    </div>
+    <div id="saga" style="display: none">
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Il Signore degli Anelli & Lo Hobbit</h1>
+        <div class="slide-container slide-container39">
+          <div id="12_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next39"></div>
+          <div class="swiper-button-prev swiper-button-prev39"></div>
+        </div>
+        <div class="swiper-pagination39"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Marvel Cinematic Universe</h1>
+        <div class="slide-container slide-container42">
+          <div id="15_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next42"></div>
+          <div class="swiper-button-prev swiper-button-prev42"></div>
+        </div>
+        <div class="swiper-pagination42"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">DC Extended Universe</h1>
+        <div class="slide-container slide-container48">
+          <div id="17_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next48"></div>
+          <div class="swiper-button-prev swiper-button-prev48"></div>
+        </div>
+        <div class="swiper-pagination48"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Star Wars</h1>
+        <div class="slide-container slide-container5">
+          <div id="1_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next5"></div>
+          <div class="swiper-button-prev swiper-button-prev5"></div>
+        </div>
+        <div class="swiper-pagination5"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Harry Potter</h1>
+        <div class="slide-container slide-container34">
+          <div id="9_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next34"></div>
+          <div class="swiper-button-prev swiper-button-prev34"></div>
+        </div>
+        <div class="swiper-pagination34"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Pirati dei Caraibi</h1>
+        <div class="slide-container slide-container35">
+          <div id="7_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next35"></div>
+          <div class="swiper-button-prev swiper-button-prev35"></div>
+        </div>
+        <div class="swiper-pagination35"></div>
+      </div>
+      <div class="container swiper px-3" style="display: none">
+        <h1 class="text-white px-4">Mad Max</h1>
+        <div class="slide-container slide-container40">
+          <div id="13_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next40"></div>
+          <div class="swiper-button-prev swiper-button-prev40"></div>
+        </div>
+        <div class="swiper-pagination40"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Jurassic Park & Jurassic World</h1>
+        <div class="slide-container slide-container36">
+          <div id="11_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next36"></div>
+          <div class="swiper-button-prev swiper-button-prev36"></div>
+        </div>
+        <div class="swiper-pagination36"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Scooby-Doo</h1>
+        <div class="slide-container slide-container41">
+          <div id="14_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next41"></div>
+          <div class="swiper-button-prev swiper-button-prev41"></div>
+        </div>
+        <div class="swiper-pagination41"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Indiana Jones</h1>
+        <div class="slide-container slide-container38">
+          <div id="8_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next38"></div>
+          <div class="swiper-button-prev swiper-button-prev38"></div>
+        </div>
+        <div class="swiper-pagination38"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Shrek</h1>
+        <div class="slide-container slide-container37">
+          <div id="10_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next37"></div>
+          <div class="swiper-button-prev swiper-button-prev37"></div>
+        </div>
+        <div class="swiper-pagination37"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Transformers</h1>
+        <div class="slide-container slide-container29">
+          <div id="2_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next29"></div>
+          <div class="swiper-button-prev swiper-button-prev29"></div>
+        </div>
+        <div class="swiper-pagination29"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Ghostbusters</h1>
+        <div class="slide-container slide-container30">
+          <div id="3_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next30"></div>
+          <div class="swiper-button-prev swiper-button-prev30"></div>
+        </div>
+        <div class="swiper-pagination30"></div>
+      </div>
+      <div class="container swiper px-3" style="display: none">
+        <h1 class="text-white px-4">Toy Story</h1>
+        <div class="slide-container slide-container31">
+          <div id="4_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next31"></div>
+          <div class="swiper-button-prev swiper-button-prev31"></div>
+        </div>
+        <div class="swiper-pagination31"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Scary Movie</h1>
+        <div class="slide-container slide-container32">
+          <div id="5_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next32"></div>
+          <div class="swiper-button-prev swiper-button-prev32"></div>
+        </div>
+        <div class="swiper-pagination32"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">American Pie</h1>
+        <div class="slide-container slide-container33">
+          <div id="6_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next33"></div>
+          <div class="swiper-button-prev swiper-button-prev33"></div>
+        </div>
+        <div class="swiper-pagination33"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Star Trek</h1>
+        <div class="slide-container slide-container47">
+          <div id="16_saga" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next47"></div>
+          <div class="swiper-button-prev swiper-button-prev47"></div>
+        </div>
+        <div class="swiper-pagination47"></div>
+      </div>
+    </div>
+    <div id="generi">
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Azione</h1>
+        <div class="slide-container slide-container7">
+          <div id="28" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next7"></div>
+          <div class="swiper-button-prev swiper-button-prev7"></div>
+        </div>
+        <div class="swiper-pagination7"></div>
+      </div>
+
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Commedia</h1>
+        <div class="slide-container slide-container8">
+          <div id="35" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next8"></div>
+          <div class="swiper-button-prev swiper-button-prev8"></div>
+        </div>
+        <div class="swiper-pagination8"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Avventura</h1>
+        <div class="slide-container slide-container9">
+          <div id="12" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next9"></div>
+          <div class="swiper-button-prev swiper-button-prev9"></div>
+        </div>
+        <div class="swiper-pagination9"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Fantasy</h1>
+        <div class="slide-container slide-container10">
+          <div id="14" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next10"></div>
+          <div class="swiper-button-prev swiper-button-prev10"></div>
+        </div>
+        <div class="swiper-pagination10"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Animazione</h1>
+        <div class="slide-container slide-container11">
+          <div id="16" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next11"></div>
+          <div class="swiper-button-prev swiper-button-prev11"></div>
+        </div>
+        <div class="swiper-pagination11"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Romantico</h1>
+        <div class="slide-container slide-container12">
+          <div id="10749" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next12"></div>
+          <div class="swiper-button-prev swiper-button-prev12"></div>
+        </div>
+        <div class="swiper-pagination12"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Dramma</h1>
+        <div class="slide-container slide-container13">
+          <div id="18" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next13"></div>
+          <div class="swiper-button-prev swiper-button-prev13"></div>
+        </div>
+        <div class="swiper-pagination13"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Storia</h1>
+        <div class="slide-container slide-container14">
+          <div id="36" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next14"></div>
+          <div class="swiper-button-prev swiper-button-prev14"></div>
+        </div>
+        <div class="swiper-pagination14"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Western</h1>
+        <div class="slide-container slide-container15">
+          <div id="37" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next15"></div>
+          <div class="swiper-button-prev swiper-button-prev15"></div>
+        </div>
+        <div class="swiper-pagination15"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Thriller</h1>
+        <div class="slide-container slide-container16">
+          <div id="53" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next16"></div>
+          <div class="swiper-button-prev swiper-button-prev16"></div>
+        </div>
+        <div class="swiper-pagination16"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Crime</h1>
+        <div class="slide-container slide-container17">
+          <div id="80" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next17"></div>
+          <div class="swiper-button-prev swiper-button-prev17"></div>
+        </div>
+        <div class="swiper-pagination17"></div>
+      </div>
+      <div class="container swiper px-3" style="display: none">
+        <h1 class="text-white px-4">Documentario</h1>
+        <div class="slide-container slide-container18">
+          <div id="99" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next18"></div>
+          <div class="swiper-button-prev swiper-button-prev18"></div>
+        </div>
+        <div class="swiper-pagination18"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Fantascienza</h1>
+        <div class="slide-container slide-container19">
+          <div id="878" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next19"></div>
+          <div class="swiper-button-prev swiper-button-prev19"></div>
+        </div>
+        <div class="swiper-pagination19"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Mistero</h1>
+        <div class="slide-container slide-container20">
+          <div id="9648" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next20"></div>
+          <div class="swiper-button-prev swiper-button-prev20"></div>
+        </div>
+        <div class="swiper-pagination20"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Musica</h1>
+        <div class="slide-container slide-container21">
+          <div id="10402" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next21"></div>
+          <div class="swiper-button-prev swiper-button-prev21"></div>
+        </div>
+        <div class="swiper-pagination21"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Famiglia</h1>
+        <div class="slide-container slide-container22">
+          <div id="10751" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next22"></div>
+          <div class="swiper-button-prev swiper-button-prev22"></div>
+        </div>
+        <div class="swiper-pagination22"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Guerra</h1>
+        <div class="slide-container slide-container23">
+          <div id="10752" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next23"></div>
+          <div class="swiper-button-prev swiper-button-prev23"></div>
+        </div>
+        <div class="swiper-pagination23"></div>
+      </div>
+      <div class="container swiper px-3" style="display: none">
+        <h1 class="text-white px-4">Televisione film</h1>
+        <div class="slide-container slide-container24">
+          <div id="10770" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next24"></div>
+          <div class="swiper-button-prev swiper-button-prev24"></div>
+        </div>
+        <div class="swiper-pagination24"></div>
+      </div>
+      <div class="container swiper px-3">
+        <h1 class="text-white px-4">Horror</h1>
+        <div class="slide-container slide-container25">
+          <div id="27" class="card-wrapper swiper-wrapper">
+          </div>
+        </div>
+        <div class="swiper-pager">
+          <div class="swiper-button-next swiper-button-next25"></div>
+          <div class="swiper-button-prev swiper-button-prev25"></div>
+        </div>
+        <div class="swiper-pagination25"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="js/swiper-bundle.min.js"></script>
+<script type="module" src="js/live-search.js"></script>
+<script type="module" src="js/home.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/request.js"></script>
+<script src="js/cookie.js"></script>
+<script type="module" src="js/isAdmin.js"></script>
+<script>
+  document.getElementById('search-bar').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  });
+</script>
+
+</body>
+</html>
