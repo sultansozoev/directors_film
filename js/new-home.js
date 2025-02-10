@@ -272,14 +272,6 @@ function categoryGenreSaga(url, id_container, api, id) {
     });
 }
 
-const categoryUrl = `${apiUrl}/getCategories`;
-const categoryApi = "/getMoviesByCategory?category=";
-categoryGenreSaga(categoryUrl, "", categoryApi, "category_id");
-
-const sagaUrl = `${apiUrl}/getSagas`;
-const sagaApi = "/getMoviesBySaga?saga=";
-categoryGenreSaga(sagaUrl, "_saga", sagaApi, "saga_id");
-
 const genreUrl = `${apiUrl}/getGenres`;
 const genreApi = "/getAllByGenre?genre=";
 categoryGenreSaga(genreUrl, "", genreApi, "genre_id");

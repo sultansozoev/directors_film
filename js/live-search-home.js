@@ -28,7 +28,8 @@ searchBar.addEventListener("input", (event) => {
 
   all.style.display = "none";
   ditendenza.style.display = "none";
-  container1.style.display = "none";
+  if (container1)
+    container1.style.display = "none";
   continueContainer.style.display = "none";
   banner.style.display = "none";
   addedRecently.style.display = "none";
