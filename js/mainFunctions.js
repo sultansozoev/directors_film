@@ -42,10 +42,7 @@ export function searchTitleAll(url, results_container) {
     method: 'GET'
   })
     .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      const films = data.films;
-
+    .then(async data => {
       results_container.innerHTML = '';
 
       films.forEach(movie => {
