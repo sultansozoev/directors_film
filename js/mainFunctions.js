@@ -45,7 +45,7 @@ export function searchTitleAll(url, results_container) {
     .then(async data => {
       results_container.innerHTML = '';
 
-      films.forEach(movie => {
+      for (const movie of data) {
         const movieCard = document.createElement('div');
         movieCard.classList.add('movie-card');
 
