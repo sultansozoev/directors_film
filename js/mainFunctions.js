@@ -39,7 +39,7 @@ export function searchTitleAll(url, results_container) {
     headers: {
       'Content-Type': 'application/json'
     },
-    method: 'POST'
+    method: 'GET'
   })
     .then(response => response.json())
     .then(data => {
