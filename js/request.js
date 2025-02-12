@@ -1,11 +1,11 @@
-function addRequest(title, poster, vote_average, req_id, type, user_id) {
+function addRequest(title, year, poster, vote_average, req_id, type, user_id) {
   const url = `https://surio.ddns.net/addList`;
   fetch(url, {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    body: JSON.stringify({user_id, poster, vote_average, req_id: req_id, type, title})
+    body: JSON.stringify({user_id, year, poster, vote_average, req_id: req_id, type, title})
   }).then(response => response.json())
     .then(data => {
       const modal = document.getElementById("modal");
@@ -15,6 +15,7 @@ function addRequest(title, poster, vote_average, req_id, type, user_id) {
       } else if (data === "Record exists") {
         modal.innerHTML = `'${title}' è già presente nel sito`;
       } else {
+        console.log(year)
         modal.innerHTML = `'${title}' è stato inserito nella lista delle richieste`;
       }
     })

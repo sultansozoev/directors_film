@@ -63,9 +63,9 @@ function fetchList(url, container, user_id) {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        spanDate.innerHTML = `${day}/${month}/${year} - ${hours}:${minutes}`;
+        /*const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');*/
+        spanDate.innerHTML = `${day}/${month}/${year}`;
         infoSection.appendChild(labelDate);
         infoSection.appendChild(spanDate);
 
@@ -87,19 +87,19 @@ function fetchList(url, container, user_id) {
         infoSectionType.appendChild(labelType);
         infoSectionType.appendChild(spanType);
 
-        const infoSectionId = document.createElement('div');
-        infoSectionId.classList.add('info-section');
-        const labelId = document.createElement('label');
-        labelId.innerHTML = "ID";
-        const spanId = document.createElement('span');
-        spanId.innerHTML = list.request_id;
-        infoSectionId.appendChild(labelId);
-        infoSectionId.appendChild(spanId);
+        const infoSectionYear = document.createElement('div');
+        infoSectionYear.classList.add('info-section');
+        const labelYear = document.createElement('label');
+        labelYear.innerHTML = "Anno";
+        const spanYear = document.createElement('span');
+        spanYear.innerHTML = list.year;
+        infoSectionYear.appendChild(labelYear);
+        infoSectionYear.appendChild(spanYear);
 
         movieInfo.appendChild(infoSection);
         movieInfo.appendChild(infoSectionUser);
         movieInfo.appendChild(infoSectionType);
-        movieInfo.appendChild(infoSectionId);
+        movieInfo.appendChild(infoSectionYear);
 
         movieContent.appendChild(movieContentHeader);
         movieContent.appendChild(movieInfo);

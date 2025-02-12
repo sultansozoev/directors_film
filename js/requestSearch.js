@@ -27,9 +27,15 @@ searchBar.addEventListener("input", (event) => {
       films.forEach(movie => {
         if ('poster_path' in movie && movie.poster_path != null) {
           let t = movie.media_type === 'tv' ? movie.name : movie.title;
+          let d = movie.media_type === 'tv' ? movie.first_air_date : movie.release_date;
+          const date = new Date(d);
+          const day = String(date.getDate()).padStart(2, '0');
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const year = date.getFullYear();
           const movieLink = document.createElement('a');
           movieLink.setAttribute('href', `javascript:void(0)`);
-          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(t)}, '${movie.poster_path}', '${movie.vote_average}', '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`);
+          movieLink.setAttribute('onclick', `addRequest(${JSON.stringify(t)}, ${year}, '${movie.poster_path}',
+           '${movie.vote_average}', '${movie.id}', '${movie.media_type}', '${getCookie('user')}')`);
 
           const cardDiv = document.createElement('div');
           cardDiv.classList.add('movie-card');
@@ -72,11 +78,6 @@ searchBar.addEventListener("input", (event) => {
           const labelDate = document.createElement('label');
           labelDate.innerHTML = "Data di uscita";
           const spanDate = document.createElement('span');
-          let date = new Date(movie.release_date);
-          if (movie.media_type === 'tv') date = new Date(movie.first_air_date);
-          const day = String(date.getDate()).padStart(2, '0');
-          const month = String(date.getMonth() + 1).padStart(2, '0');
-          const year = date.getFullYear();
           spanDate.innerHTML = `${day}/${month}/${year}`;
           infoSection.appendChild(labelDate);
           infoSection.appendChild(spanDate);
