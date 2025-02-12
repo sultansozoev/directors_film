@@ -64,7 +64,7 @@ export function searchTitleAll(url, results_container) {
         movieCard.appendChild(movieLink);
 
         results_container.appendChild(movieCard);
-      });
+      }
     })
     .catch(error => {
       console.error('Error fetching films:', error);
