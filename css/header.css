@@ -59,19 +59,35 @@ form#search-bar {
     max-width: 300px;
   }
 }
-
 @media screen and (max-width: 768px) {
-  .navbar .justify-content-start,
-  .navbar .justify-content-end {
+  /* Nasconde tutti gli elementi tranne la barra di ricerca e il pulsante offcanvas */
+  .navbar .justify-content-start {
     display: none !important;
   }
 
-  .navbar .justify-content-center, .d-flex .justify-content-end .align-items-center {
+  /* Mantiene visibile solo la barra di ricerca */
+  .navbar .justify-content-center {
     flex: 1;
     display: flex;
     justify-content: center;
   }
 
+  /* Mostra il pulsante offcanvas */
+  .navbar .justify-content-end {
+    display: flex !important;
+    align-items: center;
+  }
+
+  .navbar-toggler {
+    display: block !important;
+    visibility: visible !important;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    background-color: #000; /* Mantiene il colore di sfondo */
+  }
+
+  /* Riduzione del padding per ottimizzare lo spazio */
   header {
     grid-template-columns: 1fr;
     padding: 10px;
@@ -85,18 +101,21 @@ form#search-bar {
 @media screen and (max-width: 480px) {
   header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 10px;
   }
 
-  .navbar, .d-flex .justify-content-end .align-items-center  {
+  .navbar {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
   }
 
+  /* Limita la larghezza della barra di ricerca */
   form#search-bar {
     max-width: 200px;
   }
 }
+
