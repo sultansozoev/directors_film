@@ -65,13 +65,21 @@ form#search-bar {
 }
 
 @media screen and (max-width: 768px) {
-  header {
-    grid-template-columns: 1fr 2fr 1fr;
-    padding: 15px;
+  /* Nascondi tutto tranne la barra di ricerca e il pulsante offcanvas */
+  .navbar .justify-content-start,
+  .navbar .justify-content-end {
+    display: none;
   }
 
-  img {
-    width: clamp(120px, 12vw, 160px); /* Riduzione delle immagini */
+  .navbar .justify-content-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  header {
+    grid-template-columns: 1fr;
+    padding: 10px;
   }
 
   form#search-bar {
@@ -88,8 +96,9 @@ form#search-bar {
   }
 
   .navbar {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
 
   form#search-bar {
