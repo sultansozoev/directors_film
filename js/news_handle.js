@@ -19,8 +19,8 @@ function fetchBlog(url, container) {
         blogCover.classList.add('blog-cover');
         blogCover.style.background = `url("${request.background_image}") no-repeat center center`;
         blogCover.style.backgroundSize = 'cover';
-        blogCover.style.borderRadius = '5px 5px 0 0';
-        blogCover.style.height = '15rem';
+        blogCover.style.borderRadius = '10% 10% 0 0';
+        blogCover.style.height = '35rem';
         blogCover.style.boxShadow = 'inset rgba(0, 0, 0, 0.2) 0 64px 64px 16px';
         const blogAuthor = document.createElement('div');
         blogAuthor.classList.add('blog-author');

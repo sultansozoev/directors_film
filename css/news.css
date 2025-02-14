@@ -11,7 +11,7 @@ h1, h2, p {
 
 .blog-container {
   background: #fff;
-  border-radius: 5px;
+  border-radius: 10%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;
   font-family: "adelle-sans", sans-serif;
   font-weight: 100;
@@ -30,7 +30,7 @@ h1, h2, p {
 }
 @media screen and (min-width: 959px) {
   .blog-container {
-    width: 40rem;
+    width: 60rem;
   }
 }
 
@@ -42,13 +42,6 @@ h1, h2, p {
 .blog-container a:hover {
   border-color: #ff4d4d;
   color: #ff4d4d;
-}
-
-.blog-cover {
-  background-size: cover;
-  border-radius: 5px 5px 0 0;
-  height: 15rem;
-  box-shadow: inset rgba(0, 0, 0, 0.2) 0 64px 64px 16px;
 }
 
 .blog-author{
