@@ -48,7 +48,8 @@ function fetchBlog(url, container) {
         blogBody.classList.add('blog-body');
         const blogTitle = document.createElement('div');
         blogTitle.classList.add('blog-title');
-        let title = document.createElement('h1');
+        let title = document.createElement('h2');
+        title.classList.add('py-3');
         title.innerText = request.title;
         blogTitle.append(title);
         const blogSummary = document.createElement('div');
