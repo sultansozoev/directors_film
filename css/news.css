@@ -30,7 +30,7 @@ h1, h2, p {
 }
 @media screen and (min-width: 959px) {
   .blog-container {
-    width: 60rem;
+    width: 50rem;
   }
 }
 
