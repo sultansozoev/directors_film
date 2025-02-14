@@ -80,6 +80,7 @@ function fetchBlog(url, container) {
         useEdit.setAttribute("href", "#icon-edit");
         svgEdit.appendChild(useEdit);
         editButton.append(svgEdit);
+        svgEdit.style.display = 'none';
 
         const svgSave = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgSave.setAttribute("class", "icon-save");
@@ -96,6 +97,26 @@ function fetchBlog(url, container) {
         ul.append(editButton);
         blogFooter.append(ul);
         blogDiv.append(blogHeader, blogBody, blogFooter);
+
+        const user_id = getCookie("user");
+        fetch(`${apiUrl}/isAdmin`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify({ user_id })
+        })
+          .then(response => response.json())
+          .then(data => {
+
+            if (data[0].admin === 1) {
+              console.log(data)
+              svgEdit.style.display = 'inline-block';
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching films:', error);
+          });
 
         svgEdit.addEventListener('click', () => {
           const titleInput = document.createElement('input');
