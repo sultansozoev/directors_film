@@ -11,64 +11,154 @@ function fetchBlog(url, container) {
     .then(data => {
       data.forEach(request => {
         const blogDiv = document.createElement('div');
-        blogDiv.classList.add('blog-slider__item', 'swiper-slide');
+        blogDiv.classList.add('blog-container');
+        const blogHeader = document.createElement('div');
+        blogHeader.classList.add('blog-header');
 
-        const imgDiv = document.createElement('div');
-        imgDiv.classList.add('blog-slider__img');
-        const img = document.createElement('img');
-        img.src = request.background_image;
-        imgDiv.appendChild(img);
+        const blogCover = document.createElement('div');
+        blogCover.classList.add('blog-cover');
+        blogCover.style.background = `url("${request.background_image}") no-repeat center center`;
+        blogCover.style.backgroundSize = 'cover';
+        blogCover.style.borderRadius = '5px 5px 0 0';
+        blogCover.style.height = '15rem';
+        blogCover.style.boxShadow = 'inset rgba(0, 0, 0, 0.2) 0 64px 64px 16px';
+        const blogAuthor = document.createElement('div');
+        blogAuthor.classList.add('blog-author');
 
-        const blogContent = document.createElement('div');
-        blogContent.classList.add('blog-slider__content');
+        const avatar = document.createElement('div');
+        avatar.style.background = `url("${request.image}") no-repeat center center`;
+        avatar.style.backgroundSize = 'cover';
+        avatar.style.width = "32px";
+        avatar.style.height = "32px";
+        avatar.style.borderRadius = "50%";
+        avatar.style.marginRight = "0.5rem";
+        avatar.style.display = "inline-block";
+        avatar.style.verticalAlign = "middle";
 
-        const spanContent = document.createElement('span');
-        const date = new Date(request.added_date);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        spanContent.innerHTML = `${day}/${month}/${year}, ${request.username}`;
-        spanContent.classList.add('blog-slider__code');
+        const author = document.createElement('h3');
+        author.innerText = request.username;
+        author.style.display = "inline-block";
+        author.style.verticalAlign = "middle";
 
-        const title = document.createElement('div');
-        title.innerHTML = request.title;
-        title.classList.add('blog-slider__title');
+        blogAuthor.append(avatar, author);
+        blogCover.append(blogAuthor);
+        blogHeader.append(blogCover);
 
-        const text = document.createElement('div');
-        text.innerHTML = request.description;
-        text.classList.add('blog-slider__text');
+        const blogBody = document.createElement('div');
+        blogBody.classList.add('blog-body');
+        const blogTitle = document.createElement('div');
+        blogTitle.classList.add('blog-title');
+        let title = document.createElement('h1');
+        title.innerText = request.title;
+        blogTitle.append(title);
+        const blogSummary = document.createElement('div');
+        blogSummary.classList.add('blog-summary');
+        let summary = document.createElement('p');
+        summary.innerText = request.description;
+        blogSummary.append(summary);
+        blogBody.append(blogTitle);
+        blogBody.append(blogSummary);
 
-        blogContent.appendChild(spanContent);
-        blogContent.appendChild(title);
-        blogContent.appendChild(text);
-        blogDiv.appendChild(imgDiv);
-        blogDiv.appendChild(blogContent);
-        container.appendChild(blogDiv);
-      });
+        const blogFooter = document.createElement('div');
+        blogFooter.classList.add('blog-footer', 'pt-3');
 
-      setTimeout(() => {
-        const swiper = new Swiper('.blog-slider', {
-          spaceBetween: 30,
-          effect: 'fade',
-          loop: true,
-          mousewheel: {
-            invert: false,
-          },
-          pagination: {
-            el: '.blog-slider__pagination',
-            clickable: true,
-          }
+        const ul = document.createElement('ul');
+        const date = document.createElement('li');
+        date.classList.add('published-date');
+        const dateConverted = new Date(request.added_date);
+        date.innerHTML = `${dateConverted.getDate().toString().padStart(2, '0')}/${(dateConverted.getMonth() + 1).toString().padStart(2, '0')}/${dateConverted.getFullYear()}`;
+
+        const editButton = document.createElement('li');
+        editButton.classList.add('shares');
+
+        const svgEdit = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svgEdit.setAttribute("class", "icon-edit");
+        svgEdit.setAttribute("width", "24");
+        svgEdit.setAttribute("height", "24");
+        svgEdit.setAttribute("viewBox", "0 0 1024 1024");
+        const useEdit = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        useEdit.setAttribute("href", "#icon-edit");
+        svgEdit.appendChild(useEdit);
+        editButton.append(svgEdit);
+
+        const svgSave = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svgSave.setAttribute("class", "icon-save");
+        svgSave.setAttribute("width", "24");
+        svgSave.setAttribute("height", "24");
+        svgSave.setAttribute("viewBox", "0 0 1024 1024");
+        const useSave = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        useSave.setAttribute("href", "#icon-save");
+        svgSave.appendChild(useSave);
+        editButton.append(svgSave);
+        svgSave.style.display = 'none';
+
+        ul.append(date);
+        ul.append(editButton);
+        blogFooter.append(ul);
+        blogDiv.append(blogHeader, blogBody, blogFooter);
+
+        svgEdit.addEventListener('click', () => {
+          const titleInput = document.createElement('input');
+          titleInput.value = title.innerText;
+          titleInput.classList.add('blog-slider__title');
+
+          const textArea = document.createElement('span');
+          textArea.innerText = summary.innerText;
+          textArea.contentEditable = "true";
+          textArea.classList.add('blog-slider__text', 'textarea');
+
+          blogTitle.replaceChild(titleInput, title);
+          blogSummary.replaceChild(textArea, summary);
+
+          title = titleInput;
+          summary = textArea;
+
+          svgSave.style.display = 'inline-block';
+          svgEdit.style.display = 'none';
         });
 
-        swiper.update();
-      }, 0);
+        svgSave.addEventListener('click', () => {
+          const newTitle = document.createElement('h2');
+          newTitle.classList.add('blog-slider__title');
+          newTitle.innerText = title.value;
 
+          const newSummary = document.createElement('p');
+          newSummary.classList.add('blog-slider__text');
+          newSummary.innerText = summary.innerText;
+
+          blogTitle.replaceChild(newTitle, title);
+          blogSummary.replaceChild(newSummary, summary);
+
+          title = newTitle;
+          summary = newSummary;
+
+          updateBlog(request.blog_id, title.innerText, summary.innerText);
+
+          svgSave.style.display = 'none';
+          svgEdit.style.display = 'inline-block';
+        });
+
+
+        container.appendChild(blogDiv);
+      });
     })
-    .catch(error => {
-      console.error('Error fetching films:', error);
-    });
+    .catch(error => console.error('Errore nel recupero dei blog:', error));
 }
 
-const container = document.getElementById('blog-slider');
+function updateBlog(id, newTitle, newText) {
+  fetch(`${apiUrl}/updateBlog`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ blog_id: id, title: newTitle, description: newText })
+  })
+    .then(response => response.json())
+    .then(data => {
+
+    })
+    .catch(error => console.error(`Errore durante l'aggiornamento:`, error));
+}
+
+
+const container = document.getElementById('container');
 const url = `${apiUrl}/getAllBlogs`;
 fetchBlog(url, container);

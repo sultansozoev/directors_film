@@ -26,7 +26,7 @@ form.addEventListener("submit", async function (event) {
 
     const movies = movieData.results;
     const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-    let background_image = randomMovie ? randomMovie.poster_path : "";
+    let background_image = randomMovie ? randomMovie.backdrop_path : "";
     background_image = "https://image.tmdb.org/t/p/original/" + background_image;
     const response = await fetch(`${apiUrl}/addBlog`, {
       method: "POST",
