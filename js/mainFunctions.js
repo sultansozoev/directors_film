@@ -108,7 +108,7 @@ function getMovieUrl(movie_id, type) {
 
 async function checkIfFavorite(movie_id, favoriteIcon, type) {
   let getFavouriteUrl = type === 'tv' ? `${apiUrl}/getFavouriteTV` : `${apiUrl}/getFavourite`;
-  console.log(type === 'tv');
+
   const user_id = getCookie("user");
   try {
     const response = await fetch(getFavouriteUrl, {
