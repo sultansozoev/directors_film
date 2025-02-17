@@ -1,5 +1,5 @@
 import { apiUrl } from '../api/config.js';
-import { searchTitle } from './mainFunctions.js';
+import { searchTitleAll} from './mainFunctions.js';
 
 const searchBar = document.querySelector("[data-search]");
 const results_container = document.getElementById("results-container");
@@ -25,12 +25,11 @@ searchBar.addEventListener("input", (event) => {
   }
   header.scrollIntoView({ behavior: "smooth" });
   const url = `${apiUrl}/search?title=` + searchValue;
-  const urlPlayer = `new-player.html?film=`;
   all.style.display = "none";
   ditendenza.style.display = "none";
   container1.style.display = "none";
   continueContainer.style.display = "none";
   banner.style.display = "none";
   addedRecently.style.display = "none";
-  searchTitle(url, results_container, urlPlayer,'movie_id');
+  searchTitleAll(url, results_container, "movie");
 });

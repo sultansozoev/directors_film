@@ -1,5 +1,5 @@
 import { apiUrl } from '../api/config.js';
-import {searchTitle, searchTitleAll} from './mainFunctions.js';
+import {searchTitleAll} from './mainFunctions.js';
 
 const searchBar = document.querySelector("[data-search]");
 const results_container = document.getElementById("results-container");
@@ -12,18 +12,19 @@ const banner = document.getElementById("banner");
 const addedRecently = document.getElementById("added_recently");
 results_container.innerText = "";
 
-searchBar.addEventListener("input", (event) => {
+searchBar.addEventListener("input", async (event) => {
   let searchValue = event.target.value.trim().toLowerCase();
   results_container.innerText = "";
   if (searchValue.length === 0 || searchValue === '') {
     all.style.display = "block";
     ditendenza.style.display = "block";
-    container1.style.display = "";
+    if (container1)
+      container1.style.display = "";
     banner.style.display = "block";
     addedRecently.style.display = "block";
     return;
   }
-  header.scrollIntoView({ behavior: "smooth" });
+  header.scrollIntoView({behavior: "smooth"});
   const url = `${apiUrl}/searchAll?title=` + searchValue;
 
   all.style.display = "none";
