@@ -53,10 +53,17 @@ function showPage() {
 }
 
 if (load !== null) {
-  const timeoutId = setTimeout(showPage, 2000);
+  const timeoutId = setTimeout(() => {
+    showPage();
+    document.removeEventListener('keydown', keyHandler);
+  }, 2000);
 
-  document.addEventListener('keydown', function() {
+  function keyHandler() {
     clearTimeout(timeoutId);
     showPage();
-  });
+    document.removeEventListener('keydown', keyHandler);
+  }
+
+  document.addEventListener('keydown', keyHandler);
+
 }
