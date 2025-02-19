@@ -42,28 +42,43 @@ function showPage() {
   const tabs = document.getElementById('container1');
   const continueContainer = document.getElementById('continue');
   const addedRecently = document.getElementById('added_recently');
+  const voted = document.getElementById('voted');
   load.style.display = 'none';
   if (tabs)
     tabs.style.display = '';
   banner.style.display = 'block';
+  voted.style.display = 'block';
   continueContainer.style.display = 'inline-block';
   allPage.style.display = 'block';
   ditendenza.style.display = 'block';
   addedRecently.style.display = 'block';
 }
+document.addEventListener("DOMContentLoaded", function () {
+  if (load !== null) {
+    const timeoutId = setTimeout(() => {
+      showPage();
+      document.removeEventListener('keydown', keyHandler);
+    }, 2000);
 
-if (load !== null) {
-  const timeoutId = setTimeout(() => {
-    showPage();
-    document.removeEventListener('keydown', keyHandler);
-  }, 2000);
+    function keyHandler() {
+      clearTimeout(timeoutId);
+      showPage();
+      document.removeEventListener('keydown', keyHandler);
+    }
 
-  function keyHandler() {
-    clearTimeout(timeoutId);
-    showPage();
-    document.removeEventListener('keydown', keyHandler);
+    const audioElement = document.getElementById("welcome-audio");
+
+    if (audioElement) {
+      audioElement.muted = false;
+      audioElement.play().then(() => {
+        setTimeout(() => {
+          audioElement.muted = false; // Rimuove il muto dopo un breve ritardo
+        }, 1);
+      }).catch(error => {
+        console.log("Riproduzione automatica bloccata. L'utente deve interagire con la pagina.", error);
+      });
+    }
+    document.addEventListener('keydown', keyHandler);
+
   }
-
-  document.addEventListener('keydown', keyHandler);
-
-}
+})

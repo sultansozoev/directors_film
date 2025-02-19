@@ -10,6 +10,7 @@ const continueContainer = document.getElementById("continue");
 const header = document.getElementById("header");
 const banner = document.getElementById("banner");
 const addedRecently = document.getElementById("added_recently");
+const voted = document.getElementById("voted");
 results_container.innerText = "";
 
 searchBar.addEventListener("input", async (event) => {
@@ -17,6 +18,7 @@ searchBar.addEventListener("input", async (event) => {
   results_container.innerText = "";
   if (searchValue.length === 0 || searchValue === '') {
     all.style.display = "block";
+    voted.style.display = "block";
     ditendenza.style.display = "block";
     if (container1)
       container1.style.display = "";
@@ -29,6 +31,7 @@ searchBar.addEventListener("input", async (event) => {
 
   all.style.display = "none";
   ditendenza.style.display = "none";
+  voted.style.display = "none";
   if (container1)
     container1.style.display = "none";
   continueContainer.style.display = "none";

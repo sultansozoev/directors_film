@@ -136,6 +136,10 @@ const trendingUrl = `${apiUrl}/getTrending`;
 const moviesContainer = document.getElementById("trending");
 fetchMovies(trendingUrl, moviesContainer, "movie");
 
+const votedUrl = `${apiUrl}/getVoted`;
+const votedContainer = document.getElementById("voted_div");
+fetchMovies(votedUrl, votedContainer, "movie");
+
 const lastAddedUrl = `${apiUrl}/getLastAdded`;
 const lastAddedContainer = document.getElementById("added_r");
 fetchMovies(lastAddedUrl, lastAddedContainer, "movie");

@@ -128,6 +128,10 @@ const genreUrl = `${apiUrl}/getGenresTV`;
 const genreApi = "/getTVByGenre?genre=";
 categoryGenre(genreUrl, "", genreApi, "genre_id");
 
+const votedUrl = `${apiUrl}/getVotedTV`;
+const votedContainer = document.getElementById("voted_div");
+fetchMovies(votedUrl, votedContainer, "tv");
+
 const lastAddedUrl = `${apiUrl}/getLastAddedSerie`;
 const lastAddedContainer = document.getElementById("added_r");
 fetchMovies(lastAddedUrl, lastAddedContainer, "tv");

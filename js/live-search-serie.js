@@ -9,6 +9,7 @@ const banner = document.getElementById("banner");
 const header = document.getElementById("header");
 const continueContainer = document.getElementById("continue");
 const addedRecently = document.getElementById("added_recently");
+const voted = document.getElementById("voted");
 results_container.innerText = "";
 
 searchBar.addEventListener("input", (event) => {
@@ -18,6 +19,7 @@ searchBar.addEventListener("input", (event) => {
     all.style.display = "block";
     second.style.display = "block";
     banner.style.display = "block";
+    voted.style.display = "block";
     addedRecently.style.display = "block";
     results_container.style.display = "none";
     return;
@@ -28,6 +30,7 @@ searchBar.addEventListener("input", (event) => {
   second.style.display = "none";
   banner.style.display = "none";
   continueContainer.style.display = "none";
+  voted.style.display = "none";
   addedRecently.style.display = "none";
   results_container.style.display = "block";
   searchTitleAll(url, results_container, 'tv');
