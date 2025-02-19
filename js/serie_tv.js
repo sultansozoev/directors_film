@@ -112,7 +112,7 @@ function categoryGenre(url, id_container, api, id) {
       data.forEach(data => {
         const title = data[id] + id_container;
         const moviesContainer = document.getElementById(title);
-        fetchMovies(`${apiUrl}${api}${data[id]}`, moviesContainer, false);
+        fetchMovies(`${apiUrl}${api}${data[id]}`, moviesContainer, "tv");
       });
     })
     .catch(error => {
