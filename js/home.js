@@ -27,7 +27,7 @@ function fetchContinue(url, container) {
         const url = `https://surio.ddns.net/deleteContinueList`;
         deleteBtn.addEventListener('click',  () => {
           cardDiv.remove();
-          deleteContinue(movie.movie_id, getCookie("user"), url)
+          deleteContinue(movie.movie_id, getCookie("user"), "tv")
         });
         cardDiv.appendChild(cardLink);
         cardDiv.appendChild(deleteBtn);
