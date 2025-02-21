@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="css/continue_watch.css">
 </head>
 <body class="bg-dark">
-<header id="header" class="position-static">
+<header id="header" class="position-static" style="display: none !important;">
   <nav class="navbar fixed-top justify-content-center bg-dark" data-bs-theme="dark">
     <div class="container-fluid d-flex">
       <div class="d-flex justify-content-start align-items-center px-3">
@@ -179,13 +179,7 @@
   <div class="swiper-pagination50"></div>
 </div>
 
-<div id="load">
-  <div>O</div>
-  <div>I</div>
-  <div>R</div>
-  <div>U</div>
-  <div>S</div>
-</div>
+<div id="three-container"></div>
 <div id="all-page" style="display: none">
 
 <div id="categories">
@@ -425,6 +419,13 @@
 <audio id="welcome-audio" src="surio.mp3"></audio>
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/bas.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/TextGeometry.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/FontUtils.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/pnltri.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/droid_sans_bold.typeface.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="js/swiper-bundle.min.js"></script>
 <script type="module" src="js/live-search-home.js"></script>
