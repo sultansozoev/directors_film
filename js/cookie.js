@@ -72,12 +72,14 @@ document.addEventListener("DOMContentLoaded", function () {
       showPage();
       audioElement.muted = true;
       document.removeEventListener('keydown', keyHandler);
+      document.body.style.overflow = 'auto';
     }, 3000);
 
     function keyHandler() {
       clearTimeout(timeoutId);
       showPage();
       audioElement.muted = true;
+      document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', keyHandler);
     }
 
@@ -301,6 +303,8 @@ document.addEventListener("DOMContentLoaded", function () {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
       }
     };
+
+    document.body.style.overflow = 'hidden';
 
     var utils = {
       extend:function(dst, src) {
