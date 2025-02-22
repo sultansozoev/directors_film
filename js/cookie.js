@@ -57,29 +57,30 @@ function showPage() {
 }
 document.addEventListener("DOMContentLoaded", function () {
   if (load !== null) {
+    const audioElement = document.getElementById("welcome-audio");
+    if (audioElement) {
+      audioElement.muted = true;
+      audioElement.play().then(() => {
+        setTimeout(() => {
+          audioElement.muted = false;
+        }, 1);
+      }).catch(error => {
+        console.log("Riproduzione automatica bloccata. L'utente deve interagire con la pagina.", error);
+      });
+    }
     const timeoutId = setTimeout(() => {
       showPage();
+      audioElement.muted = true;
       document.removeEventListener('keydown', keyHandler);
     }, 3000);
 
     function keyHandler() {
       clearTimeout(timeoutId);
       showPage();
+      audioElement.muted = true;
       document.removeEventListener('keydown', keyHandler);
     }
 
-    const audioElement = document.getElementById("welcome-audio");
-
-    if (audioElement) {
-      audioElement.muted = false;
-      audioElement.play().then(() => {
-        setTimeout(() => {
-          audioElement.muted = false; // Rimuove il muto dopo un breve ritardo
-        }, 1);
-      }).catch(error => {
-        console.log("Riproduzione automatica bloccata. L'utente deve interagire con la pagina.", error);
-      });
-    }
     document.addEventListener('keydown', keyHandler);
     window.onload = init;
 
@@ -99,72 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
         {animationProgress:0},
         {animationProgress:1, ease:Power1.easeInOut, repeat:-1, yoyo:true}
       );
-      createTweenScrubber(tween);
     }
 
-    function createTweenScrubber(tween, seekSpeed) {
-      seekSpeed = seekSpeed || 0.001;
-
-      function stop() {
-        TweenMax.to(tween, 2, {timeScale:0});
-      }
-
-      function resume() {
-        TweenMax.to(tween, 2, {timeScale:1});
-      }
-
-      function seek(dx) {
-        var progress = tween.progress();
-        var p = THREE.Math.clamp((progress + (dx * seekSpeed)), 0, 1);
-
-        tween.progress(p);
-      }
-
-      var _cx = 0;
-
-      // desktop
-      var mouseDown = false;
-      document.body.style.cursor = 'pointer';
-
-      window.addEventListener('mousedown', function(e) {
-        mouseDown = true;
-        document.body.style.cursor = 'ew-resize';
-        _cx = e.clientX;
-        stop();
-      });
-      window.addEventListener('mouseup', function(e) {
-        mouseDown = false;
-        document.body.style.cursor = 'pointer';
-        resume();
-      });
-      window.addEventListener('mousemove', function(e) {
-        if (mouseDown === true) {
-          var cx = e.clientX;
-          var dx = cx - _cx;
-          _cx = cx;
-
-          seek(dx);
-        }
-      });
-      // mobile
-      window.addEventListener('touchstart', function(e) {
-        _cx = e.touches[0].clientX;
-        stop();
-        e.preventDefault();
-      });
-      window.addEventListener('touchend', function(e) {
-        resume();
-        e.preventDefault();
-      });
-      window.addEventListener('touchmove', function(e) {
-        var cx = e.touches[0].clientX;
-        var dx = cx - _cx;
-        _cx = cx;
-
-        seek(dx);
-        e.preventDefault();
-      });
-    }
 
     function createTextAnimation() {
       var geometry = generateTextGeometry('SURIO', {
@@ -206,10 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return geometry;
     }
 
-////////////////////
-// CLASSES
-////////////////////
-
     function TextAnimation(textGeometry) {
       var bufferGeometry = new THREE.BAS.ModelBufferGeometry(textGeometry);
 
@@ -234,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var dirX = centroid.x > 0 ? 1 : -1;
         var dirY = centroid.y > 0 ? 1 : -1;
 
-        // animation
         var delay = centroid.length() * THREE.Math.randFloat(0.03, 0.06);
         var duration = THREE.Math.randFloat(2, 4);
 
@@ -243,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
           aAnimation.array[i2 + v + 1] = duration;
         }
 
-        // ctrl
         var c0x = THREE.Math.randFloat(0, 30) * dirX;
         var c0y = THREE.Math.randFloat(60, 120) * dirY;
         var c0z = THREE.Math.randFloat(-20, 20);
@@ -370,10 +301,6 @@ document.addEventListener("DOMContentLoaded", function () {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
       }
     };
-
-////////////////////
-// UTILS
-////////////////////
 
     var utils = {
       extend:function(dst, src) {
