@@ -31,8 +31,7 @@ function fetchContinue(url, container) {
           const totalSeconds = movie.runtime * 60;
           progressPercentage = Math.min((movie.player_time / totalSeconds) * 100, 100);
         }
-        console.log(progressPercentage)
-
+        console.log(movie.runtime);
         const progressBarContainer = document.createElement('div');
         progressBarContainer.classList.add('progress-bar-container');
 

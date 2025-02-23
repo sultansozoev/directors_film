@@ -26,7 +26,7 @@ searchBar.addEventListener("input", (event) => {
 
           const movieLink = document.createElement('a');
           movieLink.setAttribute('href', `javascript:void(0)`);
-          movieLink.setAttribute('onclick', "addSerie(\"" + serie.id +"\", \""+serie.genre_ids+"\", \""+serie.name+"\", \""+serie.poster_path+"\", \""+serie.first_air_date+"\", \""+serie.popularity+"\", \""+serie.backdrop_path+"\")")
+          movieLink.setAttribute('onclick', "addSerie(\"" + serie.id +"\", \""+serie.genre_ids+"\", \""+serie.name+"\", \""+serie.poster_path+"\", \""+serie.first_air_date+"\", \""+serie.popularity+"\", \""+serie.backdrop_path+"\", \""+serie.vote_average+"\")")
           movieCard.setAttribute('data-bs-toggle', 'modal');
           movieCard.setAttribute('data-bs-target', '#staticBackdrop');
           const movieHeader = document.createElement('div');

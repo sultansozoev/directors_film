@@ -119,7 +119,7 @@ function addMovie(id, genre_ids, title, poster_path, release_date, popularity, b
     });
 }
 
-function addSerie(id, genre_ids, name, poster_path, first_air_date, popularity, backdrop_path) {
+function addSerie(id, genre_ids, name, poster_path, first_air_date, popularity, backdrop_path, vote_average) {
   const url = `https://surio.ddns.net/insertSerieTV`;
   fetch(url, {
     headers: {
@@ -127,7 +127,7 @@ function addSerie(id, genre_ids, name, poster_path, first_air_date, popularity, 
     },
     method: 'POST',
     body:  JSON.stringify({
-      id: id, genres: genre_ids, name: name, poster: poster_path, first_air_date: first_air_date, popularity: popularity, backdrop_path: backdrop_path
+      id: id, genres: genre_ids, name: name, poster: poster_path, first_air_date: first_air_date, popularity: popularity, backdrop_path: backdrop_path, vote_average: vote_average
     })
   })
     .then(response => response.json())
