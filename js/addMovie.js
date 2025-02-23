@@ -23,10 +23,9 @@ searchBar.addEventListener("input", (event) => {
         if ('poster_path' in movie && movie.poster_path != null) {
           const movieCard = document.createElement('div');
           movieCard.classList.add('movie-card');
-
           const movieLink = document.createElement('a');
           movieLink.setAttribute('href', `javascript:void(0)`);
-          movieLink.setAttribute('onclick', "addMovie(\"" + movie.id +"\", \""+movie.genre_ids+"\", \""+movie.title+"\", \""+movie.poster_path+"\", \""+movie.release_date+"\", \""+movie.popularity+"\", \""+movie.backdrop_path+"\")")
+          movieLink.setAttribute('onclick', "addMovie(\"" + movie.id +"\", \""+movie.genre_ids+"\", \""+movie.title+"\", \""+movie.poster_path+"\", \""+movie.release_date+"\", \""+movie.popularity+"\", \""+movie.backdrop_path+"\", \""+movie.vote_average+"\")")
           movieCard.setAttribute('data-bs-toggle', 'modal');
           movieCard.setAttribute('data-bs-target', '#staticBackdrop');
           const movieHeader = document.createElement('div');

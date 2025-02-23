@@ -21,17 +21,32 @@ function fetchContinue(url, container) {
         const cardLink = document.createElement('a');
         cardLink.classList.add('card-link');
         cardLink.setAttribute('href', `new-player.html?film=${movie.movie_id}`);
+
+        let progressPercentage = 0;
+        if (movie.runtime > 0) {
+          const totalSeconds = movie.runtime * 60;
+          progressPercentage = Math.min((movie.player_time / totalSeconds) * 100, 100);
+        }
+
+        const progressBarContainer = document.createElement('div');
+        progressBarContainer.classList.add('progress-bar-container');
+
+        const progressBar = document.createElement('div');
+        progressBar.classList.add('progress-bar');
+        progressBar.style.width = `${progressPercentage}%`;
+
+        progressBarContainer.appendChild(progressBar);
+
         const deleteBtn = document.createElement('span');
         deleteBtn.classList.add('delete-btn');
         deleteBtn.innerHTML = '&times;';
-        const url = `https://surio.ddns.net/deleteContinueList`;
         deleteBtn.addEventListener('click',  () => {
           cardDiv.remove();
           deleteContinue(movie.movie_id, getCookie("user"), "tv")
         });
         cardDiv.appendChild(cardLink);
         cardDiv.appendChild(deleteBtn);
-
+        cardDiv.appendChild(progressBarContainer);
         container.appendChild(cardDiv);
       });
       const continueContainer = document.getElementById("continue");

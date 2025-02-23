@@ -94,7 +94,7 @@ function deleteContinue(movie_id, user_id, type) {
     });
 }
 
-function addMovie(id, genre_ids, title, poster_path, release_date, popularity, backdrop_path) {
+function addMovie(id, genre_ids, title, poster_path, release_date, popularity, backdrop_path, vote_average) {
   const url = `https://surio.ddns.net/insertFilm`;
   fetch(url, {
     headers: {
@@ -102,7 +102,7 @@ function addMovie(id, genre_ids, title, poster_path, release_date, popularity, b
     },
     method: 'POST',
     body:  JSON.stringify({
-      id: id, genres: genre_ids, title_movie: title, poster: poster_path, release_date: release_date, popularity: popularity, backdrop_path: backdrop_path
+      id: id, genres: genre_ids, title_movie: title, poster: poster_path, release_date: release_date, popularity: popularity, backdrop_path: backdrop_path, vote_average: vote_average
     })
   })
     .then(response => response.json())

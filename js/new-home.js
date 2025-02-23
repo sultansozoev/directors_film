@@ -25,19 +25,39 @@ function fetchContinue(url, container) {
         } else if (movie.type === 'movie') {
           cardLink.setAttribute('href', `new-player.html?film=${movie.movie_id}`);
         }
+
+        let progressPercentage = 0;
+        if (movie.runtime > 0) {
+          const totalSeconds = movie.runtime * 60;
+          progressPercentage = Math.min((movie.player_time / totalSeconds) * 100, 100);
+        }
+        console.log(progressPercentage)
+
+        const progressBarContainer = document.createElement('div');
+        progressBarContainer.classList.add('progress-bar-container');
+
+        const progressBar = document.createElement('div');
+        progressBar.classList.add('progress-bar');
+        progressBar.style.width = `${progressPercentage}%`;
+
+        progressBarContainer.appendChild(progressBar);
+
         const deleteBtn = document.createElement('span');
         deleteBtn.classList.add('delete-btn');
         deleteBtn.innerHTML = '&times;';
 
-        deleteBtn.addEventListener('click',  () => {
+        deleteBtn.addEventListener('click', () => {
           cardDiv.remove();
-          deleteContinue(movie.movie_id, getCookie("user"), movie.type)
+          deleteContinue(movie.movie_id, getCookie("user"), movie.type);
         });
+
         cardDiv.appendChild(cardLink);
         cardDiv.appendChild(deleteBtn);
+        cardDiv.appendChild(progressBarContainer);
 
         container.appendChild(cardDiv);
       });
+
       const continueContainer = document.getElementById("continue");
       if (data.length < 1) {
         continueContainer.style.setProperty('display', 'none', 'important');
