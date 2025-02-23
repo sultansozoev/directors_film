@@ -36,7 +36,7 @@ function login(username, password) {
         console.log(data)
         setCookie("jwt", data.token, 30);
         setCookie("user", data.user_id, 30)
-        window.location.href = "index.html";
+        window.location.href = "./";
       } else {
         const errorSpan = document.getElementById('error');
         errorSpan.innerHTML = "Username o Password errati!";
