@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
       audioElement.muted = true;
       document.removeEventListener('keydown', keyHandler);
       document.body.style.overflow = 'auto';
-    }, 3000);
+    }, 3600);
 
     function keyHandler() {
       clearTimeout(timeoutId);
