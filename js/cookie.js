@@ -39,6 +39,8 @@ const load = document.getElementById('three-container');
 function showPage() {
   const allPage = document.getElementById('all-page');
   const banner = document.getElementById('banner');
+  const listContainer = document.getElementById('listContainer');
+  const lista = document.getElementById('lista');
   const header = document.getElementById('header');
   const tabs = document.getElementById('container1');
   const continueContainer = document.getElementById('continue');
@@ -50,6 +52,9 @@ function showPage() {
   banner.style.display = 'block';
   voted.style.display = 'block';
   header.style.display = 'block';
+  if (listContainer)
+    if (lista.childElementCount > 0)
+      listContainer.style.display = 'block';
   continueContainer.style.display = 'inline-block';
   allPage.style.display = 'block';
   ditendenza.style.display = 'block';
