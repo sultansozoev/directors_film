@@ -3,12 +3,12 @@ import {searchTitleAll} from './mainFunctions.js';
 
 const searchBar = document.querySelector("[data-search]");
 const results_container = document.getElementById("results-container");
-const container1 = document.getElementById("container1");
 const all = document.getElementById("all");
 const ditendenza = document.getElementById("ditendenza");
 const continueContainer = document.getElementById("continue");
 const header = document.getElementById("header");
 const banner = document.getElementById("banner");
+const listContainer = document.getElementById("listContainer");
 const addedRecently = document.getElementById("added_recently");
 const voted = document.getElementById("voted");
 results_container.innerText = "";
@@ -20,9 +20,8 @@ searchBar.addEventListener("input", async (event) => {
     all.style.display = "block";
     voted.style.display = "block";
     ditendenza.style.display = "block";
-    if (container1)
-      container1.style.display = "";
     banner.style.display = "block";
+    listContainer.style.display = "block";
     addedRecently.style.display = "block";
     return;
   }
@@ -32,8 +31,7 @@ searchBar.addEventListener("input", async (event) => {
   all.style.display = "none";
   ditendenza.style.display = "none";
   voted.style.display = "none";
-  if (container1)
-    container1.style.display = "none";
+  listContainer.style.display = "none";
   continueContainer.style.display = "none";
   banner.style.display = "none";
   addedRecently.style.display = "none";
