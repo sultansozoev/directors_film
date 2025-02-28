@@ -25,7 +25,7 @@ const progressBar = document.querySelector('.video-container .progress-controls 
 const watchedBar = document.querySelector('.video-container .progress-controls .progress-bar .watched-bar');
 const watching = document.querySelector('.watching');
 const timeLeft = document.querySelector('.video-container .progress-controls .time-remaining');
-
+let controlsVisible = false;
 let controlsTimeout;
 controlsContainer.style.opacity = '0';
 backButton.style.opacity = '0';
@@ -38,6 +38,14 @@ const displayControls = () => {
   controlsContainer.style.opacity = '1';
   backButton.style.opacity = '1';
   document.body.style.cursor = 'initial';
+  const track = tracks[0];
+
+  if (track && track.cues) {
+    for (let i = 0; i < track.cues.length; i++) {
+      track.cues[i].line = controlsVisible ? -5 : "auto";
+    }
+  }
+  controlsVisible = true;
   if (controlsTimeout) {
     clearTimeout(controlsTimeout);
   }
@@ -46,6 +54,13 @@ const displayControls = () => {
     backButton.style.opacity = '0';
     document.body.style.cursor = 'none';
     volumeSlider.style.opacity = '0';
+    controlsVisible = false;
+
+    if (track && track.cues) {
+      for (let i = 0; i < track.cues.length; i++) {
+        track.cues[i].line = "auto";
+      }
+    }
   }, 5000);
 };
 
