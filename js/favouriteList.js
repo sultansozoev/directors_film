@@ -12,9 +12,9 @@ function fetchList(url, container, user_id) {
     .then(data => {
       data.forEach(list => {
         const cardDiv = document.createElement('div');
-        cardDiv.classList.add('movie-card');
+        cardDiv.classList.add('movie-card', 'card');
         cardDiv.classList.add('card');
-
+        cardDiv.style.cursor = 'pointer';
         const deleteButton = document.createElement('span');
         deleteButton.classList.add('delete-btn');
         deleteButton.innerHTML = `&times`;
@@ -32,11 +32,13 @@ function fetchList(url, container, user_id) {
         const movieContentHeader = document.createElement('div');
         movieContentHeader.classList.add('movie-content-header');
         const a = document.createElement('a');
-        if (list.type === 'tv') {
-          a.setAttribute('href', `new-player-serie.html?serie=${list.movie_id}`);
-        } else if (list.type === 'movie') {
-          a.setAttribute('href', `new-player.html?film=${list.movie_id}`);
-        }
+        cardDiv.addEventListener('click', () => {
+          if (list.type === 'tv') {
+            window.location.href = `new-player-serie.html?serie=${list.movie_id}`;
+          } else if (list.type === 'movie') {
+            window.location.href = `new-player.html?film=${list.movie_id}`;
+          }
+        });
         const title = document.createElement('h3');
         title.innerHTML = list.title;
         title.classList.add('aCard');
