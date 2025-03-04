@@ -18,7 +18,8 @@ function fetchList(url, container, user_id) {
         const deleteButton = document.createElement('span');
         deleteButton.classList.add('delete-btn');
         deleteButton.innerHTML = `&times`;
-        deleteButton.addEventListener('click',  () => {
+        deleteButton.addEventListener('click',  (event) => {
+          event.stopPropagation();
           cardDiv.remove();
           eliminaFavourite(list.movie_id, getCookie("user"), list.type);
         });
