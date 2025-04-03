@@ -73,8 +73,6 @@ const videoPlayer = document.getElementById('banner-player');
 const titleTrailer = document.getElementById('titleTrailer');
 const playMovie = document.getElementById('playMovie');
 
-const urlTrailerSelector = `${apiUrl}/trailerSelector`;
-
 const player = new Plyr('video', {
   clickToPlay: false,
   fullscreen: false
@@ -85,27 +83,40 @@ player.muted = true;
 player.loop = true;
 window.player = player;
 window.onscroll = onScroll;
+const getRandomBoolean = () => Math.random() < 0.5;
 
-fetch(urlTrailerSelector, {
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  method: 'GET'
-})
-  .then(response => response.json())
-  .then(async data => {
-    titleTrailer.innerHTML = data.trailer.title;
-    playMovie.href = "new-player.html?film=" + data.trailer.movie_id;
-    videoPlayer.setAttribute('poster', "https://image.tmdb.org/t/p/original" + data.trailer.background_image);
-    await playRandomVideo(data.trailer.movie_id);
-  })
-  .catch(error => {
-    console.error('Error fetching films:', error);
-  });
+const fetchRandomTrailer = async () => {
+  const isTV = getRandomBoolean();
+
+  const urlTrailerSelector = `${apiUrl}/trailerSelector?tv=${isTV}`;
+  console.log(urlTrailerSelector)
+  try {
+    const response = await fetch(urlTrailerSelector, {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'GET'
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    const data = await response.json();
+    const trailer = data.trailer;
+
+    titleTrailer.innerHTML = trailer.title;
+    playMovie.href = isTV
+      ? `new-player-serie.html?serie=${trailer.serie_tv_id}`
+      : `new-player.html?film=${trailer.movie_id}`;
+    videoPlayer.setAttribute('poster', `https://image.tmdb.org/t/p/original${trailer.background_image}`);
+
+    await playRandomVideo(isTV ? `${apiUrl}/trailer?tv=${true}&fileName=${trailer.serie_tv_id}` : `${apiUrl}/trailer?fileName=${trailer.movie_id}`);
+  } catch (error) {
+    console.error('Error fetching trailer:', error);
+  }
+};
+fetchRandomTrailer();
 
 async function playRandomVideo(fileName) {
   try {
-    videoPlayer.src = `${apiUrl}/trailer?fileName=${fileName}`;
+    videoPlayer.src = fileName;
     videoPlayer.play();
   } catch (error) {
     console.error('Error fetching random video:', error);
