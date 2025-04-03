@@ -60,6 +60,42 @@ export async function searchTitleAll(url, results_container, type) {
   }
 }
 
+export function searchPerson(url, results_container) {
+  fetch(url, {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'GET'
+  })
+    .then(async response => {
+      const data = await response.json();
+      results_container.innerHTML = '';
+      const persons = data.persons;
+      const fragment = document.createDocumentFragment();
+      persons.forEach(person => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card', 'rounded-circle', 'swiper-slide', 'bg-dark');
+
+        const imageBox = document.createElement('div');
+        imageBox.classList.add('image-box');
+
+        const a = document.createElement('a');
+        a.setAttribute('href', '');
+
+        const image = document.createElement('img');
+        image.src = `https://image.tmdb.org/t/p/original/${person.profile_path}`;
+
+        a.appendChild(image);
+        imageBox.appendChild(a);
+
+        cardDiv.appendChild(imageBox);
+        fragment.appendChild(cardDiv);
+      });
+      results_container.appendChild(fragment);
+    })
+    .catch(error => {
+      console.error('Error fetching films:', error);
+    });
+}
+
 export function fetchMovies(url, container, type) {
   fetch(url, {
     headers: { 'Content-Type': 'application/json' },
@@ -77,8 +113,8 @@ export function fetchMovies(url, container, type) {
 
         const currentType = movie.type || type;
         const movie_id = movie.movie_id || movie.serie_tv_id;
-
-        await checkIfFavorite(movie_id, favoriteIcon, currentType);
+        if (getCookie("user"))
+          await checkIfFavorite(movie_id, favoriteIcon, currentType);
 
         const imageBox = document.createElement('div');
         imageBox.classList.add('image-box');
